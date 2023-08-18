@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -55,11 +56,31 @@ public class UsuarioService {
         long agora = System.currentTimeMillis();
         long expiracao = agora + TimeUnit.MINUTES.toMillis(10);
 
+         Usuario usuario = usuarioRepository.findByEmail(usuarioLoginDto.getEmail());
+
         return Jwts.builder()
-            .setSubject(usuarioLoginDto.getEmail())
+            .setSubject(usuario.getEmail())
             .setIssuedAt(new Date(agora))
             .setExpiration(new Date(expiracao))
             .signWith(SignatureAlgorithm.HS256, CHAVE_SECRETA)
             .compact();
+    }
+
+    // retorna o usuario atualizado ou nulo se nao existir um usuário com este id
+    public Usuario atualizar(Long id, Usuario usuario) {
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+        String encryptedPassword = bCryptPasswordEncoder.encode(usuario.getSenha());
+
+        if(optionalUsuario.isEmpty()) {
+            return null;
+        }
+
+        Usuario u = optionalUsuario.get();
+
+        u.setCpf(usuario.getCpf());
+        u.setSenha(encryptedPassword);
+        u.setGrupo(usuario.getGrupo());
+
+        return u;
     }
 }

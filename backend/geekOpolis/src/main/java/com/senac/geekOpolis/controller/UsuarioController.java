@@ -2,7 +2,9 @@ package com.senac.geekOpolis.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,5 +49,18 @@ public class UsuarioController {
         } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuario nao existe ou email ou senha errados");
         }
+    }
+
+    // endpoint para atualizar usuario
+    @PutMapping("atualizaUsuario/{id}")
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Usuario usuario) {
+        Usuario u = userService.atualizar(id, usuario);
+
+        if(u != null) {
+            userRepository.save(u);
+            return ResponseEntity.ok("Usuario atualizado");
+        }
+
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
     }
 }

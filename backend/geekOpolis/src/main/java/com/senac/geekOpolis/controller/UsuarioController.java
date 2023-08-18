@@ -16,6 +16,9 @@ import com.senac.geekOpolis.repository.UsuarioRepository;
 import com.senac.geekOpolis.service.UsuarioService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 // Controller da classe usuário
 @AllArgsConstructor
@@ -63,4 +66,11 @@ public class UsuarioController {
 
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
     }
+
+    // endpoint para trazer as informacoes de quem está logado e autenticado
+    @GetMapping("informacoes")
+    public Usuario informations(@RequestParam String jwtToken) {
+        return userService.verificarUsuarioPorToken(jwtToken);
+    }
+    
 }

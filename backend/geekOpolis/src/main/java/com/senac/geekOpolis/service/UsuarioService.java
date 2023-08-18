@@ -1,5 +1,7 @@
 package com.senac.geekOpolis.service;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -51,7 +53,7 @@ public class UsuarioService {
         }
     }
 
-    // gera um token de duraçao de 5 minutos para o usuario caso o login de certo
+    // gera um token de duraçao de 10 minutos para o usuario caso o login de certo
     public String gerarToken(UsuarioLoginDto usuarioLoginDto) {
         long agora = System.currentTimeMillis();
         long expiracao = agora + TimeUnit.MINUTES.toMillis(10);
@@ -89,5 +91,21 @@ public class UsuarioService {
         }
         
         return u;
+    }
+
+    // tenta utilizar o token para recuperar o subject e retornar quem está logado e suas infornações, caso seja nulo o tojen é invalido ou está expirado.
+    public Usuario verificarUsuarioPorToken(String token) {
+        try {
+            Jws<Claims> claimsJws = Jwts.parser()
+                    .setSigningKey(CHAVE_SECRETA)
+                    .parseClaimsJws(token);
+
+            String userEmail = claimsJws.getBody().getSubject();
+            Usuario usuario = usuarioRepository.findByEmail(userEmail);
+
+            return usuario;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

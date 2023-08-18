@@ -67,6 +67,19 @@ public class UsuarioController {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
     }
 
+    // endpoint para atualizar acesso de usuario
+    @PutMapping("acessoUsuario/{id}")
+    public ResponseEntity<String> acess(@PathVariable Long id) {
+        Usuario u = userService.acess(id);
+
+        if(u != null) {
+            userRepository.save(u);
+            return ResponseEntity.ok("Acesso atualizado");
+        }
+
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
+    }
+
     // endpoint para trazer as informacoes de quem está logado e autenticado
     @GetMapping("informacoes")
     public Usuario informations(@RequestParam String jwtToken) {

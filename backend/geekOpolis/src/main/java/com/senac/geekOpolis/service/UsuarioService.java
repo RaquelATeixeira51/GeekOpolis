@@ -93,6 +93,24 @@ public class UsuarioService {
         return u;
     }
 
+    // retorna o usuario ativo ou inativo
+    public Usuario acess(Long id) {
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+        Usuario u = optionalUsuario.get();
+
+        if(optionalUsuario.isEmpty()) {
+            return null;
+        }
+
+        if (u.isAtivo() == true) {
+            u.setAtivo(false);
+        }else{
+            u.setAtivo(true);
+        }
+        
+        return u;
+    }
+
     // tenta utilizar o token para recuperar o subject e retornar quem está logado e suas infornações, caso seja nulo o tojen é invalido ou está expirado.
     public Usuario verificarUsuarioPorToken(String token) {
         try {

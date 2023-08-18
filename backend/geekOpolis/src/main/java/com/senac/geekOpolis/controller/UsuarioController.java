@@ -1,15 +1,16 @@
 package com.senac.geekOpolis.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Usuario;
+import com.senac.geekOpolis.models.UsuarioLoginDto;
 import com.senac.geekOpolis.repository.UsuarioRepository;
 import com.senac.geekOpolis.service.UsuarioService;
 
@@ -33,7 +34,19 @@ public class UsuarioController {
             userRepository.save(usuario);
             return new ResponseEntity<>("Created", HttpStatus.CREATED);
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Este email já existe");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Este email ja existe");
+        }
+    }
+
+
+    // endpoint de login recebe email e senha e retorne um token ou unauthorized
+    @PostMapping("login")
+    public ResponseEntity<String> login(@RequestBody UsuarioLoginDto usuarioLoginDto) {
+        // verica se a senha é valida antes de retornar o token
+        if(userService.validaSenha(usuarioLoginDto)) {
+            return ResponseEntity.ok(userService.gerarToken(usuarioLoginDto));
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuario nao existe ou email ou senha errados");
         }
     }
 }

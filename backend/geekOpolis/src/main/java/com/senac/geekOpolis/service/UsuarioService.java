@@ -69,18 +69,25 @@ public class UsuarioService {
     // retorna o usuario atualizado ou nulo se nao existir um usuário com este id
     public Usuario atualizar(Long id, Usuario usuario) {
         Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
-        String encryptedPassword = bCryptPasswordEncoder.encode(usuario.getSenha());
+        Usuario u = optionalUsuario.get();
 
         if(optionalUsuario.isEmpty()) {
             return null;
         }
 
-        Usuario u = optionalUsuario.get();
-
-        u.setCpf(usuario.getCpf());
-        u.setSenha(encryptedPassword);
-        u.setGrupo(usuario.getGrupo());
-
+        if (usuario.getSenha() != null) {
+            String encryptedPassword = bCryptPasswordEncoder.encode(usuario.getSenha());
+            u.setSenha(encryptedPassword);
+        }
+        
+        if(usuario.getCpf() != null) {
+            u.setCpf(usuario.getCpf());
+        }
+        
+        if(usuario.getGrupo() != null) {
+            u.setGrupo(usuario.getGrupo());
+        }
+        
         return u;
     }
 }

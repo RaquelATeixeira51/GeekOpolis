@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Usuario;
 import com.senac.geekOpolis.models.UsuarioLoginDto;
+import com.senac.geekOpolis.models.UsuarioPayloadDto;
 import com.senac.geekOpolis.repository.UsuarioRepository;
 import com.senac.geekOpolis.service.UsuarioService;
 
@@ -82,7 +83,7 @@ public class UsuarioController {
 
     // endpoint para trazer as informacoes de quem está logado e autenticado
     @GetMapping("informacoes")
-    public Usuario informations(@RequestParam String jwtToken) {
+    public UsuarioPayloadDto informations(@RequestParam String jwtToken) {
         return userService.verificarUsuarioPorToken(jwtToken);
     }
     

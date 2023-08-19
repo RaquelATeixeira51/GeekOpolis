@@ -1,9 +1,12 @@
 package com.senac.geekOpolis.service;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 
 import java.util.Date;
 import java.util.Optional;
@@ -14,10 +17,10 @@ import org.springframework.stereotype.Service;
 
 import com.senac.geekOpolis.models.Usuario;
 import com.senac.geekOpolis.models.UsuarioLoginDto;
+import com.senac.geekOpolis.models.UsuarioPayloadDto;
 import com.senac.geekOpolis.repository.UsuarioRepository;
 
 import lombok.AllArgsConstructor;
-
 
 //Classe de serviço para metodos auxiliares
 @Service
@@ -28,24 +31,25 @@ public class UsuarioService {
 
     private static final String CHAVE_SECRETA = "jwt-geekOpolis-validation";
 
-    //Encripta senha usando bCrypt do spring boot security
+    // Encripta senha usando bCrypt do spring boot security
     public Usuario encriptSenha(Usuario usuario) {
         String encryptedPassword = bCryptPasswordEncoder.encode(usuario.getSenha());
         usuario.setSenha(encryptedPassword);
-        
+
         return usuario;
     }
 
     // Verifica se ja existe um usuário com este email
     public boolean validaEmail(String email) {
-       Usuario usuario = usuarioRepository.findByEmail(email);
-       return usuario != null;
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        return usuario != null;
     }
 
-    // Verifica se existe um usuário com este email e depois valida se as senhas batem
+    // Verifica se existe um usuário com este email e depois valida se as senhas
+    // batem
     public boolean validaSenha(UsuarioLoginDto usuarioLoginDto) {
         Usuario usuario = usuarioRepository.findByEmail(usuarioLoginDto.getEmail());
-    
+
         if (usuario != null) {
             return bCryptPasswordEncoder.matches(usuarioLoginDto.getSenha(), usuario.getSenha());
         } else {
@@ -58,14 +62,14 @@ public class UsuarioService {
         long agora = System.currentTimeMillis();
         long expiracao = agora + TimeUnit.MINUTES.toMillis(10);
 
-         Usuario usuario = usuarioRepository.findByEmail(usuarioLoginDto.getEmail());
+        Usuario usuario = usuarioRepository.findByEmail(usuarioLoginDto.getEmail());
 
         return Jwts.builder()
-            .setSubject(usuario.getEmail())
-            .setIssuedAt(new Date(agora))
-            .setExpiration(new Date(expiracao))
-            .signWith(SignatureAlgorithm.HS256, CHAVE_SECRETA)
-            .compact();
+                .setSubject(usuario.getEmail())
+                .setIssuedAt(new Date(agora))
+                .setExpiration(new Date(expiracao))
+                .signWith(SignatureAlgorithm.HS256, CHAVE_SECRETA)
+                .compact();
     }
 
     // retorna o usuario atualizado ou nulo se nao existir um usuário com este id
@@ -73,7 +77,7 @@ public class UsuarioService {
         Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
         Usuario u = optionalUsuario.get();
 
-        if(optionalUsuario.isEmpty()) {
+        if (optionalUsuario.isEmpty()) {
             return null;
         }
 
@@ -81,15 +85,15 @@ public class UsuarioService {
             String encryptedPassword = bCryptPasswordEncoder.encode(usuario.getSenha());
             u.setSenha(encryptedPassword);
         }
-        
-        if(usuario.getCpf() != null) {
+
+        if (usuario.getCpf() != null) {
             u.setCpf(usuario.getCpf());
         }
-        
-        if(usuario.getGrupo() != null) {
+
+        if (usuario.getGrupo() != null) {
             u.setGrupo(usuario.getGrupo());
         }
-        
+
         return u;
     }
 
@@ -98,21 +102,22 @@ public class UsuarioService {
         Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
         Usuario u = optionalUsuario.get();
 
-        if(optionalUsuario.isEmpty()) {
+        if (optionalUsuario.isEmpty()) {
             return null;
         }
 
         if (u.isAtivo() == true) {
             u.setAtivo(false);
-        }else{
+        } else {
             u.setAtivo(true);
         }
-        
+
         return u;
     }
 
-    // tenta utilizar o token para recuperar o subject e retornar quem está logado e suas infornações, caso seja nulo o tojen é invalido ou está expirado.
-    public Usuario verificarUsuarioPorToken(String token) {
+    // tenta utilizar o token para recuperar o subject e retornar quem está logado e
+    // suas infornações, caso seja nulo o tojen é invalido ou está expirado.
+    public UsuarioPayloadDto verificarUsuarioPorToken(String token) {
         try {
             Jws<Claims> claimsJws = Jwts.parser()
                     .setSigningKey(CHAVE_SECRETA)
@@ -121,9 +126,25 @@ public class UsuarioService {
             String userEmail = claimsJws.getBody().getSubject();
             Usuario usuario = usuarioRepository.findByEmail(userEmail);
 
-            return usuario;
+            if (usuario == null) {
+                throw new RuntimeException("Token válido, mas usuário não encontrado.");
+            }
+
+            UsuarioPayloadDto usuarioPayloadDto = new UsuarioPayloadDto();
+
+            usuarioPayloadDto.setAtivo(usuario.isAtivo());
+            usuarioPayloadDto.setCpf(usuario.getCpf());
+            usuarioPayloadDto.setEmail(usuario.getEmail());
+            usuarioPayloadDto.setGrupo(usuario.getGrupo());
+            usuarioPayloadDto.setId(usuario.getId());
+
+            return usuarioPayloadDto;
+        } catch (ExpiredJwtException e) {
+            throw new RuntimeException("Token expirado.");
+        } catch (MalformedJwtException | SignatureException e) {
+            throw new RuntimeException("Token inválido.");
         } catch (Exception e) {
-            return null;
+            throw new RuntimeException("Erro ao verificar o token.");
         }
     }
 }

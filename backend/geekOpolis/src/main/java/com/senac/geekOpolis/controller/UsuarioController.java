@@ -68,9 +68,9 @@ public class UsuarioController {
     }
 
     // endpoint para atualizar acesso de usuario
-    @PutMapping("acessoUsuario/{id}")
-    public ResponseEntity<String> acess(@PathVariable Long id) {
-        Usuario u = userService.acess(id);
+    @PutMapping("atualizaAcessoUsuario/{id}")
+    public ResponseEntity<String> atualizaAcesso(@PathVariable Long id) {
+        Usuario u = userService.atualizaAcesso(id);
 
         if(u != null) {
             userRepository.save(u);

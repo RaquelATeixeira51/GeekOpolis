@@ -94,7 +94,7 @@ public class UsuarioService {
     }
 
     // retorna o usuario ativo ou inativo
-    public Usuario acess(Long id) {
+    public Usuario atualizaAcesso(Long id) {
         Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
         Usuario u = optionalUsuario.get();
 

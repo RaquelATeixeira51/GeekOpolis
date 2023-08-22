@@ -93,8 +93,6 @@ public class UsuarioController {
         }else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar nenhum usuário");
         }
-
-        
     }
 
     // endpoint para trazer as informacoes de quem está logado e autenticado

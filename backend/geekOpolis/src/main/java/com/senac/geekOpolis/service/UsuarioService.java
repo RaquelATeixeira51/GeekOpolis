@@ -9,6 +9,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -146,5 +147,11 @@ public class UsuarioService {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao verificar o token.");
         }
+    }
+
+    // Lista todos os usuários
+    public List<Usuario> buscaUsuario() {
+        List<Usuario> usuario = usuarioRepository.findAll();
+        return usuario;
     }
 }

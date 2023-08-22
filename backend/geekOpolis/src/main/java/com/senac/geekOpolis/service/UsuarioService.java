@@ -8,6 +8,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -150,8 +151,14 @@ public class UsuarioService {
     }
 
     // Lista todos os usuários
-    public List<Usuario> buscaUsuarios() {
+    public List<UsuarioPayloadDto> buscaUsuarios() {
         List<Usuario> usuario = usuarioRepository.findAll();
-        return usuario;
+        List<UsuarioPayloadDto> usuarioPayloadDtos = new ArrayList<>();
+
+        for (Usuario u : usuario) {
+            usuarioPayloadDtos.add(new UsuarioPayloadDto(u.getId(), u.getEmail(), u.getGrupo(), u.isAtivo(), u.getCpf()));
+        }
+
+        return usuarioPayloadDtos;
     }
 }

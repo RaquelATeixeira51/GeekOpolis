@@ -1,5 +1,7 @@
 package com.senac.geekOpolis.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,10 +83,21 @@ public class UsuarioController {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
     }
 
+    // endpoint para buscar acesso de todos os usuarios
+    @GetMapping("buscaUsuarios")
+    public List<UsuarioPayloadDto> buscaUsuario() {
+        List<UsuarioPayloadDto> u = userService.buscaUsuarios();
+
+        if(u != null) {
+            return u;
+        }else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar nenhum usuário");
+        }
+    }
+
     // endpoint para trazer as informacoes de quem está logado e autenticado
     @GetMapping("informacoes")
     public UsuarioPayloadDto informations(@RequestParam String jwtToken) {
         return userService.verificarUsuarioPorToken(jwtToken);
-    }
-    
+    }    
 }

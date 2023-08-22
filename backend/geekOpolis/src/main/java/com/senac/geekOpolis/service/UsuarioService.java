@@ -8,7 +8,9 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -146,5 +148,17 @@ public class UsuarioService {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao verificar o token.");
         }
+    }
+
+    // Lista todos os usuários
+    public List<UsuarioPayloadDto> buscaUsuarios() {
+        List<Usuario> usuario = usuarioRepository.findAll();
+        List<UsuarioPayloadDto> usuarioPayloadDtos = new ArrayList<>();
+
+        for (Usuario u : usuario) {
+            usuarioPayloadDtos.add(new UsuarioPayloadDto(u.getId(), u.getEmail(), u.getGrupo(), u.isAtivo(), u.getCpf()));
+        }
+
+        return usuarioPayloadDtos;
     }
 }

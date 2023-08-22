@@ -83,10 +83,10 @@ public class UsuarioController {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
     }
 
-    // endpoint para buscar acesso de usuario
-    @GetMapping("buscaUsuario")
+    // endpoint para buscar acesso de todos os usuarios
+    @GetMapping("buscaUsuarios")
     public List<Usuario> buscaUsuario() {
-        List<Usuario> u = userService.buscaUsuario();
+        List<Usuario> u = userService.buscaUsuarios();
 
         if(u != null) {
             return u;

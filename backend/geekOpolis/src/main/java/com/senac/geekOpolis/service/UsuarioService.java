@@ -150,7 +150,7 @@ public class UsuarioService {
     }
 
     // Lista todos os usuários
-    public List<Usuario> buscaUsuario() {
+    public List<Usuario> buscaUsuarios() {
         List<Usuario> usuario = usuarioRepository.findAll();
         return usuario;
     }

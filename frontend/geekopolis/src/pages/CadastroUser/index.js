@@ -18,7 +18,7 @@ export const theme = createTheme({
     },
 });
 
-function Cadastro() {
+function Usuario() {
     return (
         <Grid sx={{ bgcolor: '#0C0C0C', padding: 20 }}>
             <Container
@@ -95,15 +95,65 @@ function Cadastro() {
                         height: '50px',
                     }}
                 />
-                <Typography
+                <Grid sx={{display: 'flex'}}>
+                    <Typography
+                        sx={{
+                            color: 'white',
+                            fontSize: '20px',
+                            pt: '10px',
+                            fontWeight: '700',
+                        }}
+                    >
+                        CEP
+                    </Typography>
+                    <Typography
+                        sx={{
+                            color: 'white',
+                            fontSize: '20px',
+                            pt: '10px',
+                            fontWeight: '700',
+                            pl: '195px'
+                        }}
+                    >
+                        Número
+                    </Typography>
+                </Grid>
+                <Grid sx={{display: 'flex'}}>
+                <Input
+                    id="filled-basic"
+                    variant="filled"
                     sx={{
-                        color: 'white',
+                        backgroundColor: '#D9D9D9',
+                        borderRadius: '15px',
+                        width: '200px',
+                        mt: '10px',
                         fontSize: '20px',
-                        pt: '10px',
-                        fontWeight: '700',
+                        height: '50px',
                     }}
-                >
-                    CPF
+                />
+                <Input
+                    id="filled-basic"
+                    variant="filled"
+                    sx={{
+                        backgroundColor: '#D9D9D9',
+                        borderRadius: '15px',
+                        width: '200px',
+                        mt: '10px',
+                        fontSize: '20px',
+                        height: '50px',
+                        ml: '31px'
+                    }}
+                />
+                </Grid>
+                <Typography
+                        sx={{
+                            color: 'white',
+                            fontSize: '20px',
+                            pt: '10px',
+                            fontWeight: '700',
+                        }}
+                    >
+                        Telefone
                 </Typography>
                 <Input
                     id="filled-basic"
@@ -116,31 +166,13 @@ function Cadastro() {
                         fontSize: '20px',
                         height: '50px',
                     }}
-                />
-                <Typography
-                        sx={{
-                            color: 'white',
-                            fontSize: '20px',
-                            pt: '10px',
-                            fontWeight: '700',
-                        }}
-                    >
-                        Grupo
-                </Typography>
-                <div>
-                    
-                    <br />
-                    <select name="select" style={{width: '191px', height: '50px', border: 'none', borderRadius: '20px', backgroundColor: '#D9D9D9', fontSize: '20px'}}>
-                            <option value="valor1">Valor 1</option>
-                            <option value="valor3">Valor 2</option>
-                    </select>
-                </div>
+                />      
                 <Grid sx={{textAlign: 'center'}}>
                 <ThemeProvider theme={theme}>
                         <Button
                             variant="contained"
                             sx={{
-                                width: '159px',
+                                width: '199px',
                                 height: '43px',
                                 borderRadius: '25px',
                                 fontSize: '20px',
@@ -148,7 +180,7 @@ function Cadastro() {
                                 mt: '25px',
                             }}
                         >
-                            Cadastrar
+                            Cadastrae-se
                         </Button>
                 </ThemeProvider>
                 </Grid> 
@@ -157,4 +189,4 @@ function Cadastro() {
     );
 }
 
-export default Cadastro;
+export default Usuario;

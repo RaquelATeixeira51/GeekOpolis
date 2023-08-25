@@ -90,8 +90,8 @@ public class UsuarioController {
 
     // endpoint para buscar acesso de todos os usuarios
     @GetMapping("buscaUsuarios")
-    public List<UsuarioPayloadDto> buscaUsuario() {
-        List<UsuarioPayloadDto> u = userService.buscaUsuarios();
+    public List<UsuarioPayloadDto> buscaUsuario(@RequestParam(required = false) String emailFiltro) {
+        List<UsuarioPayloadDto> u = userService.buscaUsuarios(emailFiltro);
 
         if(u != null) {
             return u;

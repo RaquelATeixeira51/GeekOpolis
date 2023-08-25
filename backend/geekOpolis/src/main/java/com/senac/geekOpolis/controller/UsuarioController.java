@@ -51,7 +51,12 @@ public class UsuarioController {
     public ResponseEntity<String> login(@RequestBody UsuarioLoginDto usuarioLoginDto) {
         // verica se a senha é valida antes de retornar o token
         if(userService.validaSenha(usuarioLoginDto)) {
-            return ResponseEntity.ok(userService.gerarToken(usuarioLoginDto));
+            Usuario usuario = userRepository.findByEmail(usuarioLoginDto.getEmail());
+            if(usuario.isAtivo()){
+                return ResponseEntity.ok(userService.gerarToken(usuarioLoginDto));
+            } else {
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuario está desativado");
+            }
         } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuario nao existe ou email ou senha errados");
         }

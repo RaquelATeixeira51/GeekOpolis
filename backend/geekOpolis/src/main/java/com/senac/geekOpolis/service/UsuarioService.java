@@ -100,11 +100,12 @@ public class UsuarioService {
     }
 
     // retorna o usuario ativo ou inativo
-    public Usuario atualizaAcesso(Long id) {
+    public Usuario atualizaAcesso(String token, Long id) {
         Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
         Usuario u = optionalUsuario.get();
+        UsuarioPayloadDto usuarioLogado = verificarUsuarioPorToken(token);
 
-        if (optionalUsuario.isEmpty()) {
+        if (optionalUsuario.isEmpty() || usuarioLogado.getEmail().equals(u.getEmail())) {
             return null;
         }
 

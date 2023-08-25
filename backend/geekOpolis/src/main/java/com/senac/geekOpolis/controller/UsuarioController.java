@@ -64,28 +64,28 @@ public class UsuarioController {
 
     // endpoint para atualizar usuario
     @PutMapping("atualizaUsuario/{id}")
-    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Usuario usuario) {
-        Usuario u = userService.atualizar(id, usuario);
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Usuario usuario, @RequestParam String token) {
+        Usuario u = userService.atualizar(id, usuario, token);
 
         if(u != null) {
             userRepository.save(u);
             return ResponseEntity.ok("Usuario atualizado");
         }
 
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel atualizar este usuario");
     }
 
     // endpoint para atualizar acesso de usuario
     @PutMapping("atualizaAcessoUsuario/{id}")
-    public ResponseEntity<String> atualizaAcesso(@PathVariable Long id, @RequestParam String token) {
-        Usuario u = userService.atualizaAcesso(token, id);
+    public ResponseEntity<String> atualizaAcesso(@PathVariable Long id) {
+        Usuario u = userService.atualizaAcesso(id);
 
         if(u != null) {
             userRepository.save(u);
             return ResponseEntity.ok("Acesso atualizado");
         }
 
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel atualizar este usuario");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
     }
 
     // endpoint para buscar acesso de todos os usuarios

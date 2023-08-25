@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './assets/css/index.css';
 import Login from './pages/Login';
-import Header from './pages/Header';
-import Cadastro from './pages/Cadastro'
-import Usuario from './pages/CadastroUser';
-
+import Header from './components/Header';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,4 +11,3 @@ root.render(
     <Login />
   </React.StrictMode>
 );
-

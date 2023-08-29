@@ -1,9 +1,12 @@
 import * as React from 'react';
 import '../../assets/css/reset.css';
 import './index.css'
+import Header from '../../components/Header';
 
 function Login() {
   return (
+    <div>
+    <Header />
     <div className='fundo'>
       <section className='login'>
         <div className='componentes'>
@@ -23,6 +26,7 @@ function Login() {
             <button>Cadastrar</button>
         </div>
       </section>
+    </div>
     </div>
   );
 }

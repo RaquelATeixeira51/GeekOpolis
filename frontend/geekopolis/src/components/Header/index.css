@@ -1,0 +1,26 @@
+.header{
+    height: 120px;
+    background-color: #28044D;
+    display: flex;
+}
+
+.header img{
+    padding-top: 10px;
+}
+
+.opcoes{
+    display: flex;
+    flex-direction: row;
+    margin-left: 100px;
+    padding-top: 30px;
+}
+
+.opcoes h3{
+    margin-left: 250px;
+}
+
+.opcoes h3:hover{
+    cursor: pointer;
+    font-size: 23px;
+    text-decoration: underline;
+}

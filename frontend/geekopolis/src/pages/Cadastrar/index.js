@@ -1,9 +1,12 @@
 import * as React from 'react';
 import '../../assets/css/reset.css';
 import './index.css'
+import Header from '../../components/Header';
 
 function Cadastrar(){
     return(
+        <>
+        <Header />
         <div className='fundo'>
             <section className='campos'>
                 <div className='componentes'>
@@ -34,6 +37,7 @@ function Cadastrar(){
                 </div>
             </section>
         </div>
+        </>
     )
 }
 

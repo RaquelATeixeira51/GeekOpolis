@@ -15,16 +15,16 @@
 }
 
 .componentes{
-    padding-top: 110px;
-    padding-left: 53px;
+    padding-top: 80px;
+    padding-left: 23px;
 }
 .componentes2{
     padding-top: 50px;
-    padding-left: 53px;
+    padding-left: 23px;
 }
 
 input{
-    width: 82%;
+    width: 92%;
     margin-top: 20px;
     border-radius: 15px;
     padding: 10px;
@@ -81,4 +81,5 @@ button:hover{
     -webkit-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
     box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
+    
 }

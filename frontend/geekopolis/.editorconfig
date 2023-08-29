@@ -1,5 +1,0 @@
-[*]
-end_of_line = crlf
-
-[*.{sh}]
-end_of_line = crlf

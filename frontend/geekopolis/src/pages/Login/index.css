@@ -1,0 +1,84 @@
+.fundo{
+    background-color: rgba(0, 0, 0, 0.91);
+    width: 100%;
+    height: 1000px;
+    justify-content: center;
+    display: flex;
+}
+
+.login{
+    width: 500px;
+    height: 644px;
+    background-color: #28044D;
+    margin-top: 50px;
+    border-radius: 40px;
+}
+
+.componentes{
+    padding-top: 110px;
+    padding-left: 53px;
+}
+.componentes2{
+    padding-top: 50px;
+    padding-left: 53px;
+}
+
+input{
+    width: 82%;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    font-size: 20px;
+}
+h3{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+h2{
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.entrar{
+    text-align: center;
+    padding-top: 70px;
+}
+button{
+    width: 159px;
+    height: 33px;
+    border-radius: 20px;
+    background: #B072EE;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+p{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.cadastrar{
+    text-align: center;
+    padding-top: 20px;
+}
+.botao{
+    text-align: center;
+    padding-top: 30px;
+}
+
+button:hover{
+    cursor: pointer;
+    -webkit-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
+}

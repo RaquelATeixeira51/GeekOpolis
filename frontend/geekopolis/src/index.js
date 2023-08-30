@@ -6,10 +6,11 @@ import Cadastrar from './pages/Cadastrar';
 import Header from './components/Header';
 import '../src/assets/css/reset.css'
 import Inicio from './pages/Inicio';
+import CadastroUsuario from './pages/Cadastro Usuario';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Inicio />
+    <CadastroUsuario />
   </React.StrictMode>
 );

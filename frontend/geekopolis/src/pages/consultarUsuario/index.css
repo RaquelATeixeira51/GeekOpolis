@@ -1,3 +1,7 @@
+.user-data {
+  color: var(--black-color);
+}
+
 .fundo{
     background-color: rgba(0, 0, 0, 0.91);
     width: 100%;

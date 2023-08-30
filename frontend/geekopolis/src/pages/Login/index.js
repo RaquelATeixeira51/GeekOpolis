@@ -1,34 +1,31 @@
-import * as React from 'react';
-import '../../assets/css/reset.css';
-import './index.css'
-import Header from '../../components/Header';
+import "./index.css";
+import * as React from "react";
+import Header from "../../components/header";
 
-function Login() {
+export default function Login() {
   return (
-    <div>
-    <Header />
-    <div className='fundo'>
-      <section className='login'>
-        <div className='componentes'>
-          <h3>E-mail</h3>
-          <input></input>
-        </div>
-        <div className='componentes2'>
-          <h3>Senha</h3>
-          <input></input>
-          <h2>Esqueceu a senha?</h2>
-        </div>
-        <div className='entrar'>
+    <>
+      <Header />
+      <main>
+        <section className="login">
+          <div className="componentes">
+            <h3>E-mail</h3>
+            <input></input>
+          </div>
+          <div className="componentes2">
+            <h3>Senha</h3>
+            <input></input>
+            <h2>Esqueceu a senha?</h2>
+          </div>
+          <div className="entrar">
             <button>Entrar</button>
-        </div>
-        <p>ou</p>
-        <div className='cadastrar'>
+          </div>
+          <p className="login-paragraph">ou</p>
+          <div className="cadastrar">
             <button>Cadastrar</button>
-        </div>
-      </section>
-    </div>
-    </div>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
-
-export default Login;

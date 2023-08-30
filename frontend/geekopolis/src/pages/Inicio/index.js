@@ -1,16 +1,11 @@
-import * as React from 'react';
-import '../../assets/css/reset.css';
-import './index.css'
-import Header from '../../components/Header';
+import "./index.css";
+import * as React from "react";
+import Header from "../../components/header";
 
-function Inicio() {
+export default function Inicio() {
   return (
-    <div>
+    <>
       <Header />
-        <div className='fundo'>
-        </div>
-    </div>
+    </>
   );
 }
-
-export default Inicio;

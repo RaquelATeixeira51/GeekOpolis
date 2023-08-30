@@ -4,10 +4,10 @@ import "./assets/css/root.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Cadastrar from "./pages/cadastrar";
+import Cadastrar from "./pages/Cadastrar";
 import CadastroUsuario from "./pages/cadastroUsuario";
-import Inicio from "./pages/inicio";
-import Login from "./pages/login";
+import Inicio from "./pages/Inicio";
+import Login from "./pages/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

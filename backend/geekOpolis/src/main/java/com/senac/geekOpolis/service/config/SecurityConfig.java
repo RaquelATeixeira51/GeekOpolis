@@ -1,4 +1,4 @@
-package com.senac.geekOpolis.service;
+package com.senac.geekOpolis.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

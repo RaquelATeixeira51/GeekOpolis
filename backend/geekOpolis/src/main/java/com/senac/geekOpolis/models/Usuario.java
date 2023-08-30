@@ -24,6 +24,9 @@ public class Usuario {
     private long id;
 
     @Column
+    private String nome;
+
+    @Column
     private String email;
 
     @Column

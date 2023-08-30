@@ -83,6 +83,10 @@ public class UsuarioService {
             return null;
         }
 
+        if(usuario.getNome() != null) {
+            u.setNome(usuario.getNome());;
+        }
+
         if (usuario.getSenha() != null) {
             String encryptedPassword = bCryptPasswordEncoder.encode(usuario.getSenha());
             u.setSenha(encryptedPassword);
@@ -151,8 +155,8 @@ public class UsuarioService {
     }
 
     // Lista todos os usuários
-    public List<UsuarioPayloadDto> buscaUsuarios(String emailFiltro) {
-       List<UsuarioPayloadDto> usuarios = usuarioRepository.findAllUsuariosFilteredByName(emailFiltro);
+    public List<UsuarioPayloadDto> buscaUsuarios(String nomeFiltro) {
+       List<UsuarioPayloadDto> usuarios = usuarioRepository.findAllUsuariosFilteredByName(nomeFiltro);
        return usuarios;
     }
 }

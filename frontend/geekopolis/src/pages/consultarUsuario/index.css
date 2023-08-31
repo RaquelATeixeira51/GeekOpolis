@@ -72,20 +72,19 @@ p{
 
 button:hover{
     cursor: pointer;
-    -webkit-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
-    
 }
 
 .requests-table thead {
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
+    padding-bottom: 15px;
     background-color: var(--dark-purple-color) !important;
     border-bottom: 1.5px solid var(--black-color);
   }
   .requests-table tr {
+    padding-top: 10px;
+    background-color: var(--dark-purple-color) !important;
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -137,4 +136,19 @@ button:hover{
   .user-data{
     text-align: center;
     width: 100%;
+  }
+
+  .edit-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #B072EE;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-button:hover {
+    background-color: #9340a8;
   }

@@ -124,7 +124,9 @@ export default function RequestsList() {
                     </button>
                   </td>
                   <td className="user-edit">
-                    <Link to={`/editar-usuario/${client.id}`}>Editar</Link>
+                    <Link to={`/editar-usuario/${client.id}`} className="edit-button">
+                      Editar
+                    </Link>
                   </td>
                 </tr>
               ))}

@@ -93,7 +93,7 @@ export default function CadastroUsuario() {
                   />
                 </div>
                 <div className="select">
-                  <h3 className="field-label">Grupo</h3>
+                  <h3 className="field-label" id="import">Grupo</h3>
                   <select name="grupo" className="select" ref={groupRef}>
                     <option value="">---</option>
                     <option value="ADMIN">ADMIN</option>

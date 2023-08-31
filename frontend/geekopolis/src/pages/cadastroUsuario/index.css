@@ -51,20 +51,13 @@
   flex-direction: row;
 }
 .dupla input {
-  width: 70%;
+  width: 80%;
   margin-top: 10px;
   border-radius: 15px;
   padding: 10px;
   border: none;
   font-size: 20px;
-}
-
-.select {
-  width: max-content;
-  border-radius: 15px;
-  padding: 10px;
-  border: none;
-  font-size: 20px;
+  justify-content: center;
 }
 
 .botao {
@@ -81,4 +74,8 @@
 .user-register-paragraph {
   margin-top: 15px;
   color: var(--red-color);
+}
+
+#import{
+  padding-top: 0px;
 }

@@ -8,53 +8,28 @@ export default function Header() {;
 
   const teste = localStorage.getItem
 
-  const [requests, setRequests] = useState([]);
-  
+  const [user, setUser] = useState();
 
-  useEffect(() => {
-    fetch(`http://localhost:8080/usuario/buscaUsuarios`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
+  useEffect(() => { const token = localStorage.getItem('token')
+  if (token){fetch(`http://localhost:8080/usuario/informacoes?jwtToken=${token}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to get requests");
+      }
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to get requests");
-        }
-      })
-      .then((data) => {
-        setRequests(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .then((data) => {
+      console.log(data)
+      setUser(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });}
   }, []);
-
-  const handleInactive = (id) => {
-    fetch(`http://localhost:8080/usuario/atualizaAcessoUsuario/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.text())
-      .then((result) => (window.location.href = "/usuarios"))
-      .catch((err) => {
-        console.log(err);
-        window.location.href = "/usuarios";
-      });
-  };
-  const handleActive = (id) => {
-    fetch(`http://localhost:8080/usuario/atualizaAcessoUsuario/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.text())
-      .then((result) => (window.location.href = "/usuarios"))
-      .catch((err) => {
-        console.log(err);
-        window.location.href = "/usuarios";
-      });
-  };
   
   if (teste == null){
     console.log("deslogado")
@@ -84,8 +59,8 @@ export default function Header() {;
         </header>
       </>
     );
-  }else{
-    console.log(requests.map)
+  }else if(user.grupo = 'ADMIN'){
+    console.log(user.grupo)
     return (
       <>
         <header>
@@ -100,6 +75,35 @@ export default function Header() {;
               <h3>
                 <Link to="/usuarios" className="Elementos">
                   Listar Usuario
+                </Link>
+              </h3>
+              <h3>
+                <Link to="/cadastro-usuario" className="Elementos">
+                  Deslogar
+                </Link>
+              </h3>
+            </div>
+          </div>
+        </header>
+      </>
+    );
+  }
+  else{
+    console.log(user.grupo)
+    return (
+      <>
+        <header>
+          <div className="header">
+            <img alt="GeekOpolis Logo" src={logo} />
+            <div className="opcoes">
+              <h3>
+                <Link to="/" className="Elementos">
+                  Inicio
+                </Link>
+              </h3>
+              <h3>
+                <Link to="/usuarios" className="Elementos">
+                  Compras
                 </Link>
               </h3>
               <h3>

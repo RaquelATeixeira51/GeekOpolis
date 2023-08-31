@@ -1,5 +1,5 @@
-.user-data {
-  color: var(--black-color);
+.user-edit {
+  color: white;
 }
 
 .fundo{
@@ -33,13 +33,14 @@
     padding-left: 23px;
 }
 
-input{
+.inserir{
     width: 92%;
     margin-top: 20px;
     border-radius: 15px;
     padding: 10px;
     border: none;
     font-size: 20px;
+    background-color: white;
 }
 button{
     width: 159px;
@@ -81,7 +82,7 @@ button:hover{
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
-    background-color: var(--pink-color) !important;
+    background-color: var(--dark-purple-color) !important;
     border-bottom: 1.5px solid var(--black-color);
   }
   .requests-table tr {
@@ -92,9 +93,15 @@ button:hover{
   .requests-table th {
     width: 25%;
     text-align: center;
+    color: white;
+    font-weight: bold;
   }
   .requests-table td {
-    width: 25%;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background-color: var(--dark-purple-color) !important;
   }
   .requests-table {
     background-color: var(--white-color);
@@ -127,6 +134,7 @@ button:hover{
     justify-content: center;
   }
 
-  tr td{
-    font-size: 20;
+  .user-data{
+    text-align: center;
+    width: 100%;
   }

@@ -80,12 +80,13 @@ export default function RequestsList() {
       <div className="fundo">
         <div className="filter">
           <div className="text">
-            <inputgit 
+            <input
               type="text"
               name="nome"
               id="nome"
               ref={nameRef}
               placeholder="Digite o nome do usuário"
+              className="inserir"
             />
             <button type="submit" onClick={filtrar}>
               Filtrar
@@ -99,10 +100,11 @@ export default function RequestsList() {
               <th>CPF</th>
               <th>Grupo</th>
               <th>Status</th>
+              <th>Editar</th>
             </thead>
             <tbody>
               {requests.map((client) => (
-                <tr>
+                <tr className="coluns">
                   <td className="user-data">{client.nome}</td>
                   <td className="user-data">{client.email}</td>
                   <td className="user-data">{client.cpf}</td>
@@ -121,7 +123,7 @@ export default function RequestsList() {
                       {client.ativo ? "Desativar" : "Ativar"}
                     </button>
                   </td>
-                  <td className="user-data">
+                  <td className="user-edit">
                     <Link to={`/editar-usuario/${client.id}`}>Editar</Link>
                   </td>
                 </tr>

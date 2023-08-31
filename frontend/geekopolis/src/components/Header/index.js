@@ -1,14 +1,19 @@
 import "./index.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import logo from "../../assets/img/GeekOpolisLogo.png";
 import { useEffect, useState } from "react";
 
 export default function Header() {;
 
-  const teste = localStorage.getItem
+  const teste = localStorage.getItem('token');
 
   const [user, setUser] = useState();
+  const [redirect, setRedirect] = React.useState("");
+
+  const deslogar = () => {localStorage.removeItem('token')
+  setRedirect('/')
+  };
 
   useEffect(() => { const token = localStorage.getItem('token')
   if (token){fetch(`http://localhost:8080/usuario/informacoes?jwtToken=${token}`, {
@@ -30,7 +35,8 @@ export default function Header() {;
       console.log(error);
     });}
   }, []);
-  
+  if (redirect !== "") return <Navigate to={redirect} />;
+
   if (teste == null){
     console.log("deslogado")
     return (
@@ -59,7 +65,7 @@ export default function Header() {;
         </header>
       </>
     );
-  }else if(user.grupo = 'ADMIN'){
+  }else if(user && user.grupo === 'ADMIN'){
     console.log(user.grupo)
     return (
       <>
@@ -78,9 +84,7 @@ export default function Header() {;
                 </Link>
               </h3>
               <h3>
-                <Link to="/cadastro-usuario" className="Elementos">
-                  Deslogar
-                </Link>
+                <button onClick={deslogar}>deslogar</button>
               </h3>
             </div>
           </div>
@@ -89,7 +93,6 @@ export default function Header() {;
     );
   }
   else{
-    console.log(user.grupo)
     return (
       <>
         <header>
@@ -102,14 +105,12 @@ export default function Header() {;
                 </Link>
               </h3>
               <h3>
-                <Link to="/usuarios" className="Elementos">
+                <Link to="/" className="Elementos">
                   Compras
                 </Link>
               </h3>
               <h3>
-                <Link to="/cadastro-usuario" className="Elementos">
-                  Deslogar
-                </Link>
+                <button className='deslogar' onClick={deslogar}>deslogar</button>
               </h3>
             </div>
           </div>

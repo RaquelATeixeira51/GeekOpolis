@@ -2,6 +2,7 @@ import "./index.css";
 import * as React from "react";
 import Header from "../../components/Header";
 import { Navigate } from "react-router-dom";
+import { validate as validateCPF} from 'gerador-validador-cpf';
 
 export default function CadastroUsuario() {
   const emailRef = React.createRef();
@@ -17,6 +18,12 @@ export default function CadastroUsuario() {
   const handleRegister = () => {
     if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
       setError("As senhas não coincidem");
+      return;
+    }
+
+    debugger;
+    if (!validateCPF(cpfRef.current.value)) {
+      setError("Cpf inválido!");
       return;
     }
 

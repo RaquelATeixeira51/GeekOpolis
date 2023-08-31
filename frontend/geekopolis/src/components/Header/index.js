@@ -12,7 +12,7 @@ export default function Header() {;
   const [redirect, setRedirect] = React.useState("");
 
   const deslogar = () => {localStorage.removeItem('token')
-  setRedirect('/')
+  window.location.href = '/';
   };
 
   useEffect(() => { const token = localStorage.getItem('token')

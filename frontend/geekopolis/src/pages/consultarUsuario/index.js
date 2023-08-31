@@ -60,7 +60,7 @@ export default function RequestsList() {
       <div className="fundo">
         <div className="filter">
           <div className="text">
-            <input
+            <inputgit 
               type="text"
               name="nome"
               id="nome"

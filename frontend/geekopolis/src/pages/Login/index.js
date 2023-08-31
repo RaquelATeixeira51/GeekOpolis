@@ -20,7 +20,6 @@ export default function Login() {
       }),
     })
       .then((response) => {
-        console.log(response);
         if (response.ok) {
           return response.text();
         } else {
@@ -28,8 +27,12 @@ export default function Login() {
         }
       })
       .then((data) => {
-        localStorage.setItem("token", data);
-        setRedirect("/");
+        if (data) {
+          localStorage.setItem("token", data);
+          setRedirect("/");
+        } else {
+          setError("Erro ao logar, tente novamente");
+        }
       })
       .catch((err) => {
         console.log(err);

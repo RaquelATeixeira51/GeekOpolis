@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 
 export default function RequestsList() {
+  const nameRef = React.createRef();
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
@@ -52,7 +53,26 @@ export default function RequestsList() {
       });
   };
 
-  const filtrar = () => {};
+  const filtrar = () => {
+    setRequests([]);
+    fetch(`http://localhost:8080/usuario/buscaUsuarios?nomeFiltro=${nameRef.current.value}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Failed to get requests");
+        }
+      })
+      .then((data) => {
+        setRequests(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -64,9 +84,10 @@ export default function RequestsList() {
               type="text"
               name="nome"
               id="nome"
+              ref={nameRef}
               placeholder="Digite o nome do usuário"
             />
-            <button type="submit" onClick={() => filtrar()}>
+            <button type="submit" onClick={filtrar}>
               Filtrar
             </button>
           </div>

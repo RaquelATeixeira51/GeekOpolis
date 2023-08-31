@@ -49,8 +49,8 @@ button {
   font-size: 20px;
 }
 
-select {
-  width: 160%;
+.select {
+  width: max-content;
   margin-top: 10px;
   border-radius: 15px;
   padding: 10px;
@@ -65,4 +65,9 @@ button:hover {
   box-shadow: -7px 10px 5px 0px var(--black-02-color);
   width: 164px;
   height: 37px;
+}
+
+.user-register-paragraph {
+  margin-top: 15px;
+  color: var(--red-color);
 }

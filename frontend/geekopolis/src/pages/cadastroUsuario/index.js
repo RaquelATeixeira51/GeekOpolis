@@ -14,7 +14,7 @@ export default function CadastroUsuario() {
   const [redirect, setRedirect] = React.useState("");
   const [error, setError] = React.useState(null);
 
-  const handleSubmit = () => {
+  const handleRegister = () => {
     if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
       setError("As senhas não coincidem");
       return;
@@ -96,13 +96,13 @@ export default function CadastroUsuario() {
                   <h3 className="field-label">Grupo</h3>
                   <select name="grupo" className="select" ref={groupRef}>
                     <option value="">---</option>
-                    <option value="ADMIN">Administrador</option>
-                    <option value="ESTOQUISTA">Estoquista</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="ESTOQUISTA">ESTOQUISTA</option>
                   </select>
                 </div>
               </form>
               <div className="botao">
-                <button className="submit-button" onClick={handleSubmit}>
+                <button className="submit-button" onClick={handleRegister}>
                   Cadastrar
                 </button>
                 {error && <p className="user-register-paragraph">{error}</p>}

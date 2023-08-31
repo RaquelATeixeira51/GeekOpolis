@@ -14,7 +14,7 @@ import com.senac.geekOpolis.models.UsuarioPayloadDto;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findByEmail(String email);
-     @Query("SELECT new com.senac.geekOpolis.models.UsuarioPayloadDto(u.id, u.nome, u.grupo, u.email, u.ativo, u.cpf) FROM Usuario u" +
+     @Query("SELECT new com.senac.geekOpolis.models.UsuarioPayloadDto(u.id, u.nome, u.email, u.grupo, u.ativo, u.cpf) FROM Usuario u" +
            " WHERE (:nomeFiltro IS NULL OR u.nome LIKE %:nomeFiltro%)")
     List<UsuarioPayloadDto> findAllUsuariosFilteredByName(@Param("nomeFiltro") String nomeFiltro);
 }

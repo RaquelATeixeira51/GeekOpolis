@@ -20,6 +20,7 @@ export default function Login() {
       }),
     })
       .then((response) => {
+        console.log(response);
         if (response.ok) {
           return response.text();
         } else {

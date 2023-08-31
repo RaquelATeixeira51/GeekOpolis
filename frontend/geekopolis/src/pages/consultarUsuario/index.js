@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./index.css";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
@@ -100,13 +100,13 @@ export default function RequestsList() {
                       {client.ativo ? "Desativar" : "Ativar"}
                     </button>
                   </td>
+                  <td className="user-data">
+                    <Link to={`/editar-usuario/${client.id}`}>Editar</Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button className="atualizar" type="submit" onClick={() => filtrar()}>
-            Atualizar
-          </button>
         </div>
       </div>
     </div>

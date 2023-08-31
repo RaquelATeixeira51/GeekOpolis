@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-GeekOpolisApplication<geekOpolis>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.senac.geekOpolis.GeekOpolisApplication",
+      "projectName": "geekOpolis",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

@@ -20,6 +20,7 @@ root.render(
         <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
         <Route path="/cadastrar-admin" element={<Cadastrar />} />
         <Route path="/usuarios" element={<ConsultarUsuarios />} />
+        <Route path="/editar-usuario/:id" element={<Cadastrar />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

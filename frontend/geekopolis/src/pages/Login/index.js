@@ -65,7 +65,8 @@ export default function Login() {
           <p className="login-paragraph">ou</p>
           <div className="cadastrar">
             <button className="login-button">
-              <Link to='/cadastro-usuario' className="login-anchor">Cadastrar</Link>
+              <Link to='/login' className="login-anchor">Cadastrar</Link>
+              {/* cadastro-usuario */}
             </button>
             {error && <p className="user-login-paragraph">{error}</p>}
           </div>

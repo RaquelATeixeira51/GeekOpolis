@@ -55,11 +55,6 @@ export default function Header() {;
                   Login
                 </Link>
               </h3>
-              <h3>
-                <Link to="/cadastro-usuario" className="Elementos">
-                  Cadastro
-                </Link>
-              </h3>
             </div>
           </div>
         </header>
@@ -76,6 +71,11 @@ export default function Header() {;
               <h3>
                 <Link to="/" className="Elementos">
                   Inicio
+                </Link>
+              </h3>
+              <h3>
+                <Link to="/cadastro-usuario" className="Elementos">
+                  Cadastro
                 </Link>
               </h3>
               <h3>

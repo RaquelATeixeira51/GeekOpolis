@@ -8,6 +8,7 @@ import Cadastrar from "./pages/Cadastrar";
 import CadastroUsuario from "./pages/cadastroUsuario";
 import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
+import ConsultarUsuarios from "./pages/consultarUsuario";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,6 +19,7 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
         <Route path="/cadastrar-admin" element={<Cadastrar />} />
+        <Route path="/usuarios" element={<ConsultarUsuarios />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

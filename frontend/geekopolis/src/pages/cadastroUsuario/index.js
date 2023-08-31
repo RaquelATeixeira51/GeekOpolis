@@ -4,47 +4,53 @@ import Header from "../../components/Header";
 import { Navigate } from "react-router-dom";
 
 export default function CadastroUsuario() {
-  const [redirect, setRedirect] = React.useState('');
-  const [error, setError] = React.useState(null);
-  const [body, setBody] = React.useState({
-    name: "",
-    email: "",
-    senha: "",
-    grupo: "",
-    cpf: "",
-    ativo: true,
-  });
+  const emailRef = React.createRef();
+  const passwordRef = React.createRef();
+  const passwordConfirmationRef = React.createRef();
+  const nameRef = React.createRef();
+  const cpfRef = React.createRef();
+  const groupRef = React.createRef();
 
-  const handleBody = (event) => {
-    const { name, value } = event.target;
-    setBody({
-      ...body,
-      [name]: value,
-    });
-  };
+  const [redirect, setRedirect] = React.useState("");
+  const [error, setError] = React.useState(null);
 
   const handleSubmit = () => {
-    console.log(JSON.stringify(body));
-    fetch(
-      `http://localhost:8080/usuario/incluiAcesso`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      }
-    ).then((response) => {
-      if (response.ok) {
-        setRedirect('/');
-        return response.json();
-      } else {
+    if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
+      setError("As senhas não coincidem");
+      return;
+    }
+
+    fetch(`http://localhost:8080/usuario/incluiAcesso`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nome: `${nameRef.current.value}`.trim(),
+        email: `${emailRef.current.value}`.trim(),
+        senha: `${passwordRef.current.value}`.trim(),
+        grupo: `${groupRef.current.value}`.trim(),
+        cpf: `${cpfRef.current.value}`.trim(),
+        ativo: true
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          setRedirect("/login");
+          return response.json();
+        } else {
+          setError(
+            response.status === 400
+              ? "Email já cadastrado"
+              : "Erro ao cadastrar, tente novamente"
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
         setError("Erro ao cadastrar, tente novamente");
-      }
-    }).catch(err => {
-      setError("Erro ao cadastrar, tente novamente");
-    });
+      });
   };
 
-  if (redirect !== '') return <Navigate to={redirect} />;
+  if (redirect !== "") return <Navigate to={redirect} />;
 
   return (
     <>
@@ -54,29 +60,51 @@ export default function CadastroUsuario() {
           <section className="campos">
             <div className="componentes">
               <h3 className="field-label">Nome</h3>
-              <input className="field" type="text" name="name" onKeyUp={handleBody} />
+              <input className="field" type="text" name="nome" ref={nameRef} />
               <h3 className="field-label">Email</h3>
-              <input className="field" type="email" name="email" onKeyUp={handleBody} />
+              <input
+                className="field"
+                type="email"
+                name="email"
+                ref={emailRef}
+              />
               <h3 className="field-label">Senha</h3>
-              <input className="field" type="password" name="senha" onKeyUp={handleBody} />
+              <input
+                className="field"
+                type="password"
+                name="senha"
+                ref={passwordRef}
+              />
               <h3 className="field-label">Confirmar Senha</h3>
-              <input className="field" type="password" name="confirmeSenha" />
+              <input
+                className="field"
+                type="password"
+                name="confirmeSenha"
+                ref={passwordConfirmationRef}
+              />
               <form className="dupla">
                 <div>
                   <h3 className="field-label">CPF</h3>
-                  <input className="field" type="text" name="cpf" onKeyUp={handleBody} />
+                  <input
+                    className="field"
+                    type="text"
+                    name="cpf"
+                    ref={cpfRef}
+                  />
                 </div>
                 <div className="select">
                   <h3 className="field-label">Grupo</h3>
-                  <select name="grupo" className="select" onChange={handleBody}>
-                    <option value=''>---</option>
-                    <option value='ADMIN'>Administrador</option>
-                    <option value='ESTOQUISTA'>Estoquista</option>
+                  <select name="grupo" className="select" ref={groupRef}>
+                    <option value="">---</option>
+                    <option value="ADMIN">Administrador</option>
+                    <option value="ESTOQUISTA">Estoquista</option>
                   </select>
                 </div>
               </form>
               <div className="botao">
-                <button className="submit-button" onClick={handleSubmit}>Cadastrar</button>
+                <button className="submit-button" onClick={handleSubmit}>
+                  Cadastrar
+                </button>
                 {error && <p className="user-register-paragraph">{error}</p>}
               </div>
             </div>

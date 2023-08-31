@@ -40,7 +40,15 @@ h2 {
   text-align: center;
   padding-top: 70px;
 }
-button {
+
+.login-anchor {
+  text-decoration: none;
+  color: var(--white-color);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.login-button {
   width: 159px;
   height: 33px;
   border-radius: 20px;
@@ -73,4 +81,9 @@ button:hover {
   -webkit-box-shadow: -7px 10px 5px 0px var(--black-02-color);
   -moz-box-shadow: -7px 10px 5px 0px var(--black-02-color);
   box-shadow: -7px 10px 5px 0px var(--black-02-color);
+}
+
+.user-login-paragraph {
+  margin-top: 15px;
+  color: var(--red-color);
 }

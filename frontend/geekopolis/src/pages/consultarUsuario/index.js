@@ -55,10 +55,13 @@ export default function RequestsList() {
 
   const filtrar = () => {
     setRequests([]);
-    fetch(`http://localhost:8080/usuario/buscaUsuarios?nomeFiltro=${nameRef.current.value}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
+    fetch(
+      `http://localhost:8080/usuario/buscaUsuarios?nomeFiltro=${nameRef.current.value}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -77,63 +80,68 @@ export default function RequestsList() {
   return (
     <div>
       <Header></Header>
-      <div className="fundo">
-        <div className="filter">
-          <div className="text">
-            <input
-              type="text"
-              name="nome"
-              id="nome"
-              ref={nameRef}
-              placeholder="Digite o nome do usuário"
-              className="inserir"
-            />
-            <button type="submit" onClick={filtrar}>
-              Filtrar
-            </button>
-          </div>
+      <main>
+        <div className="fundo">
+          <div className="filter">
+            <div className="text">
+              <input
+                type="text"
+                name="nome"
+                id="nome"
+                ref={nameRef}
+                placeholder="Digite o nome do usuário"
+                className="inserir"
+              />
+              <button type="submit" onClick={filtrar}>
+                Filtrar
+              </button>
+            </div>
 
-          <table className="requests-table">
-            <thead>
-              <th>Nome</th>
-              <th>e-mail</th>
-              <th>CPF</th>
-              <th>Grupo</th>
-              <th>Status</th>
-              <th>Editar</th>
-            </thead>
-            <tbody>
-              {requests.map((client) => (
-                <tr className="coluns">
-                  <td className="user-data">{client.nome}</td>
-                  <td className="user-data">{client.email}</td>
-                  <td className="user-data">{client.cpf}</td>
-                  <td className="user-data">{client.grupo}</td>
-                  <td className="user-data">
-                    <button
-                      className={
-                        client.ativo ? "inactive-button" : "active-button"
-                      }
-                      onClick={
-                        client.ativo
-                          ? () => handleInactive(client.id)
-                          : () => handleActive(client.id)
-                      }
-                    >
-                      {client.ativo ? "Desativar" : "Ativar"}
-                    </button>
-                  </td>
-                  <td className="user-edit">
-                    <Link to={`/editar-usuario/${client.id}`} className="edit-button">
-                      Editar
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <table className="requests-table">
+              <thead>
+                <th>Nome</th>
+                <th>e-mail</th>
+                <th>CPF</th>
+                <th>Grupo</th>
+                <th>Status</th>
+                <th>Editar</th>
+              </thead>
+              <tbody>
+                {requests.map((client) => (
+                  <tr className="coluns">
+                    <td className="user-data">{client.nome}</td>
+                    <td className="user-data">{client.email}</td>
+                    <td className="user-data">{client.cpf}</td>
+                    <td className="user-data">{client.grupo}</td>
+                    <td className="user-data">
+                      <button
+                        className={
+                          client.ativo ? "inactive-button" : "active-button"
+                        }
+                        onClick={
+                          client.ativo
+                            ? () => handleInactive(client.id)
+                            : () => handleActive(client.id)
+                        }
+                      >
+                        {client.ativo ? "Desativar" : "Ativar"}
+                      </button>
+                    </td>
+                    <td className="user-edit">
+                      <Link
+                        to={`/editar-usuario/${client.id}`}
+                        className="edit-button"
+                      >
+                        Editar
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

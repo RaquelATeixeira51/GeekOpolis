@@ -1,44 +1,43 @@
 import "./index.css";
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/img/GeekOpolisLogo.png";
 import { useEffect, useState } from "react";
 
-export default function Header() {;
-
-  const teste = localStorage.getItem('token');
+export default function Header() {
+  const teste = localStorage.getItem("token");
 
   const [user, setUser] = useState();
-  const [redirect, setRedirect] = React.useState("");
 
-  const deslogar = () => {localStorage.removeItem('token')
-  window.location.href = '/';
+  const deslogar = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
   };
 
-  useEffect(() => { const token = localStorage.getItem('token')
-  if (token){fetch(`http://localhost:8080/usuario/informacoes?jwtToken=${token}`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to get requests");
-      }
-    })
-    .then((data) => {
-      console.log(data)
-      setUser(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });}
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetch(`http://localhost:8080/usuario/informacoes?jwtToken=${token}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Failed to get requests");
+          }
+        })
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }, []);
-  if (redirect !== "") return <Navigate to={redirect} />;
 
-  if (teste == null){
-    console.log("deslogado")
+  if (teste == null) {
     return (
       <>
         <header>
@@ -60,8 +59,7 @@ export default function Header() {;
         </header>
       </>
     );
-  }else if(user && user.grupo === 'ADMIN'){
-    console.log(user.grupo)
+  } else if (user && user.grupo === "ADMIN") {
     return (
       <>
         <header>
@@ -91,8 +89,7 @@ export default function Header() {;
         </header>
       </>
     );
-  }
-  else{
+  } else {
     return (
       <>
         <header>
@@ -110,7 +107,9 @@ export default function Header() {;
                 </Link>
               </h3>
               <h3>
-                <button className='deslogar' onClick={deslogar}>deslogar</button>
+                <button className="deslogar" onClick={deslogar}>
+                  deslogar
+                </button>
               </h3>
             </div>
           </div>

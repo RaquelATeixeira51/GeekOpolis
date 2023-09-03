@@ -28,7 +28,7 @@ export default function Cadastrar() {
     })
     .then((response) => setRedirect("/usuarios"))
     .catch((err) => {
-      console.log("DEU ERRO", err);
+      console.log(err);
       setError("Erro ao atualizar, tente novamente");
     });
   };

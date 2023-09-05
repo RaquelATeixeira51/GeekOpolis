@@ -1,16 +1,16 @@
 .user-edit {
-  color: white;
+  color: var(--white-color);
 }
 
 .fundo{
-    background-color: rgba(0, 0, 0, 0.91);
+    background-color: var(--black-color);
     width: 100%;
     height: 1000px;
     justify-content: center;
     display: flex;
 }
 .filter{
-    background-color: #28044D;
+    background-color: var(--dark-purple-color);
     height: 80%;
     width: 90%;
     border-radius: 30px;
@@ -19,7 +19,7 @@
 .login{
     width: 500px;
     height: 644px;
-    background-color: #28044D;
+    background-color: var(--dark-purple-color);
     margin-top: 50px;
     border-radius: 40px;
 }
@@ -40,22 +40,22 @@
     padding: 10px;
     border: none;
     font-size: 20px;
-    background-color: white;
+    background-color: var(--white-color);
 }
 button{
     width: 159px;
     height: 33px;
     border-radius: 20px;
-    background: #B072EE;
+    background: var(--purple-color);
     border: none;
-    color: white;
+    color: var(--white-color);
     font-weight: bold;
     font-size: 20px;
 }
 
 p{
     text-align: center;
-    color: white;
+    color: var(--white-color);
     font-weight: bold;
     font-size: 20px;
     margin-top: 20px;
@@ -72,20 +72,19 @@ p{
 
 button:hover{
     cursor: pointer;
-    -webkit-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: -7px 10px 5px 0px rgba(0,0,0,0.75);
-    
 }
 
 .requests-table thead {
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
+    padding-bottom: 15px;
     background-color: var(--dark-purple-color) !important;
     border-bottom: 1.5px solid var(--black-color);
   }
   .requests-table tr {
+    padding-top: 10px;
+    background-color: var(--dark-purple-color) !important;
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -93,12 +92,12 @@ button:hover{
   .requests-table th {
     width: 25%;
     text-align: center;
-    color: white;
+    color: var(--white-color);
     font-weight: bold;
   }
   .requests-table td {
     width: 100%;
-    color: white;
+    color: var(--white-color);
     font-weight: bold;
     text-align: center;
     background-color: var(--dark-purple-color) !important;
@@ -107,10 +106,10 @@ button:hover{
     background-color: var(--white-color);
     width: 90%;
     margin: 30px auto;
-    color: white;
+    color: var(--white-color);
   }
   .request{
-    background-color: #28044D;
+    background-color: var(--dark-purple-color);
   }
   .text{
     width: 500px;
@@ -137,4 +136,19 @@ button:hover{
   .user-data{
     text-align: center;
     width: 100%;
+  }
+
+  .edit-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--purple-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-button:hover {
+    background-color: var(--soft-purple-color);
   }

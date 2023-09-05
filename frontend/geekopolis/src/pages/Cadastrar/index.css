@@ -60,9 +60,6 @@ button {
 
 button:hover {
   cursor: pointer;
-  -webkit-box-shadow: -7px 10px 5px 0px var(--black-02-color);
-  -moz-box-shadow: -7px 10px 5px 0px var(--black-02-color);
-  box-shadow: -7px 10px 5px 0px var(--black-02-color);
   width: 164px;
   height: 37px;
 }

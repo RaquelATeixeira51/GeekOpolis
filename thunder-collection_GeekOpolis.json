@@ -1,20 +1,20 @@
 {
     "client": "Thunder Client",
     "collectionName": "GeekOpolis",
-    "dateExported": "2023-09-05T19:23:46.216Z",
+    "dateExported": "2023-09-05T19:32:02.054Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "eb18cb39-fe49-4f4f-9c39-e7bb33eec665",
-            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "_id": "5cf46449-e717-4843-873d-bd8487743e96",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
             "containerId": "",
             "name": "http://localhost:8080/produto/incluiProduto?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM5MzUzNjYsImV4cCI6MTY5MzkzNTk2Nn0.t4Y2C1fb82jsHdIC3ezHb69M6ocNaEphWIAT_dSrx3k",
             "url": "http://localhost:8080/produto/incluiProduto?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM5Mzk4MzIsImV4cCI6MTY5Mzk0MDQzMn0.8npoCDppYUXn0XNnycCm_kq33ChpXmGF2Lm36mI9MYE",
             "method": "POST",
             "sortNum": 10000,
-            "created": "2023-09-05T19:22:59.287Z",
-            "modified": "2023-09-05T19:22:59.287Z",
+            "created": "2023-09-05T19:31:01.340Z",
+            "modified": "2023-09-05T19:31:01.340Z",
             "headers": [],
             "params": [
                 {
@@ -31,15 +31,15 @@
             "tests": []
         },
         {
-            "_id": "1a072992-9ef1-4013-bbef-8770fbbc9c15",
-            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "_id": "0f9a7bbc-4dfa-4123-932a-e5b039d373d0",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
             "containerId": "",
             "name": "http://localhost:8080/categoria/listaCategoria?idCategoria=1",
             "url": "http://localhost:8080/categoria/listaCategoria?idCategoria=1",
             "method": "GET",
             "sortNum": 20000,
-            "created": "2023-09-05T19:23:12.350Z",
-            "modified": "2023-09-05T19:23:12.350Z",
+            "created": "2023-09-05T19:31:01.341Z",
+            "modified": "2023-09-05T19:31:01.341Z",
             "headers": [],
             "params": [
                 {
@@ -51,29 +51,29 @@
             "tests": []
         },
         {
-            "_id": "0d01f639-8b10-46c0-9927-f712cb4befb7",
-            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "_id": "b084a7bb-ada8-4144-917d-730b770342e6",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
             "containerId": "",
             "name": "http://localhost:8080/categoria/listaCategorias",
             "url": "http://localhost:8080/categoria/listaCategorias",
             "method": "GET",
             "sortNum": 30000,
-            "created": "2023-09-05T19:23:17.382Z",
-            "modified": "2023-09-05T19:23:17.382Z",
+            "created": "2023-09-05T19:31:01.342Z",
+            "modified": "2023-09-05T19:31:01.342Z",
             "headers": [],
             "params": [],
             "tests": []
         },
         {
-            "_id": "c5da8028-471d-4b05-946e-6bc8874d2de4",
-            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "_id": "f7a61086-1646-40b1-9284-5a1304e36709",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
             "containerId": "",
             "name": "http://localhost:8080/categoria/incluiCategoria",
             "url": "http://localhost:8080/categoria/incluiCategoria?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM5Mzk4MzIsImV4cCI6MTY5Mzk0MDQzMn0.8npoCDppYUXn0XNnycCm_kq33ChpXmGF2Lm36mI9MYE",
             "method": "POST",
             "sortNum": 40000,
-            "created": "2023-09-05T19:23:22.159Z",
-            "modified": "2023-09-05T19:23:22.159Z",
+            "created": "2023-09-05T19:31:01.343Z",
+            "modified": "2023-09-05T19:31:01.343Z",
             "headers": [],
             "params": [
                 {
@@ -90,15 +90,15 @@
             "tests": []
         },
         {
-            "_id": "ca28bbe3-dadd-471f-9ad5-3420e75a0991",
-            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "_id": "31ecf42b-978a-48e2-ad0e-45ff4635bd86",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
             "containerId": "",
             "name": "http://localhost:8080/usuario/login",
             "url": "http://localhost:8080/usuario/login",
             "method": "POST",
             "sortNum": 50000,
-            "created": "2023-09-05T19:23:27.071Z",
-            "modified": "2023-09-05T19:23:27.071Z",
+            "created": "2023-09-05T19:31:01.345Z",
+            "modified": "2023-09-05T19:31:01.345Z",
             "headers": [],
             "params": [],
             "body": {
@@ -106,6 +106,122 @@
                 "raw": "{\n  \"email\": \"raquelteixeira502@gmail.com\",\n  \"senha\": \"123senha451\"\n}",
                 "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "8d052612-ff0e-4a2d-bf5b-c1c99dcf4f6b",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
+            "containerId": "",
+            "name": "http://localhost:8080/usuario/buscaUsuarios",
+            "url": "http://localhost:8080/usuario/buscaUsuario/1?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM4ODk2MjgsImV4cCI6MTY5Mzg5MDIyOH0.f78aLU5TXMS6h_fweyrPJewwWZydwLjxTIOAyvVvAGc",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-09-05T19:31:13.014Z",
+            "modified": "2023-09-05T19:31:13.014Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM4ODk2MjgsImV4cCI6MTY5Mzg5MDIyOH0.f78aLU5TXMS6h_fweyrPJewwWZydwLjxTIOAyvVvAGc",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "63889072-b500-4740-b039-f7e733cfd073",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
+            "containerId": "",
+            "name": "http://localhost:8080/usuario/atualizaAcessoUsuario/1?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwN0BnbWFpbC5jb20iLCJpYXQiOjE2OTI5MjU0MzksImV4cCI6MTY5MjkyNjAzOX0.d5vSDvNJiD9XICl-LsblrOxl11y-UZ_gp90IOq1W630",
+            "url": "http://localhost:8080/usuario/atualizaUsuario/1?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTU5QGdtYWlsLmNvbSIsImlhdCI6MTY5Mzg5MDI4OSwiZXhwIjoxNjkzODkwODg5fQ.ECteZPJWgmjpo_7gVgISPvZKfXqVe4dKccnx5x3VdfA",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2023-09-05T19:31:26.236Z",
+            "modified": "2023-09-05T19:31:26.236Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTU5QGdtYWlsLmNvbSIsImlhdCI6MTY5Mzg5MDI4OSwiZXhwIjoxNjkzODkwODg5fQ.ECteZPJWgmjpo_7gVgISPvZKfXqVe4dKccnx5x3VdfA",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Raquel Aparecida\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "812e03fa-260d-4965-94e5-92867aab79f0",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
+            "containerId": "",
+            "name": "http://localhost:8080/usuario/buscaUsuarios?emailFiltro=raquelteixeira507@gmail.com",
+            "url": "http://localhost:8080/usuario/buscaUsuarios?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM4ODk2MjgsImV4cCI6MTY5Mzg5MDIyOH0.f78aLU5TXMS6h_fweyrPJewwWZydwLjxTIOAyvVvAGc",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2023-09-05T19:31:33.697Z",
+            "modified": "2023-09-05T19:31:33.697Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "nomeFiltro",
+                    "value": "NATALIA",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM4ODk2MjgsImV4cCI6MTY5Mzg5MDIyOH0.f78aLU5TXMS6h_fweyrPJewwWZydwLjxTIOAyvVvAGc",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "b8e541b3-ad2a-48d2-8d6f-fd595c56e1c8",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
+            "containerId": "",
+            "name": "http://localhost:8080/incluiAcesso",
+            "url": "http://localhost:8080/usuario/incluiAcesso?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM4OTAyMDQsImV4cCI6MTY5Mzg5MDgwNH0.0DDZAqYcUDjel5p38aMyHbggi5AbaQS3swMezBUOHq8",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-09-05T19:31:41.697Z",
+            "modified": "2023-09-05T19:31:41.697Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM4OTAyMDQsImV4cCI6MTY5Mzg5MDgwNH0.0DDZAqYcUDjel5p38aMyHbggi5AbaQS3swMezBUOHq8",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Dinareli Lima\",\n  \"email\": \"raquelteixeira589@gmail.com\",\n  \"senha\": \"123\",\n  \"grupo\": \"ADMIN\",\n  \"cpf\": \"54131127901\",\n  \"ativo\": true\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "60063b60-4647-421a-93cc-c8b52a9c098d",
+            "colId": "31689b3e-6fc8-4902-b011-9ff2381c8435",
+            "containerId": "",
+            "name": "http://localhost:8080/usuario/atualizaAcessoUsuario/2?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwN0BnbWFpbC5jb20iLCJpYXQiOjE2OTI5MjU0MzksImV4cCI6MTY5MjkyNjAzOX0.d5vSDvNJiD9XICl-LsblrOxl11y-UZ_gp90IOq1W630",
+            "url": "http://localhost:8080/usuario/atualizaAcessoUsuario/1?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM4ODk2MjgsImV4cCI6MTY5Mzg5MDIyOH0.f78aLU5TXMS6h_fweyrPJewwWZydwLjxTIOAyvVvAGc",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2023-09-05T19:31:48.235Z",
+            "modified": "2023-09-05T19:31:48.235Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM4ODk2MjgsImV4cCI6MTY5Mzg5MDIyOH0.f78aLU5TXMS6h_fweyrPJewwWZydwLjxTIOAyvVvAGc",
+                    "isPath": false
+                }
+            ],
             "tests": []
         }
     ]

@@ -2,6 +2,8 @@ package com.senac.geekOpolis.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class Categoria {
     @Column
     private String nome;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "categoria")
     private List<Produto> produtos;
 }

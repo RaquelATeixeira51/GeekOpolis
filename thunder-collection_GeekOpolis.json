@@ -1,0 +1,112 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "GeekOpolis",
+    "dateExported": "2023-09-05T19:23:46.216Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "eb18cb39-fe49-4f4f-9c39-e7bb33eec665",
+            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "containerId": "",
+            "name": "http://localhost:8080/produto/incluiProduto?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM5MzUzNjYsImV4cCI6MTY5MzkzNTk2Nn0.t4Y2C1fb82jsHdIC3ezHb69M6ocNaEphWIAT_dSrx3k",
+            "url": "http://localhost:8080/produto/incluiProduto?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM5Mzk4MzIsImV4cCI6MTY5Mzk0MDQzMn0.8npoCDppYUXn0XNnycCm_kq33ChpXmGF2Lm36mI9MYE",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-05T19:22:59.287Z",
+            "modified": "2023-09-05T19:22:59.287Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM5Mzk4MzIsImV4cCI6MTY5Mzk0MDQzMn0.8npoCDppYUXn0XNnycCm_kq33ChpXmGF2Lm36mI9MYE",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"code\": \"SZHS\",\n  \"nome\": \"short do naruto\",\n  \"avaliacao\": 2.5,\n  \"descricao\": \"short de naylon do naruto\",\n  \"preco\": 34.6,\n  \"qtdEstoque\": 6,\n  \"imagesPath\": [\n      \"imagepath1\",\n      \"imagepath2\"\n  ],\n  \"categoriaId\": 1,\n  \"stauts\": true\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1a072992-9ef1-4013-bbef-8770fbbc9c15",
+            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "containerId": "",
+            "name": "http://localhost:8080/categoria/listaCategoria?idCategoria=1",
+            "url": "http://localhost:8080/categoria/listaCategoria?idCategoria=1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-09-05T19:23:12.350Z",
+            "modified": "2023-09-05T19:23:12.350Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "idCategoria",
+                    "value": "1",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "0d01f639-8b10-46c0-9927-f712cb4befb7",
+            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "containerId": "",
+            "name": "http://localhost:8080/categoria/listaCategorias",
+            "url": "http://localhost:8080/categoria/listaCategorias",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-09-05T19:23:17.382Z",
+            "modified": "2023-09-05T19:23:17.382Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c5da8028-471d-4b05-946e-6bc8874d2de4",
+            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "containerId": "",
+            "name": "http://localhost:8080/categoria/incluiCategoria",
+            "url": "http://localhost:8080/categoria/incluiCategoria?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM5Mzk4MzIsImV4cCI6MTY5Mzk0MDQzMn0.8npoCDppYUXn0XNnycCm_kq33ChpXmGF2Lm36mI9MYE",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-09-05T19:23:22.159Z",
+            "modified": "2023-09-05T19:23:22.159Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXF1ZWx0ZWl4ZWlyYTUwMkBnbWFpbC5jb20iLCJpYXQiOjE2OTM5Mzk4MzIsImV4cCI6MTY5Mzk0MDQzMn0.8npoCDppYUXn0XNnycCm_kq33ChpXmGF2Lm36mI9MYE",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"roupa\",\n  \"produtos\": []\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ca28bbe3-dadd-471f-9ad5-3420e75a0991",
+            "colId": "9f571e05-084c-4659-b6bf-5d7fff439e72",
+            "containerId": "",
+            "name": "http://localhost:8080/usuario/login",
+            "url": "http://localhost:8080/usuario/login",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-09-05T19:23:27.071Z",
+            "modified": "2023-09-05T19:23:27.071Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"raquelteixeira502@gmail.com\",\n  \"senha\": \"123senha451\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

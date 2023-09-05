@@ -33,15 +33,20 @@ public class UsuarioController {
     private final UsuarioRepository userRepository;
 
     @PostMapping("incluiAcesso")
-    public ResponseEntity<String> registraUsuario(@RequestBody Usuario usuario) {
-        // verifica se o email ja existe antes de criar
-        if(!userService.validaEmail(usuario.getEmail())) {
-            // encripta a senha antes de salvar no banco
-            userService.encriptSenha(usuario);
-            userRepository.save(usuario);
-            return new ResponseEntity<>("Created", HttpStatus.CREATED);
+    public ResponseEntity<String> registraUsuario(@RequestBody Usuario usuario, @RequestParam String token) {
+        UsuarioPayloadDto u = userService.verificarUsuarioPorToken(token);
+        if(u.getGrupo().equals("ADMIN")) {
+            // verifica se o email ja existe antes de criar
+            if(!userService.validaEmail(usuario.getEmail())) {
+                // encripta a senha antes de salvar no banco
+                userService.encriptSenha(usuario);
+                userRepository.save(usuario);
+                return new ResponseEntity<>("Created", HttpStatus.CREATED);
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Este email ja existe");
+            }
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Este email ja existe");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "É necessário ser um admin para criar usuário");
         }
     }
 
@@ -77,26 +82,38 @@ public class UsuarioController {
 
     // endpoint para atualizar acesso de usuario
     @PutMapping("atualizaAcessoUsuario/{id}")
-    public ResponseEntity<String> atualizaAcesso(@PathVariable Long id) {
-        Usuario u = userService.atualizaAcesso(id);
+    public ResponseEntity<String> atualizaAcesso(@PathVariable Long id, @RequestParam String token) {
+        Usuario u = userService.atualizaAcesso(id, token);
 
         if(u != null) {
             userRepository.save(u);
             return ResponseEntity.ok("Acesso atualizado");
         }
 
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar este usuario");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "É preciso ser admin para atualizar acesso");
     }
 
     // endpoint para buscar acesso de todos os usuarios
     @GetMapping("buscaUsuarios")
-    public List<UsuarioPayloadDto> buscaUsuario(@RequestParam(required = false) String nomeFiltro) {
-        List<UsuarioPayloadDto> u = userService.buscaUsuarios(nomeFiltro);
+    public List<UsuarioPayloadDto> buscaUsuarios(@RequestParam(required = false) String nomeFiltro, @RequestParam String token) {
+        List<UsuarioPayloadDto> u = userService.buscaUsuarios(nomeFiltro, token);
 
         if(u != null) {
             return u;
         }else{
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel encontrar nenhum usuário");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Apenas admnistradores podem acessar a lista de usuários");
+        }
+    }
+
+    // endpoint para trazer um unico usuário por id
+    @GetMapping("buscaUsuario/{id}")
+    public UsuarioPayloadDto buscaUsuario(@RequestParam String token, @PathVariable long id) {
+        UsuarioPayloadDto u = userService.buscaUsuario(token, id);
+
+        if(u != null) {
+            return u;
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel o usuário");
         }
     }
 

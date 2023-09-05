@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Usuario;
 import com.senac.geekOpolis.models.UsuarioLoginDto;
@@ -79,36 +81,41 @@ public class UsuarioService {
         Usuario u = optionalUsuario.get();
         UsuarioPayloadDto usuarioLogado = verificarUsuarioPorToken(token);
 
-        if (optionalUsuario.isEmpty() || usuarioLogado.getEmail().equals(u.getEmail())) {
-            return null;
-        }
+        if(usuarioLogado.getGrupo().equals("ADMIN")) {
+            if (optionalUsuario.isEmpty() || usuarioLogado.getEmail().equals(u.getEmail())) {
+                return null;
+            }
 
-        if(usuario.getNome() != null) {
-            u.setNome(usuario.getNome());;
-        }
+            if(usuario.getNome() != null) {
+                u.setNome(usuario.getNome());;
+            }
 
-        if (usuario.getSenha() != null) {
-            String encryptedPassword = bCryptPasswordEncoder.encode(usuario.getSenha());
-            u.setSenha(encryptedPassword);
-        }
+            if (usuario.getSenha() != null) {
+                String encryptedPassword = bCryptPasswordEncoder.encode(usuario.getSenha());
+                u.setSenha(encryptedPassword);
+            }
 
-        if (usuario.getCpf() != null) {
-            u.setCpf(usuario.getCpf());
-        }
+            if (usuario.getCpf() != null) {
+                u.setCpf(usuario.getCpf());
+            }
 
-        if (usuario.getGrupo() != null) {
-            u.setGrupo(usuario.getGrupo());
-        }
+            if (usuario.getGrupo() != null) {
+                u.setGrupo(usuario.getGrupo());
+            }
 
-        return u;
+            return u;
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "É necessário ser um admin para atualizar usuário");
+        }
     }
 
     // retorna o usuario ativo ou inativo
-    public Usuario atualizaAcesso(Long id) {
+    public Usuario atualizaAcesso(Long id, String token) {
         Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
         Usuario u = optionalUsuario.get();
+        UsuarioPayloadDto usuarioPayloadDto = verificarUsuarioPorToken(token);
 
-        if (optionalUsuario.isEmpty()) {
+        if (optionalUsuario.isEmpty() || !usuarioPayloadDto.getGrupo().equals("ADMIN")) {
             return null;
         }
 
@@ -143,7 +150,8 @@ public class UsuarioService {
             usuarioPayloadDto.setEmail(usuario.getEmail());
             usuarioPayloadDto.setGrupo(usuario.getGrupo());
             usuarioPayloadDto.setId(usuario.getId());
-
+            usuarioPayloadDto.setNome(usuario.getNome());
+            
             return usuarioPayloadDto;
         } catch (ExpiredJwtException e) {
             throw new RuntimeException("Token expirado.");
@@ -155,8 +163,24 @@ public class UsuarioService {
     }
 
     // Lista todos os usuários
-    public List<UsuarioPayloadDto> buscaUsuarios(String nomeFiltro) {
-       List<UsuarioPayloadDto> usuarios = usuarioRepository.findAllUsuariosFilteredByName(nomeFiltro);
-       return usuarios;
+    public List<UsuarioPayloadDto> buscaUsuarios(String nomeFiltro, String token) {
+        UsuarioPayloadDto usuarioPayloadDto = verificarUsuarioPorToken(token);
+       if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
+         List<UsuarioPayloadDto> usuarios = usuarioRepository.findAllUsuariosFilteredByName(nomeFiltro);
+         return usuarios;
+       } else {
+        return null;
+       }
+    }
+
+    // Retorna um único usuário por id
+    public UsuarioPayloadDto buscaUsuario(String token, long id) {
+        UsuarioPayloadDto usuarioPayloadDto = verificarUsuarioPorToken(token);
+
+        if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
+            return usuarioRepository.findById(id);
+        }
+
+        return null;
     }
 }

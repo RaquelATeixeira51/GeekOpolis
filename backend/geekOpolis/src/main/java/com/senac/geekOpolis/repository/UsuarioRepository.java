@@ -17,4 +17,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
      @Query("SELECT new com.senac.geekOpolis.models.UsuarioPayloadDto(u.id, u.nome, u.email, u.grupo, u.ativo, u.cpf) FROM Usuario u" +
            " WHERE (:nomeFiltro IS NULL OR u.nome LIKE %:nomeFiltro%)")
     List<UsuarioPayloadDto> findAllUsuariosFilteredByName(@Param("nomeFiltro") String nomeFiltro);
+
+    @Query("SELECT new com.senac.geekOpolis.models.UsuarioPayloadDto(u.id, u.nome, u.email, u.grupo, u.ativo, u.cpf) FROM Usuario u" +
+           " WHERE (u.id = :id)")
+    UsuarioPayloadDto findById(long id);
 }

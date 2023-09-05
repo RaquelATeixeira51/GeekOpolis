@@ -72,7 +72,7 @@ public class UsuarioController {
             return ResponseEntity.ok("Usuario atualizado");
         }
 
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel atualizar este usuario");
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Nao é possível atualizar o próprio usuário.");
     }
 
     // endpoint para atualizar acesso de usuario

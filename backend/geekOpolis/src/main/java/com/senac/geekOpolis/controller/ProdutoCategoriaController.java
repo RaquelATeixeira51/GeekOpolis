@@ -50,8 +50,8 @@ public class ProdutoCategoriaController {
        return categoriaRepository.findAll();
     }
 
-    @GetMapping("categoria/listaCategoria")
-    public Optional<Categoria> listaCategoria(@RequestParam Long idCategoria) {
+    @GetMapping("categoria/listaCategoria/{idCategoria}")
+    public Optional<Categoria> listaCategoria(@PathVariable Long idCategoria) {
         Optional<Categoria> categoria = categoriaRepository.findById(idCategoria);
 
         if(!categoria.isEmpty()) {
@@ -94,5 +94,17 @@ public class ProdutoCategoriaController {
         }
 
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel atualizar o status");
+    }
+
+    @PutMapping("produto/atualizaProduto/{idProduto}")
+    public ResponseEntity<String> atualizaProduto(@RequestParam String token, @PathVariable Long idProduto, @RequestBody ProdutoPayloadDto produto) {
+        Produto p = produtoCategoriaService.atualizaProduto(token, idProduto, produto);
+
+        if(p != null) {
+            produtoRepository.save(p);
+            return ResponseEntity.ok("Produto atualizado");
+        }
+
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel atualizar o produto");
     }
 }

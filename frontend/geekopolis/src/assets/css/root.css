@@ -1,8 +1,10 @@
 :root {
-  --purple-color: #48a7ff;
-  --dark-purple-color: #004166;
-  --white-color: #FFF;
-  --black-02-color: #0A0113;
-  --black-color: #171717;
-  --red-color: #F00;
+  --blue-color: #48a7ff;
+  --dark-blue-color: #004166;
+  --green-color: #48FFA7;
+  --pink-color: #FF487F;
+  --white-color: #FFFFFF;
+  --gray-color: #D7D7D7;
+  --black-60-color: rgba(0, 0, 0, .6);
+  --background-image: url('../img/wallpaper/BackgroundImage.png');
 }

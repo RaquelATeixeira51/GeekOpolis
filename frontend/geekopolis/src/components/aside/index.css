@@ -1,0 +1,75 @@
+.aside {
+  background-color: var(--dark-blue-color);
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1
+}
+
+.geekopolis-aside-home-link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.geekopolis-aside-links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.geekopolis-aside-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50px;
+}
+
+.geekopolis-aside-links a,
+.geekopolis-aside-footer button {
+  color: var(--white-color);
+  background-color: transparent;
+  margin: 10px 0;
+  font-weight: 600;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  transition: .2s !important;
+}
+
+.geekopolis-aside-footer button {
+  border-radius: 8px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  padding: 5px 15px;
+  transition: .3s !important;
+}
+
+.geekopolis-aside-footer button:hover {
+  border-radius: 20px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  transition: .3s !important;
+}
+
+.geekopolis-aside-links a:hover,
+.geekopolis-aside-footer button:hover {
+  text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+  transition: .2s;
+}
+
+.geekopolis-aside-links a>img,
+.geekopolis-aside-footer button>img {
+  width: 20px;
+}
+
+.geekopolis-aside-logo {
+  width: 90%;
+  display: flex;
+  margin: 30px auto;
+}

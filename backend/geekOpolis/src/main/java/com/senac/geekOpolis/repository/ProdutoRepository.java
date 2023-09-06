@@ -8,5 +8,5 @@ import com.senac.geekOpolis.models.Produto;
 // classe de repositório que extende a do JPA
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-    
+    Produto findById(long id);
 }

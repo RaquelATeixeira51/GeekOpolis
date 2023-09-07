@@ -7,6 +7,7 @@ import './assets/css/root.css';
 import './assets/css/styles.css';
 import Inicio from './pages/Inicio';
 import Login from './pages/login';
+import ListaUsuarios from './pages/ListaUsuarios';
 
 function ProtectedRoute({ element }) {
   const token = localStorage.getItem('token');
@@ -25,6 +26,7 @@ root.render(
       <Routes>
         <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
         <Route path="/" element={<Login />} />
+        <Route path='/listaUsuarios' element={<ListaUsuarios/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

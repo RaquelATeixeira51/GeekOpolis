@@ -9,7 +9,7 @@ import ListProductsIcon from '../../assets/img/icons/list-products-icon.png';
 
 export default function Aside() {
   const handleLogout = () => {
-    sessionStorage.removeItem('TOKEN');
+    sessionStorage.removeItem('token');
     window.location.href = '/';
   };
 

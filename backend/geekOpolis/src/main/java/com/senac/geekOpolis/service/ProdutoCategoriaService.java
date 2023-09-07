@@ -71,13 +71,18 @@ public class ProdutoCategoriaService {
 
         if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
             p.setAvaliacao(produtoPayloadDto.getAvaliacao());
-            p.setCode(produtoPayloadDto.getCode());
             p.setDescricao(produtoPayloadDto.getDescricao());
             p.setImagesPath(produtoPayloadDto.getImagesPath());
             p.setNome(produtoPayloadDto.getNome());
             p.setPreco(produtoPayloadDto.getPreco());
             p.setQtdEstoque(produtoPayloadDto.getQtdEstoque());
             p.setStatus(produtoPayloadDto.isStatus());
+
+            String name = p.getNome().replaceAll("[^a-zA-Z0-9]", "").toUpperCase();
+
+            String code = "CP" + name;
+
+            p.setCode(code);
 
             Optional<Categoria> categoria = categoriaRepository.findById(produtoPayloadDto.getCategoriaId());
 

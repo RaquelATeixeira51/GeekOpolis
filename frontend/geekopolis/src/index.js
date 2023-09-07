@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './assets/css/reset.css';
 import './assets/css/root.css';
 import './assets/css/styles.css';
-import Inicio from './pages/inicio';
+import Inicio from './pages/Inicio';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,7 +1,11 @@
-#root{
+#root {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-  background-color: var(--black-color);
+	background-image: var(--background-image);
+	background-size: auto;
 }
-main { flex: 1; }
+
+main {
+	flex: 1;
+}

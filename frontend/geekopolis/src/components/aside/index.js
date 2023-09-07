@@ -17,7 +17,7 @@ export default function Aside() {
     <>
       <aside className="aside">
         <div className="geekopolis-aside-home-link">
-          <Link to="/">
+          <Link to="/inicio">
             <img
               className="geekopolis-aside-logo"
               src={Logo}
@@ -26,11 +26,11 @@ export default function Aside() {
           </Link>
         </div>
         <div className="geekopolis-aside-links">
-          <Link to="/produtos">
+          <Link to="/listaProdutos">
             <img src={ListProductsIcon} alt="GeekOpolis List Products Icon" />
             <p>Listar Produtos</p>
           </Link>
-          <Link to="/usuarios">
+          <Link to="/listaUsuarios">
             <img src={ListUsersIcon} alt="GeekOpolis List Users Icon" />
             <p>Listar Usuarios</p>
           </Link>

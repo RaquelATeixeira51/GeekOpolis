@@ -11,7 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProdutoPayloadDto {
-    private String code;
     private String nome;
     private double avaliacao;
     private String descricao;

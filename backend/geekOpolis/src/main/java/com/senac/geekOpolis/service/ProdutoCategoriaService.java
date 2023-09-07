@@ -26,7 +26,12 @@ public class ProdutoCategoriaService {
         produto.setQtdEstoque(produtoPayloadDto.getQtdEstoque());
         produto.setImagesPath(produtoPayloadDto.getImagesPath());
         produto.setStatus(produtoPayloadDto.isStatus());
-        produto.setCode(produtoPayloadDto.getCode());
+
+        String name =  produtoPayloadDto.getNome().replaceAll("[^a-zA-Z0-9]", "").toUpperCase();
+
+        String code = "CP" + name;
+
+        produto.setCode(code);
 
         Optional<Categoria> categoria = categoriaRepository.findById(produtoPayloadDto.getCategoriaId());
 

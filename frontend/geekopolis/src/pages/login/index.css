@@ -48,6 +48,16 @@
     outline: none;
   }
 
+  .rounded-select {
+    width: 390px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color:  var(--gray-color);
+    margin-top: 5px;
+    outline: none;
+  }
+
   .esqueceu-a-senha {
     text-align: left;
     margin-top: 15px;

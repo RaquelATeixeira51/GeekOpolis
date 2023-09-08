@@ -16,13 +16,6 @@ function ProtectedRoute({ element }) {
     return <Navigate to="/" />;
   }
 
-  const expirationTime = new Date(new Date().getTime() + 10 * 60 * 1000);
-
-  if (new Date() > expirationTime) {
-    localStorage.removeItem('token');
-    return <Navigate to="/" />;
-  }
-
   return element;
 }
 

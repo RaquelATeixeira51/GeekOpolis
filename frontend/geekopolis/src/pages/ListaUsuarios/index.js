@@ -112,6 +112,7 @@ export default function ListaUsuarios(){
             makeToast("error", "As senhas não coincidem");
             return;
           }
+         debugger; 
         fetch(`http://localhost:8080/usuario/atualizaUsuario/${id}?token=${localStorage.getItem('token')}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -121,11 +122,19 @@ export default function ListaUsuarios(){
             if (response.ok) {
               return response.text();
             }
+            if (response.status === 401) {
+              makeToast("error", "Não é possível atualizar o próprio usuário");
+              return null;
+              
+            }
+
             makeToast("error", "Erro na atualização do usuário.");
             return null;
           })
           .then((result) => {
-            window.location.href = "/listaUsuarios";
+            setTimeout(() => {
+              window.location.href = "/listaUsuarios";
+            }, 2000);
           })
           .catch((err) => {
             console.error(err);

@@ -198,6 +198,5 @@
 
   .modal-botoes {
     padding-top: 30px;
-    display: flex;
-    justify-content: space-between;
+    margin-left: 90px;
   }

@@ -17,7 +17,6 @@ export default function ListaUsuarios(){
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleBody = (e) => {
-      debugger;
         setBody({ ...body, [e.target.name]: e.target.value });
       }
 
@@ -258,9 +257,6 @@ export default function ListaUsuarios(){
             <div className='modal-botoes'>
               <button type="button" className='botao-Filtro' onClick={() => atualizaUsuario(usuario.id)}>
                 <p>Editar</p>
-              </button>
-              <button type="button" className='botao-Filtro' onClick={closeModal}>
-                <p>Cancelar</p>
               </button>
             </div>
             </Modal>

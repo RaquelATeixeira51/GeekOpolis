@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './assets/css/reset.css';
 import './assets/css/root.css';
 import './assets/css/styles.css';
@@ -10,9 +10,40 @@ import Login from './pages/login';
 import ListaUsuarios from './pages/ListaUsuarios';
 
 function ProtectedRoute({ element }) {
-  const token = localStorage.getItem('token');
+  const [tokenValid, setTokenValid] = useState(true);
 
-  if (!token) {
+  useEffect(() => {
+    const checkTokenValidity = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setTokenValid(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:8080/api/token/valid?token=${localStorage.getItem('token')}`);
+        const isValid = await response.json();
+
+        if (!isValid) {
+          localStorage.removeItem('token');
+          setTokenValid(false);
+
+        }
+      } catch (error) {
+        console.error('Erro ao verificar a validade do token', error);
+      }
+    };
+
+    checkTokenValidity();
+
+    const tokenCheckInterval = setInterval(checkTokenValidity, 10 * 60 * 1000);
+
+    return () => {
+      clearInterval(tokenCheckInterval);
+    };
+  }, []);
+
+  if (!tokenValid) {
     return <Navigate to="/" />;
   }
 

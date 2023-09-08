@@ -112,7 +112,6 @@ export default function ListaUsuarios(){
             makeToast("error", "As senhas não coincidem");
             return;
           }
-
         fetch(`http://localhost:8080/usuario/atualizaUsuario/${id}?token=${localStorage.getItem('token')}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -133,6 +132,12 @@ export default function ListaUsuarios(){
             window.location.href = "/listaUsuarios";
           });
       };
+
+      useEffect(() => {
+        if (isModalOpen) {
+          setBody(usuario);
+        }
+      }, [isModalOpen, usuario]);
 
     return(
         <>
@@ -208,7 +213,7 @@ export default function ListaUsuarios(){
               <input
                 type="text"
                 name='nome'
-                value={usuario.nome}
+                value={body.nome}
                 className="rounded-input"
                 onChange={handleBody}
               />
@@ -237,7 +242,7 @@ export default function ListaUsuarios(){
                 <input
                     type="text"
                     name='cpf'
-                    value={usuario.cpf}
+                    value={body.cpf}
                     className="rounded-input"
                     onChange={handleBody}
                 />
@@ -246,7 +251,7 @@ export default function ListaUsuarios(){
                 <p>Grupo</p>
                 <select
                 name="grupo"
-                value={usuario.grupo}
+                value={body.grupo}
                 className="rounded-select"
                 onChange={handleBody}
               >

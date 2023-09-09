@@ -11,14 +11,11 @@ import React, { useState, useEffect } from 'react';
 import './assets/css/reset.css';
 import './assets/css/root.css';
 import './assets/css/styles.css';
-import Inicio from './pages/inicio';
+import Inicio from './pages/Inicio';
 import Login from './pages/login';
-<<<<<<< HEAD
 import ListaUsuarios from './pages/ListaUsuarios';
 import Cadastro from './pages/cadastro';
-=======
-import ListaUsuarios from './pages/listaUsuarios';
->>>>>>> f050a9d00c8217bbffc0198945d6be1cfb49b519
+
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -68,10 +65,6 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-<<<<<<< HEAD
-        <Route path='/listaUsuarios' element={<ProtectedRoute element={<ListaUsuarios />} />}/>
-        <Route path="/cadastro" element={<Cadastro />} />
-=======
         <Route
           path="/inicio"
           element={<ProtectedRoute element={<Inicio />} />}
@@ -80,7 +73,7 @@ root.render(
           path="/listaUsuarios"
           element={<ProtectedRoute element={<ListaUsuarios />} />}
         />
->>>>>>> f050a9d00c8217bbffc0198945d6be1cfb49b519
+        <Route path="/cadastro" element={<Cadastro/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

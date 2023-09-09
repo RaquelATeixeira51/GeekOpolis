@@ -8,6 +8,7 @@ import './assets/css/styles.css';
 import Inicio from './pages/Inicio';
 import Login from './pages/login';
 import ListaUsuarios from './pages/ListaUsuarios';
+import Cadastro from './pages/cadastro';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ root.render(
         <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
         <Route path="/" element={<Login />} />
         <Route path='/listaUsuarios' element={<ProtectedRoute element={<ListaUsuarios />} />}/>
+        <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

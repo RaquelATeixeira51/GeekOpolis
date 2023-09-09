@@ -1,0 +1,123 @@
+.cadastro-form {
+    width: 450px;
+    min-height: 100vh;
+    max-height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--dark-blue-color); 
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  .rounded-input {
+    width: 370px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color:  var(--gray-color);
+    margin-top: 5px;
+    outline: none;
+  }
+  .input-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Inputs{
+    padding-top: 200px;
+  }
+
+  .cpf-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color:  var(--gray-color);
+    margin-top: 5px;
+    outline: none;
+  }
+
+  input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none; 
+  }
+
+  input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  .grupo-container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .select{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color:  var(--gray-color);
+    margin-top: 5px;
+    outline: none;
+  }
+
+  .entrar-button {
+    padding-top: 120px;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .entrar-button button {
+    color: var(--white-color);
+    background-color: transparent;
+    margin: 10px 0;
+    font-weight: 600;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s !important;
+    width: auto;
+    min-width: 150px;
+    padding: 10px; 
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1.5px solid var(--blue-color);
+    border-left-width: 3px;
+    border-right-width: 3px;
+  }
+
+.entrar-button button {
+  border-radius: 8px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  padding: 5px 15px;
+  transition: .3s !important;
+}
+
+.entrar-button button:hover {
+  border-radius: 20px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  transition: .3s !important;
+  cursor: pointer;
+}
+
+.entrar-button button:hover {
+  text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+  transition: .2s;
+}
+
+  

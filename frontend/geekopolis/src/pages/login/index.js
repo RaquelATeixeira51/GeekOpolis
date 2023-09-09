@@ -4,7 +4,6 @@ import './index.css';
 import { Navigate } from 'react-router-dom';
 import Logo from '../../assets/img/logo/GeekOpolisLogo.png';
 import makeToast from '../../shared/toaster';
-import Aside from '../../components/aside';
 
 export default function Login() {
   const emailRef = React.createRef();
@@ -45,7 +44,6 @@ export default function Login() {
 
   return (
     <>
-      <Aside />
       <div className="login-form">
         <img
           src={Logo}

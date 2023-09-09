@@ -1,10 +1,11 @@
 .aside {
   background-color: var(--dark-blue-color);
-  width: 200px;
+  width: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  transition: .3s;
+  transition-timing-function: ease-out;
 }
 
 .geekopolis-aside-home-link {
@@ -18,6 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
   flex: 1;
 }
 
@@ -57,10 +59,15 @@
   transition: .3s !important;
 }
 
+.border-0 button {
+  border: 0 solid transparent !important;
+}
+
 .geekopolis-aside-links a:hover,
 .geekopolis-aside-footer button:hover {
   text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
   transition: .2s;
+  cursor: pointer;
 }
 
 .geekopolis-aside-links a>img,
@@ -72,4 +79,28 @@
   width: 90%;
   display: flex;
   margin: 30px auto;
+}
+
+.large {
+  width: 30px !important;
+}
+
+.open-aside-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0px solid transparent;
+}
+
+.open-aside-button img {
+  width: 35px;
+}
+
+.left {
+  transform: rotate(180deg);
+  transition: .3s;
+}
+
+.right {
+  transform: rotate(0deg);
+  transition: .3s;
 }

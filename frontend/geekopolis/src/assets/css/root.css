@@ -5,6 +5,7 @@
   --pink-color: #FF487F;
   --white-color: #FFFFFF;
   --gray-color: #D7D7D7;
-  --black-60-color: rgba(0, 0, 0, .6);
+  --black-color: #000000;
+  --black-50-color: rgba(0, 0, 0, .5);
   --background-image: url('../img/wallpaper/BackgroundImage.png');
 }

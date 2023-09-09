@@ -116,6 +116,11 @@
   padding-bottom: 15px;
 }
 
+
+  .user-data{
+    max-width: 150px;
+  }
+
 .coluns {
   width: 100%;
   text-align: center;

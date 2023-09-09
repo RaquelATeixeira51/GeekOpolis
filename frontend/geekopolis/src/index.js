@@ -14,6 +14,7 @@ import './assets/css/styles.css';
 import Inicio from './pages/Inicio';
 import Login from './pages/login';
 import ListaUsuarios from './pages/ListaUsuarios';
+import CadastroProduto from './pages/cadastroProduto';
 import Cadastro from './pages/cadastro';
 
 
@@ -47,7 +48,7 @@ function ProtectedRoute({ element }) {
   };
 
   useEffect(() => {
-    const tokenCheckInterval = setInterval(checkTokenValidity, 10 * 60 * 1000);
+    const tokenCheckInterval = setInterval(checkTokenValidity, 60 * 1000);
 
     checkTokenValidity();
 
@@ -55,6 +56,13 @@ function ProtectedRoute({ element }) {
       clearInterval(tokenCheckInterval);
     };
   }, [navigate]);
+
+  useEffect(() => {
+    if (!tokenValid) {
+      localStorage.removeItem('token');
+      navigate('/');
+    }
+  }, [tokenValid, navigate]);
 
   return tokenValid ? element : <Navigate to="/" />;
 }
@@ -73,7 +81,11 @@ root.render(
           path="/listaUsuarios"
           element={<ProtectedRoute element={<ListaUsuarios />} />}
         />
-        <Route path="/cadastro" element={<Cadastro/>} />
+        <Route 
+          path="/cadastroProduto"
+          element={<ProtectedRoute element={<CadastroProduto />} />}
+        />
+        <Route path="/cadastro" element={<ProtectedRoute element={<Cadastro/>} />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -2,12 +2,20 @@ import './index.css'
 import * as React from 'react';
 import { Navigate } from "react-router-dom";
 import Aside from '../../components/aside';
+import Logo from '../../assets/img/logo/GeekOpolisLogo.png';
 
 function Cadastro(){
+
     return(
         <>
             <Aside />
+           
             <div className="cadastro-form">
+            <img
+                src={Logo}
+                className="geekopolis-login-logo"
+                alt="Geekopolis logo"
+            />
                 <div className='Inputs'>
                     <div className="input-container">
                         <p>Email</p>
@@ -63,7 +71,7 @@ function Cadastro(){
                     </form>
                     <div className='entrar-button'>
                         <button type="button">
-                            <p>Entrar</p>
+                            <p>Cadastrar</p>
                         </button>
                     </div>
                 </div>

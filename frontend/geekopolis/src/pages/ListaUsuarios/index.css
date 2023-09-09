@@ -1,202 +1,219 @@
-.container{
-    width: 90%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.container {
+  width: 90%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.fundo{
-    background-color: var(--dark-blue-color);
-    width: 80%;
-    height: 85vh;
-    border-radius: 40px;
-    align-items: center;
-    justify-content: center;
+.fundo {
+  background-color: var(--dark-blue-color);
+  width: 80%;
+  height: 85vh;
+  border-radius: 40px;
+  align-items: center;
+  justify-content: center;
 }
 
-.filtro{
-    padding: 80px 0 0 70px;
-    display: flex;
-    align-items: center;
+.filtro {
+  padding: 80px 0 0 70px;
+  display: flex;
+  align-items: center;
 }
 
-.inserir{
-    width: 560px;
-    padding: 15px;
-    border-radius: 15px;
-    border: none;
-    font-size: 20px;
-    background-color: var(--gray-color);
+.inserir {
+  width: 560px;
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  font-size: 20px;
+  background-color: var(--gray-color);
 }
 
-.inserir::placeholder{
-    color: var(--dark-blue-color);
-    font-weight: bold;
+.inserir::placeholder {
+  color: var(--dark-blue-color);
+  font-weight: bold;
 }
 
 .botao-Filtro {
-    color: var(--white-color);
-    background-color: transparent;
-    font-weight: 600;
-    font-size: large;
-    gap: 10px;
-    transition: .2s !important;
-    margin-left: 30px;
-    border-radius: 8px;
-    border: 1.5px solid var(--blue-color);
-    border-left-width: 3px;
-    border-right-width: 3px;
-    padding: 5px 50px;
-    transition: .3s !important;
-  }
+  color: var(--white-color);
+  background-color: transparent;
+  font-weight: 600;
+  font-size: large;
+  gap: 10px;
+  transition: .2s !important;
+  margin-left: 30px;
+  border-radius: 8px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  padding: 5px 50px;
+  transition: .3s !important;
+}
 
-  .botao-Filtro:hover {
-    border-radius: 20px;
-    border-left-width: 2px;
-    border-right-width: 2px;
-    transition: .3s !important;
-    text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
-    transition: .2s;
-    cursor: pointer;
-  }
+.botao-Filtro:hover {
+  border-radius: 20px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  transition: .3s !important;
+  text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+  transition: .2s;
+  cursor: pointer;
+}
 
-  .adicionar-Usuario{
-    margin-left: 10%;
-    color: var(--white-color);
-    font-weight: 600;
-  }
+.botao-adicionar {
+  display: flex;
+  align-items: center;
+  color: var(--white-color);
+  background-color: transparent;
+  font-weight: 600;
+  font-size: large;
+  gap: 10px;
+  transition: .2s !important;
+  margin-left: 30px;
+  border-radius: 8px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  padding: 5px 50px;
+  transition: .3s !important;
+}
 
-  .botao-adicionar {
-    color: var(--white-color);
-    background-color: transparent;
-    font-weight: 50;
-    font-size: 30px;
-    gap: 10px;
-    transition: .2s !important;
-    margin-left: 30px;
-    border-radius: 100px;
-    border: 1.5px solid var(--blue-color);
-    border-left-width: 3px;
-    border-right-width: 3px;
-    transition: .3s !important;
-  }
+.botao-adicionar:hover {
+  border-radius: 20px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  transition: .3s !important;
+  text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+  transition: .2s;
+  cursor: pointer;
+}
 
-  .botao-adicionar:hover {
-    border-radius: 20px;
-    border-left-width: 2px;
-    border-right-width: 2px;
-    transition: .3s !important;
-    text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
-    transition: .2s;
-    cursor: pointer;
-  }
+.request-table {
+  display: flex;
+  justify-content: space-around;
+  padding: 60px 0;
+  padding-bottom: 15px;
+}
 
-  .request-table{
-    display: flex;
-    justify-content: space-around;
-    padding: 60px 0;
-    padding-bottom: 15px;
-  }
+.lista {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-around;
+}
 
-  .lista{
-    width: 100%;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .user-list{
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 15px;
-  }
+.lista th,
+.coluns td {
+  width: calc(100% / 6);
+}
 
-  .coluns{
-    width: 100%;
-    text-align: center;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-  }
+.user-list {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 15px;
+}
 
+<<<<<<< HEAD
   .user-data{
     max-width: 150px;
   }
+=======
+.coluns {
+  width: 100%;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+>>>>>>> f050a9d00c8217bbffc0198945d6be1cfb49b519
 
-  .status {
-    color: var(--white-color);
-    background-color: transparent;
-    padding: 5px 30px;
-    font-weight: 50;
-    font-size: 15px;
-    gap: 10px;
-    transition: .2s !important;
-    margin-left: 30px;
-    border-radius: 100px;
-    border: 1.5px solid var(--blue-color);
-    border-left-width: 3px;
-    border-right-width: 3px;
-    transition: .3s !important;
-  }
+.status {
+  color: var(--white-color);
+  background-color: transparent;
+  padding: 5px 30px;
+  font-weight: 50;
+  font-size: 15px;
+  gap: 10px;
+  transition: .2s !important;
+  margin-left: 30px;
+  border-radius: 100px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  transition: .3s !important;
+}
 
-  .status:hover {
-    border-radius: 20px;
-    border-left-width: 2px;
-    border-right-width: 2px;
-    transition: .3s !important;
-    text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
-    transition: .2s;
-    cursor: pointer;
-  }
+.status:hover {
+  border-radius: 20px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  transition: .3s !important;
+  text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+  transition: .2s;
+  cursor: pointer;
+}
 
-  .status.ativo {
-    border: 1.5px solid var(--green-color);
-  }
-  
-  .status.inativo {
-    border: 1.5px solid var(--pink-color);
-  }
+.status.ativo {
+  border: 1.5px solid var(--green-color);
+}
 
-  #edit{
-    height: 40px;
-  }
+.status.ativo:hover {
+  background-color: var(--green-color);
+  color: var(--black-color);
+}
 
-  #edit:hover{
-    cursor: pointer;
-    height: 50px;
-  }
+.status.inativo {
+  border: 1.5px solid var(--pink-color);
+}
 
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999; 
-  }
+.status.inativo:hover {
+  background-color: var(--pink-color);
+  color: var(--black-color);
+}
 
-  .modal-content {
-    background-color: var(--dark-blue-color); 
-    border-radius: 6px; 
-    padding: 80px;
-    max-width: 80%;
-    max-height: 80%;
-    overflow: auto; 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+#edit {
+  height: 30px;
+  transition: .3s;
+}
 
-  .modal-botoes {
-    padding-top: 30px;
-    margin-left: 90px;
-  }
+#edit:hover {
+  cursor: pointer;
+  height: 33px;
+  transition: .3s;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--black-50-color);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: var(--dark-blue-color);
+  border-radius: 6px;
+  padding: 80px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-botoes {
+  padding-top: 30px;
+  margin-left: 90px;
+}

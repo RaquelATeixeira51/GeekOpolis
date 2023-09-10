@@ -15,7 +15,7 @@ import makeToast from '../../shared/toaster';
 
 export default function CadastroProduto() {
   const [categorias, setCategorias] = useState([]);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState('');
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(0);
 
   const nomeRef = React.createRef();
   const descricaoRef = React.createRef();
@@ -24,7 +24,6 @@ export default function CadastroProduto() {
 
   const [rating, setRating] = useState(0);
 
-  const [selectedImage, setSelectedImage] = useState(null);
   const [redirect, setRedirect] = React.useState('');
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -57,18 +56,18 @@ export default function CadastroProduto() {
       });
   }, []);
 
-  const handleUpload = async () => {
-    if (selectedImage) {
+  const handleUpload = async (image) => {
+    if (image) {
       const formData = new FormData();
       formData.append('key', '5d7b99eb4e0e934e0de6dbfce6cd0859');
-      formData.append('image', selectedImage);
-
+      formData.append('image', image);
+  
       try {
         const response = await fetch('https://api.imgbb.com/1/upload', {
           method: 'POST',
           body: formData,
         });
-
+  
         if (response.ok) {
           const data = await response.json();
           const imageUrl = data.data.url;
@@ -81,12 +80,11 @@ export default function CadastroProduto() {
       }
     }
   };
-
+  
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedImage(file);
-      handleUpload();
+      handleUpload(file);
     }
   };
 
@@ -129,6 +127,11 @@ export default function CadastroProduto() {
       });
   };
 
+  const handleCategoriaChange = (event) => {
+    const novaCategoriaId = parseInt(event.target.value, 10);
+    setCategoriaSelecionada(novaCategoriaId);
+  };
+
   if (redirect !== '') return <Navigate to={redirect} />;
 
   return (
@@ -154,8 +157,11 @@ export default function CadastroProduto() {
               name="categoria"
               className="rounded-select"
               value={categoriaSelecionada}
-              onChange={(e) => setCategoriaSelecionada(e.target.value)}
+              onChange={handleCategoriaChange}
             >
+              <option>
+                ---
+              </option>
               {categorias.map((categoria) => (
                 <option key={categoria.id} value={categoria.id}>
                   {categoria.nome}

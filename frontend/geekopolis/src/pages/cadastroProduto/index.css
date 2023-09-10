@@ -1,0 +1,137 @@
+textarea {
+  width: 370px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color:  var(--gray-color);
+  margin-top: 5px;
+  outline: none;
+}
+
+/* Adicione estilos para os grupos de entrada */
+.input-group {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para o grupo "Preço" e "Quantidade em estoque" */
+.double-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Estilos para as labels */
+.input-group p {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.preco {
+  width: 165px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color:  var(--gray-color);
+  margin-top: 5px;
+  outline: none;
+}
+
+.qtdEstoque {
+  width: 175px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color:  var(--gray-color);
+  margin-top: 5px;
+  outline: none;
+}
+
+.upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px; 
+  cursor: pointer;
+}
+
+.upload svg {
+  margin-right: 10px;
+  fill: white;
+}
+
+span {
+  margin-bottom: 12px;
+}
+
+.images ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; 
+  max-width: 400px; 
+}
+
+.images li {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.images li button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.cadastrar-button {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.cadastrar-button button {
+  color: var(--white-color);
+  background-color: transparent;
+  margin: 10px 0;
+  font-weight: 600;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s !important;
+  width: auto;
+  min-width: 150px;
+  padding: 10px; 
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  margin: 0 auto; /* Centralizar horizontalmente */
+}
+
+.cadastrar-button button {
+border-radius: 8px;
+border: 1.5px solid var(--blue-color);
+border-left-width: 3px;
+border-right-width: 3px;
+padding: 5px 15px;
+transition: .3s !important;
+}
+
+.cadastrar-button button:hover {
+border-radius: 20px;
+border-left-width: 2px;
+border-right-width: 2px;
+transition: .3s !important;
+}
+
+.cadastrar-button button:hover {
+text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+transition: .2s;
+}

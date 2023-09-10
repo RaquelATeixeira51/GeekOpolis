@@ -114,11 +114,12 @@
   display: flex;
   justify-content: space-around;
   padding-bottom: 15px;
+  flex-direction: column
 }
 
 
   .user-data{
-    max-width: 150px;
+    max-width: 230px;
   }
 
 .coluns {

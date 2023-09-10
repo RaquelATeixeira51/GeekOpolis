@@ -194,6 +194,7 @@ export default function ListaUsuarios() {
               <p>+</p>
             </button>
           </div>
+          <tbody className="user-list">
           <table className="request-table">
             <thead className="lista">
               <th>Nome</th>
@@ -204,7 +205,6 @@ export default function ListaUsuarios() {
               <th>Editar</th>
             </thead>
           </table>
-          <tbody className="user-list">
             {requests &&
               requests.map((client) => (
                 <tr className="coluns">

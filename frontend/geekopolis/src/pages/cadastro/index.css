@@ -14,7 +14,11 @@
     bottom: 0;
     margin: auto;
   }
-
+  .geekopolis-login-logo {
+    padding-top: 50px;
+    width: 400px;
+    padding-bottom: 75px;
+ }
   .rounded-input {
     width: 370px;
     padding: 10px;
@@ -27,10 +31,6 @@
   .input-container {
     display: flex;
     flex-direction: column;
-  }
-
-  .Inputs{
-    padding-top: 200px;
   }
 
   .cpf-input {

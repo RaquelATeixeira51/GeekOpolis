@@ -12,10 +12,10 @@ import './assets/css/reset.css';
 import './assets/css/root.css';
 import './assets/css/styles.css';
 import Login from './pages/login';
-import Inicio from './pages/Inicio';
+import ListaUsuarios from './pages/listaUsuarios';
 import CadastroProduto from './pages/cadastroProduto';
 import Cadastro from './pages/cadastro';
-import ListaUsuarios from './pages/ListaUsuarios';
+import Inicio from './pages/inicio';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();

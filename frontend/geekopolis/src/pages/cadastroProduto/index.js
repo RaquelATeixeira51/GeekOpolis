@@ -123,8 +123,8 @@ export default function CadastroProduto() {
         }
         return null;
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
         makeToast('Erro ao cadastrar, tente novamente');
       });
   };

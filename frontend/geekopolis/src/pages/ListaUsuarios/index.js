@@ -189,22 +189,28 @@ export default function ListaUsuarios() {
               <p>Filtrar</p>
             </button>
             <div className="adicionar-Usuario" />
-            <button type="button" className="botao-adicionar">
+            <button
+              type="button"
+              className="botao-adicionar"
+              onClick={() => {
+                window.location.href = '/cadastro';
+              }}
+            >
               <h2>Adicionar usuário</h2>
               <p>+</p>
             </button>
           </div>
           <tbody className="user-list">
-          <table className="request-table">
-            <thead className="lista">
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>CPF</th>
-              <th>Grupo</th>
-              <th>Status</th>
-              <th>Editar</th>
-            </thead>
-          </table>
+            <table className="request-table">
+              <thead className="lista">
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>CPF</th>
+                <th>Grupo</th>
+                <th>Status</th>
+                <th>Editar</th>
+              </thead>
+            </table>
             {requests &&
               requests.map((client) => (
                 <tr className="coluns">

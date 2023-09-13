@@ -16,6 +16,7 @@ import Login from './pages/login';
 import ListaUsuarios from './pages/ListaUsuarios';
 import CadastroProduto from './pages/cadastroProduto';
 import Cadastro from './pages/cadastro';
+import ListaProdutos from './pages/ListaProdutos';
 
 
 function ProtectedRoute({ element }) {
@@ -72,7 +73,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login/>} />
         <Route
           path="/inicio"
           element={<ProtectedRoute element={<Inicio />} />}
@@ -86,6 +87,7 @@ root.render(
           element={<ProtectedRoute element={<CadastroProduto />} />}
         />
         <Route path="/cadastro" element={<ProtectedRoute element={<Cadastro/>} />} />
+        <Route path="/ListaProdutos" element={<ProtectedRoute element={<ListaProdutos/>} />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -1,4 +1,3 @@
-/* eslint-disable react/self-closing-comp */
 /* eslint-disable import/extensions */
 /* eslint-disable no-debugger */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -16,14 +15,18 @@ import LogoutIcon from '../../assets/img/icons/edit-icon.png';
 import makeToast from '../../shared/toaster';
 import Pagination from '../../components/Pagination';
 import VizuIcon from '../../assets/img/icons/Visualizar.png';
+import ReactStars from 'react-stars';
 
 function ListaProdutos() {
   const nameRef = React.createRef();
   const [requests, setRequests] = useState([]);
-  const [produto, setUsuario] = useState({});
+  const [produto, setProduto] = useState({});
   const [body, setBody] = React.useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const [categorias, setCategorias] = useState([]);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(0);
+
   const handleBody = (e) => {
     setBody({ ...body, [e.target.name]: e.target.value });
   };
@@ -35,6 +38,7 @@ function ListaProdutos() {
   const closeModal2 = () => {
     setIsModalOpen2(false);
   };
+
   useEffect(() => {
     fetch(
       `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
@@ -114,7 +118,7 @@ function ListaProdutos() {
 
   const buscaProduto = (id) => {
     fetch(
-      `http://localhost:8080/produto/buscaProduto/${id}`,
+      `http://localhost:8080/produto/listaProduto/${id}`,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -128,7 +132,8 @@ function ListaProdutos() {
         return null;
       })
       .then((data) => {
-        setUsuario(data);
+        setProduto(data);
+        setCategoriaSelecionada(data.categoria);
       })
       .catch((error) => {
         console.log(error);
@@ -168,7 +173,6 @@ function ListaProdutos() {
   useEffect(() => {
     if (isModalOpen) {
       setBody(produto);
-
     }
   }, [isModalOpen, produto]);
 
@@ -177,6 +181,33 @@ function ListaProdutos() {
       setBody(produto);
     }
   }, [isModalOpen2, produto]);
+
+  const handleCategoriaChange = (event) => {
+    const novaCategoriaId = parseInt(event.target.value, 10);
+    setCategoriaSelecionada(novaCategoriaId);
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/categoria/listaCategorias`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        makeToast('error', 'Erro ao carregar, tente novamente');
+        return null;
+      })
+      .then((data) => {
+        setCategorias(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  
 
   return (
     <>
@@ -207,8 +238,6 @@ function ListaProdutos() {
               <p>+</p>
             </button>
           </div>
-          <Pagination className="user-list">
-
           <tbody className="user-list">
             <table className="request-table">
               <thead className="lista">
@@ -263,11 +292,8 @@ function ListaProdutos() {
                 </tr>
               ))}
           </tbody>
-          </Pagination>
         </div>
-        
       </div>
-      
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -275,7 +301,7 @@ function ListaProdutos() {
         overlayClassName="modal-overlay"
       >
         <div className="input-container">
-          <p>Nome</p>
+          <p>Nome do Produto</p>
           <input
             type="text"
             name="nome"
@@ -284,12 +310,44 @@ function ListaProdutos() {
             onChange={handleBody}
           />
         </div>
+        <div className='input-container'>
+        <p>Categoria</p>
+            <select
+              name="categoria"
+              className="rounded-select"
+              value={body.categoria}
+              onChange={handleCategoriaChange}
+            >
+              <option>
+                ---
+              </option>
+              {categorias.map((categoria) => (
+                <option key={categoria.id} value={categoria.id}>
+                  {categoria.nome}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="input-container">
+            <p>Avaliação</p>
+          </div>
+          <ReactStars
+            count={5}
+            size={40}
+            value={body.avaliacao}
+            onChange={handleBody}
+            color2="#fdd835"
+          />
+          <div className="input-container">
+            <p>Descrição</p>
+            <textarea value={body.descricao} onChange={handleBody} />
+          </div>
         <div className="input-container">
           <p>Valor</p>
           <input
             type="valor"
-            name="valor"
-            ref={body.valor}
+            name="preco"
+            value={body.preco}
             className="rounded-input"
             onChange={handleBody}
           />
@@ -297,9 +355,11 @@ function ListaProdutos() {
         <div className="input-container">
           <p>Quantidade</p>
           <input
-            type="quantidade"
-            id="quantidade"
-            ref={body.quantidade}
+            type="number"
+            id="qtdEstoque"
+            name='qtdEstoque'
+            value={body.qtdEstoque}
+            onChange={handleBody}
             className="rounded-input"
           />
         </div>
@@ -314,7 +374,6 @@ function ListaProdutos() {
           </button>
         </div>
       </Modal>
-      
       <Modal
         isOpen={isModalOpen2}
         onRequestClose={closeModal2}
@@ -323,7 +382,7 @@ function ListaProdutos() {
       >
         <div className="input-container">
         <div className="box">
-        <div className="MODAL">
+      <div className="MODAL">
         <div className="overlap">
           <img className="pix" alt="Pix" src={Pix} />
           <p className="text-wrapper">3% OFF à vista no Pix</p>

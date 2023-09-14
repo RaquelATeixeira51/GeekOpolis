@@ -368,3 +368,330 @@
   background-color: var(--pink-color);
   color: var(--black-color);
 }
+
+.box {
+  height: 909px;
+  width: 1382px;
+}
+
+.box .MODAL {
+  height: 909px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 1098px;
+  margin-top: 20px;
+  margin-left: 400px;
+}
+
+.box .overlap {
+  background-color: #004166;
+  border-radius: 20px;
+  height: 890px;
+  position: relative;
+  width: 1060px;
+}
+
+.box .pix {
+  height: 19px;
+  left: 538px;
+  position: absolute;
+  top: 338px;
+  width: 24px;
+}
+
+.box .text-wrapper {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  left: 571px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 339px;
+  width: 181px;
+}
+
+.box .div {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  left: 702px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 301px;
+  width: 209px;
+}
+
+.box .text-wrapper-2 {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 32px;
+  font-weight: 700;
+  left: 530px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 289px;
+  white-space: nowrap;
+  width: 165px;
+}
+
+.box .text-wrapper-3 {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  left: 695px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 228px;
+  white-space: nowrap;
+  width: 168px;
+}
+
+.box .arrow {
+  height: 22px;
+  left: 466px;
+  position: absolute;
+  top: 381px;
+  width: 13px;
+}
+
+.box .overlap-group {
+  height: 372px;
+  left: 46px;
+  position: absolute;
+  top: 174px;
+  width: 404px;
+}
+
+.box .img {
+  height: 22px;
+  left: 0;
+  position: absolute;
+  top: 216px;
+  width: 13px;
+}
+
+.box .img-super-man {
+  height: 372px;
+  left: 2px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 403px;
+}
+
+.box .funko-pop-super-man {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 32px;
+  font-weight: 700;
+  left: 520px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 147px;
+  width: 416px;
+}
+
+.box .text-wrapper-4 {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 32px;
+  font-weight: 700;
+  left: 1025px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 26px;
+  white-space: nowrap;
+  width: 27px;
+}
+
+.box .stars {
+  height: 29px;
+  left: 540px;
+  position: absolute;
+  top: 172px;
+  width: 150px;
+}
+
+.box .overlap-group-2 {
+  height: 25px;
+  left: 33px;
+  position: absolute;
+  top: 1px;
+  width: 116px;
+}
+
+.box .adicionar-ao {
+  height: 51px;
+  left: 530px;
+  position: absolute;
+  top: 413px;
+  width: 307px;
+}
+
+.box .overlap-2 {
+  background-color: #48ffa7;
+  border-radius: 8px;
+  height: 51px;
+  position: relative;
+  width: 305px;
+}
+
+.box .rectangle {
+  background-color: #004166;
+  border-radius: 8px;
+  height: 42px;
+  left: 9px;
+  position: absolute;
+  top: 4px;
+  width: 288px;
+}
+
+.box .adicionar-ao-2 {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  height: 31px;
+  left: 40px;
+  padding-top: 4px; 
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 8px;
+  width: 264px;
+}
+
+.box .carrinho-carrinho {
+  height: 27px;
+  left: 29px;
+  object-fit: cover;
+  position: absolute;
+  top: 10px;
+  width: 27px;
+}
+
+.box .rectangle-2 {
+  background-color: #00000099;
+  border-radius: 8px;
+  height: 51px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 305px;
+}
+
+.box .overlap-3 {
+  height: 216px;
+  left: 539px;
+  position: absolute;
+  top: 547px;
+  width: 390px;
+}
+
+.box .CEP {
+  height: 42px;
+  left: 1px;
+  position: absolute;
+  top: 79px;
+  width: 278px;
+}
+
+.box .rectangle-3 {
+  background-color: #d9d9d9;
+  border-radius: 8px;
+  height: 42px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 157px;
+}
+
+.box .group {
+  height: 42px;
+  left: 170px;
+  position: absolute;
+  top: 0;
+  width: 110px;
+}
+
+.box .overlap-group-3 {
+  background-color: #48a7ff;
+  border-radius: 10px;
+  height: 42px;
+  position: relative;
+  width: 108px;
+}
+
+.box .rectangle-4 {
+  background-color: #004166;
+  border-radius: 10px;
+  height: 36px;
+  left: 5px;
+  position: absolute;
+  top: 3px;
+  width: 98px;
+}
+
+.box .text-wrapper-5 {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  height: 31px;
+  left: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 6px;
+  width: 84px;
+}
+
+.box .frete-e-prazo-de {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 390px;
+}
+
+.box .span {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.box .text-wrapper-6 {
+  text-decoration: underline;
+}
+
+.box .DESCRI-o-DO-PRODUTO {
+  color: #ffffff;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  left: 65px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: fixed;
+  top: 686px;
+  width: 270px;
+}

@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Categoria;
 import com.senac.geekOpolis.models.Produto;
+import com.senac.geekOpolis.models.ProdutoDto;
 import com.senac.geekOpolis.models.ProdutoPayloadDto;
 import com.senac.geekOpolis.models.UsuarioPayloadDto;
 import com.senac.geekOpolis.repository.CategoriaRepository;
@@ -97,14 +98,19 @@ public class ProdutoCategoriaService {
     }
 
     // Lista todos os usuários
-    public List<Produto> buscaProdutos(String nomeFiltro) {
-       // UsuarioPayloadDto usuarioPayloadDto = usuarioService.verificarUsuarioPorToken(token);
-       //if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
-         List<Produto> produto = produtoRepository.buscaProdutos(nomeFiltro);
-         return produto;
-      // } else {
-      //  return null;
-     //  }
+    public ProdutoDto buscaProdutos(String nomeFiltro) {
+        List<Produto> produtos;
+        long qtdTotal;
+
+        if (nomeFiltro != null && !nomeFiltro.isEmpty()) {
+            produtos = produtoRepository.buscarProdutos(nomeFiltro);
+            qtdTotal = produtoRepository.contarProdutos(nomeFiltro);
+        } else {
+            produtos = produtoRepository.findAll();
+            qtdTotal = produtoRepository.count();
+        }
+        
+        return new ProdutoDto(produtos, qtdTotal);
     }
 
     // Retorna um único usuário por id

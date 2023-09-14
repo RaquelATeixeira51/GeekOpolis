@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Categoria;
 import com.senac.geekOpolis.models.Produto;
+import com.senac.geekOpolis.models.ProdutoDto;
 import com.senac.geekOpolis.models.ProdutoPayloadDto;
 import com.senac.geekOpolis.models.UsuarioPayloadDto;
 import com.senac.geekOpolis.repository.CategoriaRepository;
@@ -110,8 +111,8 @@ public class ProdutoCategoriaController {
 
     // endpoint para buscar acesso de todos os produtos
     @GetMapping("produto/buscaProdutos/")
-    public List<Produto> buscaProdutos(@RequestParam(required = false) String nomeFiltro) {
-        List<Produto> u = produtoCategoriaService.buscaProdutos(nomeFiltro);
+    public ProdutoDto buscaProdutos(@RequestParam(required = false) String nomeFiltro) {
+        ProdutoDto u = produtoCategoriaService.buscaProdutos(nomeFiltro);
 
         if(u != null) {
             return u;

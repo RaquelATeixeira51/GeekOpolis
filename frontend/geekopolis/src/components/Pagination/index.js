@@ -4,7 +4,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-class Pagination extends Component {
+export default class Pagination extends Component {
   constructor(props) {
     super(props);
     const { totalRecords = 10, pageLimit = 30, pageNeighbours = 0 } = props;

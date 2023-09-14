@@ -324,3 +324,47 @@
   top: 686px;
   width: 270px;
 }
+
+.status {
+  color: var(--white-color);
+  background-color: transparent;
+  padding: 5px 30px;
+  font-weight: 50;
+  font-size: 15px;
+  gap: 10px;
+  transition: .2s !important;
+  margin-left: 30px;
+  border-radius: 100px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  transition: .3s !important;
+}
+
+.status:hover {
+  border-radius: 20px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  transition: .3s !important;
+  text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+  transition: .2s;
+  cursor: pointer;
+}
+
+.status.ativo {
+  border: 1.5px solid var(--green-color);
+}
+
+.status.ativo:hover {
+  background-color: var(--green-color);
+  color: var(--black-color);
+}
+
+.status.inativo {
+  border: 1.5px solid var(--pink-color);
+}
+
+.status.inativo:hover {
+  background-color: var(--pink-color);
+  color: var(--black-color);
+}

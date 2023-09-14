@@ -12,15 +12,11 @@ import './assets/css/reset.css';
 import './assets/css/root.css';
 import './assets/css/styles.css';
 import Login from './pages/login';
-import ListaUsuarios from './pages/listaUsuarios';
+import ListaUsuarios from './pages/ListaUsuarios';
 import CadastroProduto from './pages/cadastroProduto';
 import Cadastro from './pages/cadastro';
-<<<<<<< HEAD
 import ListaProdutos from './pages/ListaProdutos';
-
-=======
-import Inicio from './pages/inicio';
->>>>>>> 6013115a34c4217a2afad578408702a64d0d74be
+import Inicio from './pages/Inicio';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -89,15 +85,8 @@ root.render(
           path="/cadastroProduto"
           element={<ProtectedRoute element={<CadastroProduto />} />}
         />
-<<<<<<< HEAD
         <Route path="/cadastro" element={<ProtectedRoute element={<Cadastro/>} />} />
         <Route path="/ListaProdutos" element={<ProtectedRoute element={<ListaProdutos/>} />} />
-=======
-        <Route
-          path="/cadastro"
-          element={<ProtectedRoute element={<Cadastro />} />}
-        />
->>>>>>> 6013115a34c4217a2afad578408702a64d0d74be
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

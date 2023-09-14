@@ -1,4 +1,5 @@
 package com.senac.geekOpolis.service;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -95,4 +96,25 @@ public class ProdutoCategoriaService {
         return p;
     }
 
+    // Lista todos os usuários
+    public List<Produto> buscaProdutos(String nomeFiltro, String token) {
+        UsuarioPayloadDto usuarioPayloadDto = usuarioService.verificarUsuarioPorToken(token);
+       if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
+         List<Produto> produto = produtoRepository.findAll(nomeFiltro);
+         return produto;
+       } else {
+        return null;
+       }
+    }
+
+    // Retorna um único usuário por id
+    public Produto buscaProduto(String token, long id) {
+        UsuarioPayloadDto usuarioPayloadDto = usuarioService.verificarUsuarioPorToken(token);
+
+        if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
+            return produtoRepository.findById(id);
+        }
+
+        return null;
+    }
 }

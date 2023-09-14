@@ -80,7 +80,7 @@ function ListaProdutos() {
         return null;
       })
       .then((data) => {
-        setRequests(data);
+        setRequests(data.produtos);
       })
       .catch((error) => {
         console.log(error);

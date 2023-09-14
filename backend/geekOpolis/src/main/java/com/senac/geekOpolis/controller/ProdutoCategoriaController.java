@@ -120,16 +120,4 @@ public class ProdutoCategoriaController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Problema ao listar produtos");
         }
     }
-
-    // endpoint para trazer um unico usuário por id
-    @GetMapping("produto/buscaProduto/{id}")
-    public Produto buscaProduto(@RequestParam String token, @PathVariable long id) {
-        Produto u = produtoCategoriaService.buscaProduto(token, id);
-
-        if(u != null) {
-            return u;
-        } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel o usuário");
-        }
-    }
 }

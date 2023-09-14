@@ -108,10 +108,10 @@ public class ProdutoCategoriaController {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nao foi possivel atualizar o produto");
     }
 
-    // endpoint para buscar acesso de todos os usuarios
-    @GetMapping("produto/buscaProdutos")
-    public List<Produto> buscaProdutos(@RequestParam String nomeFiltro, @RequestParam String token) {
-        List<Produto> u = produtoCategoriaService.buscaProdutos(nomeFiltro, token);
+    // endpoint para buscar acesso de todos os produtos
+    @GetMapping("produto/buscaProdutos/")
+    public List<Produto> buscaProdutos(@RequestParam(required = false) String nomeFiltro) {
+        List<Produto> u = produtoCategoriaService.buscaProdutos(nomeFiltro);
 
         if(u != null) {
             return u;
@@ -122,7 +122,7 @@ public class ProdutoCategoriaController {
 
     // endpoint para trazer um unico usuário por id
     @GetMapping("produto/buscaProduto/{id}")
-    public Produto buscaUsuario(@RequestParam String token, @PathVariable long id) {
+    public Produto buscaProduto(@RequestParam String token, @PathVariable long id) {
         Produto u = produtoCategoriaService.buscaProduto(token, id);
 
         if(u != null) {

@@ -32,9 +32,7 @@ function ListaProdutos() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:8080/produto/buscaProdutos?token=${localStorage.getItem(
-        'token'
-      )}`,
+      ` `,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -58,9 +56,9 @@ function ListaProdutos() {
   const filtrar = () => {
     setRequests([]);
     fetch(
-      `http://localhost:8080/produto/buscaProdutos?nomeFiltro=${
+      `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
         nameRef.current.value
-      }&token=${localStorage.getItem('token')}`,
+      }`,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },

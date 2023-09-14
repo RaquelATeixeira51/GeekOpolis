@@ -97,14 +97,14 @@ public class ProdutoCategoriaService {
     }
 
     // Lista todos os usuários
-    public List<Produto> buscaProdutos(String nomeFiltro, String token) {
-        UsuarioPayloadDto usuarioPayloadDto = usuarioService.verificarUsuarioPorToken(token);
-       if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
+    public List<Produto> buscaProdutos(String nomeFiltro) {
+       // UsuarioPayloadDto usuarioPayloadDto = usuarioService.verificarUsuarioPorToken(token);
+       //if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
          List<Produto> produto = produtoRepository.buscaProdutos(nomeFiltro);
          return produto;
-       } else {
-        return null;
-       }
+      // } else {
+      //  return null;
+     //  }
     }
 
     // Retorna um único usuário por id

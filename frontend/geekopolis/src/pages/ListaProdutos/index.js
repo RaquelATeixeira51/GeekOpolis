@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable import/extensions */
 /* eslint-disable no-debugger */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -23,7 +24,6 @@ function ListaProdutos() {
   const [body, setBody] = React.useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
-
   const handleBody = (e) => {
     setBody({ ...body, [e.target.name]: e.target.value });
   };
@@ -35,7 +35,6 @@ function ListaProdutos() {
   const closeModal2 = () => {
     setIsModalOpen2(false);
   };
-
   useEffect(() => {
     fetch(
       `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
@@ -169,6 +168,7 @@ function ListaProdutos() {
   useEffect(() => {
     if (isModalOpen) {
       setBody(produto);
+
     }
   }, [isModalOpen, produto]);
 
@@ -207,6 +207,8 @@ function ListaProdutos() {
               <p>+</p>
             </button>
           </div>
+          <Pagination className="user-list">
+
           <tbody className="user-list">
             <table className="request-table">
               <thead className="lista">
@@ -261,8 +263,11 @@ function ListaProdutos() {
                 </tr>
               ))}
           </tbody>
+          </Pagination>
         </div>
+        
       </div>
+      
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -309,6 +314,7 @@ function ListaProdutos() {
           </button>
         </div>
       </Modal>
+      
       <Modal
         isOpen={isModalOpen2}
         onRequestClose={closeModal2}
@@ -317,7 +323,7 @@ function ListaProdutos() {
       >
         <div className="input-container">
         <div className="box">
-      <div className="MODAL">
+        <div className="MODAL">
         <div className="overlap">
           <img className="pix" alt="Pix" src={Pix} />
           <p className="text-wrapper">3% OFF à vista no Pix</p>

@@ -38,7 +38,9 @@ function ListaProdutos() {
 
   useEffect(() => {
     fetch(
-      ` `,
+      `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
+        nameRef.current.value
+      }`,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -52,7 +54,7 @@ function ListaProdutos() {
         return null;
       })
       .then((data) => {
-        setRequests(data);
+        setRequests(data.produtos);
       })
       .catch((error) => {
         console.log(error);
@@ -103,19 +105,17 @@ function ListaProdutos() {
         return null;
       })
       .then(() => {
-        window.location.href = '/listaUsuarios';
+        window.location.href = '/listaProdutos';
       })
       .catch((err) => {
         console.error(err);
-        window.location.href = '/listaUsuarios';
+        window.location.href = '/listaProdutos';
       });
   };
 
   const buscaProduto = (id) => {
     fetch(
-      `http://localhost:8080/produto/buscaProdutos/${id}?token=${localStorage.getItem(
-        'token'
-      )}`,
+      `http://localhost:8080/produto/buscaProduto/${id}`,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -210,8 +210,7 @@ function ListaProdutos() {
           <tbody className="user-list">
             <table className="request-table">
               <thead className="lista">
-                <th>Id</th>
-                <th>Produto</th>
+                <th>Nome</th>
                 <th>Valor</th>
                 <th>Quatidade em estoque</th>
                 <th>Status</th>
@@ -219,18 +218,28 @@ function ListaProdutos() {
                 <th>Visualizar</th>
               </thead>
             </table>
-            {/* {requests &&
-              requests.map((client) => ( */}
+            {requests &&
+              requests.map((client) => (
                 <tr className="coluns">
-                  <td className="user-data">a</td>
-                  <td className="user-data">a</td>
-                  <td className="user-data">a</td>
-                  <td className="user-data">a</td>
-                  <td className="user-data">b</td>
-                  <td className="user-data"
+                  <td className="user-data">{client.nome}</td>
+                  <td className="user-data">{client.preco}</td>
+                  <td className="user-data">{client.qtdEstoque}</td>
+                  <td className="user-data">
+                  <button
+                      type="button"
+                      className={`status ${client.status ? 'ativo' : 'inativo'}`}
+                      onClick={() => atualizaAcesso(client.id)}
+                    >
+                      {client.status ? 'Ativo' : 'Inativo'}
+                    </button>
+                  </td>
+                  <td
+                    className="user-edit"
                     onClick={() => {
+                      buscaProduto(client.id);
                       setIsModalOpen(true);
-                    }}>
+                    }}
+                  >
                     <img
                         src={LogoutIcon}
                         alt="GeekOpolis Logout Icon"
@@ -239,6 +248,7 @@ function ListaProdutos() {
                   </td>
                   <td
                   onClick={() => {
+                    buscaProduto(client.id);
                     setIsModalOpen2(true);
                   }}
                   >
@@ -249,7 +259,7 @@ function ListaProdutos() {
                     />
                   </td>
                 </tr>
-              {/* ))} */}
+              ))}
           </tbody>
         </div>
       </div>

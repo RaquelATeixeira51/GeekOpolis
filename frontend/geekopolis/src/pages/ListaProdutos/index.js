@@ -89,7 +89,7 @@ function ListaProdutos() {
 
   const atualizaAcesso = (id) => {
     fetch(
-      `http://localhost:8080/produto/atualizaProduto/${id}?token=${localStorage.getItem(
+      `http://localhost:8080/produto/atualizaStatusProduto/${id}?token=${localStorage.getItem(
         'token'
       )}`,
       {

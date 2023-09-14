@@ -238,6 +238,7 @@ function ListaProdutos() {
               <p>+</p>
             </button>
           </div>
+          <Pagination>
           <tbody className="user-list">
             <table className="request-table">
               <thead className="lista">
@@ -292,6 +293,8 @@ function ListaProdutos() {
                 </tr>
               ))}
           </tbody>
+          </Pagination>
+          
         </div>
       </div>
       <Modal

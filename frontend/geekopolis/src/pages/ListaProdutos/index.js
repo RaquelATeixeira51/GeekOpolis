@@ -239,7 +239,6 @@ function ListaProdutos() {
                   </td>
                 </tr>
               ))}
-          <Pagination/>
           </tbody>
         </div>
       </div>

@@ -100,7 +100,7 @@ public class ProdutoCategoriaService {
     public List<Produto> buscaProdutos(String nomeFiltro, String token) {
         UsuarioPayloadDto usuarioPayloadDto = usuarioService.verificarUsuarioPorToken(token);
        if(usuarioPayloadDto.getGrupo().equals("ADMIN")) {
-         List<Produto> produto = produtoRepository.findAll(nomeFiltro);
+         List<Produto> produto = produtoRepository.buscaProdutos(nomeFiltro);
          return produto;
        } else {
         return null;

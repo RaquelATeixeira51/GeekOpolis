@@ -14,6 +14,7 @@ import Aside from '../../components/aside';
 import LogoutIcon from '../../assets/img/icons/edit-icon.png';
 import makeToast from '../../shared/toaster';
 import Pagination from '../../components/Pagination';
+import VizuIcon from '../../assets/img/icons/Visualizar.png';
 
 function ListaProdutos() {
   const nameRef = React.createRef();
@@ -21,6 +22,7 @@ function ListaProdutos() {
   const [produto, setUsuario] = useState({});
   const [body, setBody] = React.useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
 
   const handleBody = (e) => {
     setBody({ ...body, [e.target.name]: e.target.value });
@@ -28,6 +30,10 @@ function ListaProdutos() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const closeModal2 = () => {
+    setIsModalOpen2(false);
   };
 
   useEffect(() => {
@@ -168,6 +174,12 @@ function ListaProdutos() {
     }
   }, [isModalOpen, produto]);
 
+  useEffect(() => {
+    if (isModalOpen2) {
+      setBody(produto);
+    }
+  }, [isModalOpen2, produto]);
+
   return (
     <>
       <Aside />
@@ -206,39 +218,40 @@ function ListaProdutos() {
                 <th>Quatidade em estoque</th>
                 <th>Status</th>
                 <th>Editar</th>
+                <th>Visualizar</th>
               </thead>
             </table>
-            {requests &&
-              requests.map((client) => (
+            {/* {requests &&
+              requests.map((client) => ( */}
                 <tr className="coluns">
-                  <td className="user-data">{client.id}</td>
-                  <td className="user-data">{client.Produto}</td>
-                  <td className="user-data">{client.valor}</td>
-                  <td className="user-data">{client.quantidade}</td>
-                  <td className="user-data">
-                    <button
-                      type="button"
-                      className={`status ${client.ativo ? 'ativo' : 'inativo'}`}
-                      onClick={() => atualizaAcesso(client.id)}
-                    >
-                      {client.ativo ? 'Ativo' : 'Inativo'}
-                    </button>
+                  <td className="user-data">a</td>
+                  <td className="user-data">a</td>
+                  <td className="user-data">a</td>
+                  <td className="user-data">a</td>
+                  <td className="user-data">b</td>
+                  <td className="user-data"
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}>
+                    <img
+                        src={LogoutIcon}
+                        alt="GeekOpolis Logout Icon"
+                        id="edit"
+                      />
                   </td>
                   <td
-                    className="user-edit"
-                    onClick={() => {
-                      buscaProduto(client.id);
-                      setIsModalOpen(true);
-                    }}
+                  onClick={() => {
+                    setIsModalOpen2(true);
+                  }}
                   >
                     <img
-                      src={LogoutIcon}
+                      src={VizuIcon}
                       alt="GeekOpolis Logout Icon"
                       id="edit"
                     />
                   </td>
                 </tr>
-              ))}
+              {/* ))} */}
           </tbody>
         </div>
       </div>
@@ -286,6 +299,77 @@ function ListaProdutos() {
           >
             <p>Editar</p>
           </button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isModalOpen2}
+        onRequestClose={closeModal2}
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <div className="input-container">
+        <div className="box">
+      <div className="MODAL">
+        <div className="overlap">
+          <img className="pix" alt="Pix" src={Pix} />
+          <p className="text-wrapper">3% OFF à vista no Pix</p>
+          <p className="div">6x de R$ 31,65 sem juros</p>
+          <div className="text-wrapper-2">R$ 120,00</div>
+          <div className="text-wrapper-3">(104 Avaliações)</div>
+          <div className="overlap-group">
+            <img className="img-super-man" alt="Img super man" src="" />
+          </div>
+          <div className="funko-pop-super-man">Funko Pop - Super Man</div>
+          <div className="text-wrapper-4">X</div>
+          <div className="stars">
+            <img className="star" alt="Star" src={avaliacao} />
+          </div>
+          <div className="adicionar-ao">
+            <div className="overlap-2">
+              <div className="rectangle" />
+              <div className="adicionar-ao-2">Adicionar ao Carrinho</div>
+              <img className="carrinho-carrinho" alt="Carrinho carrinho" src={Carrinho} />
+              <div className="rectangle-2" />
+            </div>
+          </div>
+          <div className="overlap-3">
+            <div className="CEP">
+              <div className="rectangle-3" />
+              <div className="group">
+                <div className="overlap-group-3">
+                  <div className="rectangle-4" />
+                  <div className="text-wrapper-5">Calcular</div>
+                </div>
+              </div>
+            </div>
+            <p className="frete-e-prazo-de">
+              <span className="span">
+                Frete e prazo de entrega
+                <br />
+                <br />
+                CEP
+                <br />
+              </span>
+              <span className="span">
+                <br />
+                <br />
+                <br />
+                FRETE GRÁTIS EM TODO BRASIL
+                <br />
+                Acima de R$ 189,90
+              </span>
+            </p><p className="DESCRI-o-DO-PRODUTO">
+            DESCRIÇÃO DO PRODUTO
+            <br />
+            <br />
+            Funko Pop Super Man
+            <br />
+            Acompanha base de acrílico
+          </p>
+          </div>
+          </div>
+          </div>
+          </div>
         </div>
       </Modal>
     </>

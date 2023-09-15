@@ -26,8 +26,8 @@ function ListaProdutos() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [categorias, setCategorias] = useState([]);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState(0);
   const [cargo, setCargo] = useState('');
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(0);
 
   const handleBody = (e) => {
     setBody({ ...body, [e.target.name]: e.target.value });
@@ -135,7 +135,7 @@ function ListaProdutos() {
       })
       .then((data) => {
         setProduto(data);
-        setCategoriaSelecionada(data.categoria);
+        setCategoriaSelecionada(data.categoria.id);
       })
       .catch((error) => {
         console.log(error);
@@ -244,8 +244,6 @@ function ListaProdutos() {
     disabled = false;
   }
 
-  console.log('cargo', cargo);
-
   return (
     <>
       <Aside />
@@ -350,23 +348,30 @@ function ListaProdutos() {
         overlayClassName="modal-overlay"
       >
         <div className="input-container">
-          <p>Nome do Produto</p>
-          <input
-            disabled={disabled}
-            type="text"
-            name="nome"
-            value={body.nome}
-            className="rounded-input"
-            onChange={handleBody}
-          />
+          {cargo === 'ADMIN' && (
+            <>
+            <p>Nome do Produto</p>
+            <input
+              type="text"
+              name="nome"
+              value={body?.nome || ''}
+              className="rounded-input"
+              onChange={handleBody} />
+            </>
+          )}
+        {cargo === 'ESTOQUISTA' && (
+          <p>Nome do Produto: {body?.nome || ''}</p>
+        )}
         </div>
         <div className='input-container'>
+        {cargo === 'ADMIN' && (
+            <>
         <p>Categoria</p>
             <select
               disabled={disabled}
               name="categoria"
               className="rounded-select"
-              value={body.categoria}
+              value={categoriaSelecionada}
               onChange={handleCategoriaChange}
             >
               <option>
@@ -378,6 +383,11 @@ function ListaProdutos() {
                 </option>
               ))}
             </select>
+            </>
+          )}
+           {cargo === 'ESTOQUISTA' && (
+            <p>Categoria: {body?.categoria?.nome}</p>
+          )}
           </div>
           <div className="input-container">
             <p>Avaliação</p>
@@ -387,29 +397,43 @@ function ListaProdutos() {
             count={5}
             size={40}
             disabled={disabled}
-            value={body.avaliacao}
+            value={body?.avaliacao}
             onChange={handleBody}
             color2="#fdd835"
           />
           </div>
           <div className="input-container">
-            <p>Descrição</p>
-            <textarea 
-            disabled={disabled}
-            value={body.descricao} 
-            onChange={handleBody} 
-            />
+          {cargo === 'ADMIN' && (
+            <>
+              <p>Descrição</p>
+              <textarea 
+              disabled={disabled}
+              value={body?.descricao} 
+              onChange={handleBody} 
+              />
+            </>
+          )}
+           {cargo === 'ESTOQUISTA' && (
+            <p>Descrição: {body?.descricao}</p>
+          )}
           </div>
         <div className="input-container">
+        {cargo === 'ADMIN' && (
+            <>
           <p>Valor</p>
           <input
             disabled={disabled}
             type="valor"
             name="preco"
-            value={body.preco}
+            value={body?.preco}
             className="rounded-input"
             onChange={handleBody}
           />
+          </>
+          )}
+           {cargo === 'ESTOQUISTA' && (
+            <p>Valor: {body?.preco}</p>
+          )}
         </div>
         <div className="input-container">
           <p>Quantidade</p>
@@ -417,12 +441,24 @@ function ListaProdutos() {
             type="number"
             id="qtdEstoque"
             name='qtdEstoque'
-            value={body.qtdEstoque}
+            value={body?.qtdEstoque}
             onChange={handleBody}
             className="rounded-input"
           />
         </div>
-        
+        <div className="input-container">
+        {cargo === 'ESTOQUISTA' && (
+          <p>Imagens:</p>
+          )}
+        </div>
+        <img src={body?.imagesPath} alt='teste'/>
+          {/* {body?.imagesPath.map((image) => (
+            <>
+            
+            <h1> AQUI</h1>
+            <img src={image} alt='PIKA'/>
+            </>
+          ))} */}
         <div className="modal-botoes">
           <button
             type="button"

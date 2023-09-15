@@ -2,6 +2,7 @@ package com.senac.geekOpolis.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -31,7 +32,7 @@ public class Categoria {
     @Column
     private String nome;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "categoria")
+    @JsonIgnoreProperties("categoria")
     private List<Produto> produtos;
 }

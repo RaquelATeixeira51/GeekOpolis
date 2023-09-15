@@ -52,7 +52,6 @@ public class Produto {
     @Column
     private List<String> imagesPath;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;

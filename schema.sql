@@ -5,6 +5,6 @@ VALUES ('Endrio', 'ADMIN', '68358788002', true, 'endriojesus76@gmail.com','$2a$1
 INSERT INTO Categoria (nome)
 VALUES ('Acessorios');
 INSERT INTO Categoria (nome)
-VALUES ('Camisetas');
+VALUES ('Roupas');
 INSERT INTO Categoria (nome)
 VALUES ('Canecas');

@@ -734,3 +734,29 @@
   color: #ccc;
   border: 1px solid #ccc;
 }
+
+.status.disabled {
+  cursor: default;
+  background-color: gray;
+}
+
+.status.disabled:hover {
+  cursor: default;
+  background-color: gray;
+  color: gray;
+}
+
+.vizu.disabled {
+  cursor: default !important;
+}
+
+.vizu.disabled:hover {
+  cursor: default !important;
+  height: 30px !important;
+}
+
+.input.container.disabled-stars {
+  pointer-events: none; /* Disable mouse events */
+  opacity: 0.5; /* Make it visually appear disabled */
+  /* You can add other styling as needed */
+}

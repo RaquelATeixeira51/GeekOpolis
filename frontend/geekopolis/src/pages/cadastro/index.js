@@ -63,7 +63,7 @@ function Cadastro() {
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
-          setRedirect('/');
+          setRedirect('/listaUsuarios');
           return response.json();
         }
 
@@ -71,8 +71,8 @@ function Cadastro() {
         return null;
       })
       .catch((error) => {
-        makeToast('error', error.message);
-        setRedirect('/');
+        console.log(error.message);
+        setRedirect('/listaUsuarios');
       });
   };
 

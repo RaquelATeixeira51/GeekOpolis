@@ -4,6 +4,7 @@
 /* eslint-disable react/jsx-curly-brace-presence */
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import './index.css'
 
 function PaginationExample() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -20,13 +21,7 @@ function PaginationExample() {
   const currentPageData = data.slice(offset, offset + itemsPerPage);
 
   return (
-    <div>
-      <h1>Itens na página {currentPage + 1}</h1>
-      <ul>
-        {currentPageData.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+    <div className='page'>
       <ReactPaginate
         previousLabel={'Anterior'}
         nextLabel={'Próximo'}

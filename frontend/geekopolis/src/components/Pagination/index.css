@@ -1,0 +1,6 @@
+.page{
+    display: flex;
+    position: fixed;
+    padding-top: 450px;
+    padding-left: 400px;
+}

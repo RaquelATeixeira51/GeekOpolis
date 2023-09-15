@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+/* eslint-disable arrow-body-style */
 /* eslint-disable no-debugger */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -26,6 +27,7 @@ function ListaProdutos() {
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [categorias, setCategorias] = useState([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(0);
+  const [cargo, setCargo] = useState('');
 
   const handleBody = (e) => {
     setBody({ ...body, [e.target.name]: e.target.value });
@@ -207,7 +209,42 @@ function ListaProdutos() {
       });
   }, []);
 
-  
+  useEffect(() => {
+    fetch(`http://localhost:8080/usuario/informacoes?jwtToken=${localStorage.getItem(
+      'token'
+    )}`,
+    {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    }
+    )
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+
+      makeToast('error', 'Erro ao verificar usuario.');
+      return null;
+    })
+    .then((data) => {
+      setCargo(data.grupo);
+    })
+    .catch((err) => {
+      console.error(err);
+      window.location.href = '/listaUsuarios';
+    });
+
+  }, [])
+
+  let disabled;
+
+  if(cargo === "ESTOQUISTA") {
+    disabled = true;
+  } else {
+    disabled = false;
+  }
+
+  console.log('cargo', cargo);
 
   return (
     <>
@@ -238,7 +275,6 @@ function ListaProdutos() {
               <p>+</p>
             </button>
           </div>
-          <Pagination>
           <tbody className="user-list">
             <table className="request-table">
               <thead className="lista">
@@ -258,9 +294,15 @@ function ListaProdutos() {
                   <td className="user-data">{client.qtdEstoque}</td>
                   <td className="user-data">
                   <button
+                      disabled={disabled}
                       type="button"
-                      className={`status ${client.status ? 'ativo' : 'inativo'}`}
-                      onClick={() => atualizaAcesso(client.id)}
+                      className={`status ${client.status ? 'ativo' : 'inativo'} ${cargo !== 'ESTOQUISTA' ? 'able' : 'disabled'}`}
+                      onClick={() => {
+                        if(cargo !== 'ESTOQUISTA'){
+                          atualizaAcesso(client.id);
+                        }
+                      }
+                    }
                     >
                       {client.status ? 'Ativo' : 'Inativo'}
                     </button>
@@ -279,12 +321,16 @@ function ListaProdutos() {
                       />
                   </td>
                   <td
+                  disabled={disabled}
                   onClick={() => {
-                    buscaProduto(client.id);
-                    setIsModalOpen2(true);
+                    if(cargo !== 'ESTOQUISTA'){
+                      buscaProduto(client.id);
+                      setIsModalOpen2(true);
+                    }
                   }}
                   >
                     <img
+                      className={`vizu ${cargo !== 'ESTOQUISTA' ? 'able' : 'disabled'} `}
                       src={VizuIcon}
                       alt="GeekOpolis Logout Icon"
                       id="edit"
@@ -293,7 +339,7 @@ function ListaProdutos() {
                 </tr>
               ))}
           </tbody>
-          </Pagination>
+          <Pagination />
           
         </div>
       </div>
@@ -306,6 +352,7 @@ function ListaProdutos() {
         <div className="input-container">
           <p>Nome do Produto</p>
           <input
+            disabled={disabled}
             type="text"
             name="nome"
             value={body.nome}
@@ -316,6 +363,7 @@ function ListaProdutos() {
         <div className='input-container'>
         <p>Categoria</p>
             <select
+              disabled={disabled}
               name="categoria"
               className="rounded-select"
               value={body.categoria}
@@ -334,20 +382,28 @@ function ListaProdutos() {
           <div className="input-container">
             <p>Avaliação</p>
           </div>
+          <div style={cargo === 'ESTOQUISTA' ? { pointerEvents: 'none' }: {}}>
           <ReactStars
             count={5}
             size={40}
+            disabled={disabled}
             value={body.avaliacao}
             onChange={handleBody}
             color2="#fdd835"
           />
+          </div>
           <div className="input-container">
             <p>Descrição</p>
-            <textarea value={body.descricao} onChange={handleBody} />
+            <textarea 
+            disabled={disabled}
+            value={body.descricao} 
+            onChange={handleBody} 
+            />
           </div>
         <div className="input-container">
           <p>Valor</p>
           <input
+            disabled={disabled}
             type="valor"
             name="preco"
             value={body.preco}

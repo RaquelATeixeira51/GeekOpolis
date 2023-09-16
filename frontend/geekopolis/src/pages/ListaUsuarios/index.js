@@ -40,7 +40,7 @@ export default function ListaUsuarios() {
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao carregar, tente novamente');
+        makeToast('error', 'Erro ao carregar usuarios, tente novamente');
         return null;
       })
       .then((data) => {
@@ -66,7 +66,7 @@ export default function ListaUsuarios() {
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao carregar, tente novamente');
+        makeToast('error', 'Erro ao filtrar usuarios, tente novamente');
         return null;
       })
       .then((data) => {
@@ -117,7 +117,7 @@ export default function ListaUsuarios() {
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao carregar, tente novamente');
+        makeToast('error', 'Erro ao carregar usuario, tente novamente');
         return null;
       })
       .then((data) => {

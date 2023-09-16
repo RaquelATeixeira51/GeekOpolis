@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable import/extensions */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-debugger */
@@ -55,7 +56,7 @@ function ListaProdutos() {
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao carregar, tente novamente');
+        makeToast('error', 'Erro ao carregar produtos, tente novamente');
         return null;
       })
       .then((data) => {
@@ -81,7 +82,7 @@ function ListaProdutos() {
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao carregar, tente novamente');
+        makeToast('error', 'Erro ao carregar produtos, tente novamente');
         return null;
       })
       .then((data) => {
@@ -130,7 +131,7 @@ function ListaProdutos() {
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao carregar, tente novamente');
+        makeToast('error', 'Erro ao carregar produto, tente novamente');
         return null;
       })
       .then((data) => {
@@ -163,12 +164,12 @@ function ListaProdutos() {
       })
       .then(() => {
         setTimeout(() => {
-          window.location.href = '/listaUsuarios';
+          window.location.href = '/listaProdutos';
         }, 2000);
       })
       .catch((err) => {
         console.error(err);
-        window.location.href = '/listaUsuarios';
+        window.location.href = '/listaProdutos';
       });
   };
 
@@ -194,11 +195,12 @@ function ListaProdutos() {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((response) => {
+        .then((response) => {
+          debugger;
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao carregar, tente novamente');
+        makeToast('error', 'Erro ao carregar caegorias, tente novamente');
         return null;
       })
       .then((data) => {
@@ -265,8 +267,11 @@ function ListaProdutos() {
             <button
               type="button"
               className="botao-adicionar"
+              disabled={cargo === "ESTOQUISTA"}
               onClick={() => {
-                window.location.href = '/cadastroProduto';
+                if (cargo !== "ESTOQUISTA") {
+                  window.location.href = '/cadastroProduto';
+                }
               }}
             >
               <h2>Adicionar produto</h2>
@@ -446,19 +451,21 @@ function ListaProdutos() {
             className="rounded-input"
           />
         </div>
-        <div className="input-container">
         {cargo === 'ESTOQUISTA' && (
-          <p>Imagens:</p>
-          )}
-        </div>
-        <img src={body?.imagesPath} alt='teste'/>
-          {/* {body?.imagesPath.map((image) => (
-            <>
-            
-            <h1> AQUI</h1>
-            <img src={image} alt='PIKA'/>
-            </>
-          ))} */}
+          <div className="input-container">
+            <p>Imagens:</p>
+            <div className="mini-imagens-container">
+              {Array.isArray(body.imagesPath) && body.imagesPath.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Imagem ${index}`}
+                  className="mini-imagem"
+                />
+              ))}
+            </div>
+          </div>
+        )}
         <div className="modal-botoes">
           <button
             type="button"

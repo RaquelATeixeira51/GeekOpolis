@@ -756,7 +756,24 @@
 }
 
 .input.container.disabled-stars {
-  pointer-events: none; /* Disable mouse events */
-  opacity: 0.5; /* Make it visually appear disabled */
-  /* You can add other styling as needed */
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.mini-imagens-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 430px;
+}
+
+.mini-imagem {
+  max-width: 100px;
+  height: auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.botao-adicionar[disabled] {
+  cursor: default;
+  opacity: 0.5; 
 }

@@ -45,7 +45,7 @@ export default function CadastroProduto() {
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao carregar, tente novamente');
+        makeToast('error', 'Erro ao carregar categorias, tente novamente');
         return null;
       })
       .then((data) => {

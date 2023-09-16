@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable import/extensions */
 /* eslint-disable arrow-body-style */
@@ -10,6 +11,7 @@ import Carrinho from '../../assets/img/produtos/carrinho.png';
 import avaliacao from '../../assets/img/produtos/avaliacao.png'
 import Pix from '../../assets/img/produtos/pix.svg'
 import * as React from 'react';
+import { MdCloudUpload, MdDelete} from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Aside from '../../components/aside';
@@ -23,7 +25,16 @@ function ListaProdutos() {
   const nameRef = React.createRef();
   const [requests, setRequests] = useState([]);
   const [produto, setProduto] = useState({});
-  const [body, setBody] = React.useState({});
+  const [body, setBody] = React.useState({
+    nome: '',
+    avaliacao: 0,
+    descricao: '',
+    preco: 0, 
+    qtdEstoque: 0, 
+    imagesPath: 0,
+    categoriaId: 0,
+    status: false,
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [categorias, setCategorias] = useState([]);
@@ -31,7 +42,11 @@ function ListaProdutos() {
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(0);
 
   const handleBody = (e) => {
-    setBody({ ...body, [e.target.name]: e.target.value });
+    const newBody = { ...body, [e.target.name]: e.target.value };
+    if (e.target.name === 'categoriaId') {
+      newBody.categoriaId = parseInt(e.target.value, 10);
+    }
+    setBody(newBody);
   };
 
   const closeModal = () => {
@@ -107,7 +122,7 @@ function ListaProdutos() {
         if (response.ok) {
           return response.text();
         }
-        makeToast('error', 'Erro na atualização de acesso do usuário.');
+        makeToast('error', 'Erro na atualização de status do produto.');
         return null;
       })
       .then(() => {
@@ -144,6 +159,8 @@ function ListaProdutos() {
   };
 
   const atualizaProduto = (id) => {
+    body.preco = parseFloat(body.preco);
+    body.categoriaId = categoriaSelecionada;
     fetch(
       `http://localhost:8080/produto/atualizaProduto/${id}?token=${localStorage.getItem(
         'token'
@@ -156,10 +173,11 @@ function ListaProdutos() {
     )
       .then((response) => {
         if (response.ok) {
+          makeToast('success', 'Produto atualizado');
           return response.text();
         }
 
-        makeToast('error', 'Erro na atualização do usuário.');
+        makeToast('error', 'Erro na atualização de produto');
         return null;
       })
       .then(() => {
@@ -188,6 +206,10 @@ function ListaProdutos() {
   const handleCategoriaChange = (event) => {
     const novaCategoriaId = parseInt(event.target.value, 10);
     setCategoriaSelecionada(novaCategoriaId);
+    setBody((prevBody) => ({
+      ...prevBody,
+      categoriaId: novaCategoriaId,
+    }));
   };
 
   useEffect(() => {
@@ -196,7 +218,6 @@ function ListaProdutos() {
       headers: { 'Content-Type': 'application/json' },
     })
         .then((response) => {
-          debugger;
         if (response.ok) {
           return response.json();
         }
@@ -245,6 +266,52 @@ function ListaProdutos() {
   } else {
     disabled = false;
   }
+
+  const handleUpload = async (image) => {
+    if (image) {
+      const formData = new FormData();
+      formData.append('key', '5d7b99eb4e0e934e0de6dbfce6cd0859');
+      formData.append('image', image);
+  
+      try {
+        const response = await fetch('https://api.imgbb.com/1/upload', {
+          method: 'POST',
+          body: formData,
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          const imageUrl = data.data.url;
+          setBody((prevBody) => ({
+            ...prevBody,
+            imagesPath: [...prevBody.imagesPath, imageUrl],
+          }));
+        } else {
+          console.error('Erro ao fazer upload da imagem');
+        }
+      } catch (error) {
+        console.error('Erro ao fazer upload da imagem:', error);
+      }
+    }
+  };
+  const removeImage = (index) => {
+    setBody((prevBody) => ({
+      ...prevBody,
+      imagesPath: prevBody.imagesPath.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleImageClick = () => {
+    const inputElement = document.getElementById('image-upload');
+    inputElement.click();
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      handleUpload(file);
+    }
+  };
 
   return (
     <>
@@ -372,16 +439,13 @@ function ListaProdutos() {
         {cargo === 'ADMIN' && (
             <>
         <p>Categoria</p>
-            <select
-              disabled={disabled}
-              name="categoria"
+        <select
+              name="categoriaId"
               className="rounded-select"
               value={categoriaSelecionada}
               onChange={handleCategoriaChange}
             >
-              <option>
-                ---
-              </option>
+              <option>---</option>
               {categorias.map((categoria) => (
                 <option key={categoria.id} value={categoria.id}>
                   {categoria.nome}
@@ -411,7 +475,8 @@ function ListaProdutos() {
           {cargo === 'ADMIN' && (
             <>
               <p>Descrição</p>
-              <textarea 
+              <textarea
+              name="descricao" 
               disabled={disabled}
               value={body?.descricao} 
               onChange={handleBody} 
@@ -465,6 +530,42 @@ function ListaProdutos() {
               ))}
             </div>
           </div>
+        )}
+
+        {cargo === 'ADMIN' && (
+          <>
+            {body && body.imagesPath && (
+              <>
+                <div className="images">
+                  <ul>
+                    {body.imagesPath.map((url, index) => (
+                      <li key={index}>
+                        <div>
+                          <img src={url} alt="img" />
+                        </div>
+                        <div>
+                          <button type="submit" onClick={() => removeImage(index)}>
+                            <MdDelete size={25} />
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="upload" onClick={handleImageClick}>
+                  <MdCloudUpload size={48} />
+                  <span>Adicionar Imagem</span>
+                  <input
+                    type="file"
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    style={{ display: 'none' }}
+                  />
+                </div>
+              </>
+            )}
+          </>
         )}
         <div className="modal-botoes">
           <button

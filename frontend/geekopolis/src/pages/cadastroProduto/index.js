@@ -6,7 +6,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import ReactStars from 'react-stars';
-import { MdCloudUpload, MdDelete, MdImage } from 'react-icons/md';
+import { MdCloudUpload, MdDelete} from 'react-icons/md';
 import { Navigate } from 'react-router-dom';
 import Aside from '../../components/aside';
 import Logo from '../../assets/img/logo/GeekOpolisLogo.png';

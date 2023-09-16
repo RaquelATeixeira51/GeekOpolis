@@ -777,3 +777,8 @@
   cursor: default;
   opacity: 0.5; 
 }
+
+span {
+  color: white;
+  margin-bottom: 5px;
+}

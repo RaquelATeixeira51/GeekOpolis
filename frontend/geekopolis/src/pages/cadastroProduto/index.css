@@ -8,20 +8,17 @@ textarea {
   outline: none;
 }
 
-/* Adicione estilos para os grupos de entrada */
 .input-group {
   margin-top: 15px;
   display: flex;
   flex-direction: column;
 }
 
-/* Estilos para o grupo "Preço" e "Quantidade em estoque" */
 .double-input {
   display: flex;
   justify-content: space-between;
 }
 
-/* Estilos para as labels */
 .input-group p {
   font-weight: bold;
   margin-bottom: 5px;
@@ -134,4 +131,9 @@ transition: .3s !important;
 .cadastrar-button button:hover {
 text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
 transition: .2s;
+}
+
+.images img {
+  max-width: 100px; 
+  height: auto;
 }

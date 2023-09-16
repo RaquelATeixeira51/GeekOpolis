@@ -210,7 +210,7 @@ export default function CadastroProduto() {
               {imageUrls.map((url, index) => (
                 <li key={index}>
                   <div>
-                    <MdImage style={{ fill: 'white' }} size={40} />
+                   <img src={url} alt="img"/>
                   </div>
                   <div>
                     <button type="submit" onClick={() => removeImage(index)}>

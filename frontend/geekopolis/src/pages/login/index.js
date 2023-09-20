@@ -74,21 +74,6 @@ export default function Login() {
             <p>Entrar</p>
           </button>
         </div>
-        <div className="divider">
-          <hr className="divider-line" />
-          <span>ou</span>
-          <hr className="divider-line" />
-        </div>
-        <div className="cadastrar-button">
-          <button
-            type="button"
-            onClick={() => {
-              window.location.href = '/cadastro';
-            }}
-          >
-            <p>Cadastrar</p>
-          </button>
-        </div>
       </div>
     </>
   );

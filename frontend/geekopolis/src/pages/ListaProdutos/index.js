@@ -1,3 +1,7 @@
+/* eslint-disable react/jsx-boolean-value */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable import/extensions */
@@ -20,6 +24,9 @@ import makeToast from '../../shared/toaster';
 import Pagination from '../../components/Pagination';
 import VizuIcon from '../../assets/img/icons/Visualizar.png';
 import ReactStars from 'react-stars';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function ListaProdutos() {
   const nameRef = React.createRef();
@@ -607,68 +614,49 @@ function ListaProdutos() {
         className="modal-content"
         overlayClassName="modal-overlay"
       >
-        <div className="input-container">
-        <div className="box">
-      <div className="MODAL">
-        <div className="overlap">
-          <img className="pix" alt="Pix" src={Pix} />
-          <p className="text-wrapper">3% OFF à vista no Pix</p>
-          <p className="div">6x de R$ 31,65 sem juros</p>
-          <div className="text-wrapper-2">R$ 120,00</div>
-          <div className="text-wrapper-3">(104 Avaliações)</div>
-          <div className="overlap-group">
-            <img className="img-super-man" alt="Img super man" src="" />
+        <div className="modal-content-container">
+          <div className="carousel-container">
+            <Slider infinite={true} speed='500' slidesToShow={1} slidesToScroll={1} dots={true} arrows={false}>
+              {Array.isArray(body.imagesPath) ? (
+                body.imagesPath.map((image, index) => (
+                  <div key={index} className="carousel-slide">
+                    <img src={image} alt={`Image ${index}`} className="carousel-image" />
+                  </div>
+                ))
+              ) : (
+                <div>Nenhuma imagem disponível</div>
+              )}
+            </Slider>
           </div>
-          <div className="funko-pop-super-man">Funko Pop - Super Man</div>
-          <div className="text-wrapper-4">X</div>
-          <div className="stars">
-            <img className="star" alt="Star" src={avaliacao} />
-          </div>
-          <div className="adicionar-ao">
-            <div className="overlap-2">
-              <div className="rectangle" />
-              <div className="adicionar-ao-2">Adicionar ao Carrinho</div>
-              <img className="carrinho-carrinho" alt="Carrinho carrinho" src={Carrinho} />
-              <div className="rectangle-2" />
+          <div className="text-container">
+            <div className="categoria-nome">{body.categoria?.nome}</div>
+            <div className="produto-nome">{body.nome}</div>
+            <div style={{ pointerEvents: 'none' }}>
+              <ReactStars
+                count={5}
+                size={40}
+                disabled={disabled}
+                value={body?.avaliacao}
+                onChange={handleBody}
+                color2="#fdd835"
+              />
             </div>
-          </div>
-          <div className="overlap-3">
-            <div className="CEP">
-              <div className="rectangle-3" />
-              <div className="group">
-                <div className="overlap-group-3">
-                  <div className="rectangle-4" />
-                  <div className="text-wrapper-5">Calcular</div>
+            <div className='preco-produto'>R$: {body.preco}</div>
+            <div className="adicionar-ao">
+              <div className="box">
+                <div className="overlap-2">
+                  <div className="rectangle" />
+                  <div className="adicionar-ao-2">Adicionar ao Carrinho</div>
+                  <img className="carrinho-carrinho" alt="Carrinho carrinho" src={Carrinho} />
+                  <div className="rectangle-2" />
                 </div>
               </div>
             </div>
-            <p className="frete-e-prazo-de">
-              <span className="span">
-                Frete e prazo de entrega
-                <br />
-                <br />
-                CEP
-                <br />
-              </span>
-              <span className="span">
-                <br />
-                <br />
-                <br />
-                FRETE GRÁTIS EM TODO BRASIL
-                <br />
-                Acima de R$ 189,90
-              </span>
-            </p><p className="DESCRI-o-DO-PRODUTO">
-            DESCRIÇÃO DO PRODUTO
-            <br />
-            <br />
-            Funko Pop Super Man
-            <br />
-            Acompanha base de acrílico
-          </p>
-          </div>
-          </div>
-          </div>
+            <div className="descricao-produto">
+              <p>Descrição do produto:</p>
+              <br/>
+              {body.descricao}
+            </div>
           </div>
         </div>
       </Modal>

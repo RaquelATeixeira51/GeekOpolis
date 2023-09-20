@@ -40,6 +40,9 @@ function ListaProdutos() {
   const [categorias, setCategorias] = useState([]);
   const [cargo, setCargo] = useState('');
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const productsPerPage = 10;
 
   const handleBody = (e) => {
     const newBody = { ...body, [e.target.name]: e.target.value };
@@ -57,7 +60,10 @@ function ListaProdutos() {
     setIsModalOpen2(false);
   };
 
-  useEffect(() => {
+  const buscaProdutos = (page) => {
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+
     fetch(
       `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
         nameRef.current.value
@@ -75,14 +81,21 @@ function ListaProdutos() {
         return null;
       })
       .then((data) => {
-        setRequests(data.produtos);
+        const productsOnPage = data.produtos.slice(startIndex, endIndex);
+        setRequests(productsOnPage);
+        const totalPage = Math.ceil(data.qtdTotal / productsPerPage);
+        setTotalPages(totalPage);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  };
 
-  const filtrar = () => {
+  const filtrar = (page) => {
+    debugger;
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+
     setRequests([]);
     fetch(
       `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
@@ -101,12 +114,19 @@ function ListaProdutos() {
         return null;
       })
       .then((data) => {
-        setRequests(data.produtos);
+        const productsOnPage = data.produtos.slice(startIndex, endIndex);
+        setRequests(productsOnPage);
+        const totalPage = Math.ceil(data.qtdTotal / productsPerPage);
+        setTotalPages(totalPage);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    buscaProdutos(currentPage);
+  }, [currentPage]);
 
   const atualizaAcesso = (id) => {
     fetch(
@@ -327,7 +347,7 @@ function ListaProdutos() {
               placeholder="Pesquisar produto"
               className="inserir"
             />
-            <button type="button" className="botao-Filtro" onClick={filtrar}>
+            <button type="button" className="botao-Filtro" onClick={() => filtrar(currentPage)}>
               <p>Filtrar</p>
             </button>
             <div className="adicionar-Produto" />
@@ -409,8 +429,12 @@ function ListaProdutos() {
                 </tr>
               ))}
           </tbody>
-          <Pagination />
           
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={(newPage) => setCurrentPage(newPage)}
+          />
         </div>
       </div>
       <Modal

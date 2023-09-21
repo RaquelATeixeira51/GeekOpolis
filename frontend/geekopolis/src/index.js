@@ -16,7 +16,8 @@ import ListaUsuarios from './pages/ListaUsuarios';
 import CadastroProduto from './pages/cadastroProduto';
 import Cadastro from './pages/cadastro';
 import ListaProdutos from './pages/ListaProdutos';
-import Inicio from './pages/inicio';
+import Inicio from './pages/Inicio';
+import Produto from './pages/produto';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login/>} />
+        <Route path="/produto/:id" element={<Produto/>} />
         <Route
           path="/inicio"
           element={<ProtectedRoute element={<Inicio />} />}

@@ -48,7 +48,7 @@ public class ProdutoCategoriaController {
 
     @GetMapping("categoria/listaCategorias")
     public List<Categoria> listaCategorias() {
-       return categoriaRepository.findAll();
+       return categoriaRepository.findAllCategoriasWithFilteredProducts();
     }
 
     @GetMapping("categoria/listaCategoria/{idCategoria}")

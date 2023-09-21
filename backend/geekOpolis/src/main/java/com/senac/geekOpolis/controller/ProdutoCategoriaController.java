@@ -51,6 +51,11 @@ public class ProdutoCategoriaController {
        return categoriaRepository.findAll();
     }
 
+    @GetMapping("categoria/listaCategoriasComProdutosRecentes")
+    public List<Categoria> listaCategoriasComProdutosRecentes() {
+        return categoriaRepository.findCategoriasComProdutosRecentes();
+    }
+
     @GetMapping("categoria/listaCategoria/{idCategoria}")
     public Optional<Categoria> listaCategoria(@PathVariable Long idCategoria) {
         Optional<Categoria> categoria = categoriaRepository.findById(idCategoria);

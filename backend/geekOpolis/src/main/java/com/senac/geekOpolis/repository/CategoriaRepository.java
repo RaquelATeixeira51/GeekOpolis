@@ -9,9 +9,4 @@ import com.senac.geekOpolis.models.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
     Categoria findById(long id);
-
-    @Query("SELECT c FROM Categoria c JOIN FETCH c.produtos p " +
-           "WHERE p.createdDate = (SELECT MAX(p2.createdDate) FROM Produto p2 WHERE p2.categoria = c AND p2.status = true) " +
-           "AND p.status = true")
-    List<Categoria> findCategoriasComProdutosRecentes();
 }

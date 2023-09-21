@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.senac.geekOpolis.models.Produto;
-import com.senac.geekOpolis.models.ProdutoDto;
 
 // classe de repositório que extende a do JPA
 @Repository

@@ -1,6 +1,5 @@
 package com.senac.geekOpolis.models;
 
-import java.util.Collections;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

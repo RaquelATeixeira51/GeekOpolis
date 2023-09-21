@@ -16,7 +16,7 @@ import ListaUsuarios from './pages/ListaUsuarios';
 import CadastroProduto from './pages/cadastroProduto';
 import Cadastro from './pages/cadastro';
 import ListaProdutos from './pages/ListaProdutos';
-import Inicio from './pages/Inicio';
+import Inicio from './pages/inicio';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();

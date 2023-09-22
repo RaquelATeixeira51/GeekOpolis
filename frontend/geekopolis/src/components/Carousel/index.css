@@ -1,0 +1,46 @@
+
+.carousel-container{
+    width: 80%;
+    padding-bottom: 250px;
+}
+
+.carousel-slide{
+    margin-left: 40px
+}
+
+.inside{
+    background-color: white;
+    width: 80%;
+    border-radius: 10px;
+    height: 37vh;
+    box-shadow: 0px 4px 4px 2px #00000040;
+}
+
+/* .inside:hover{
+    width: 61%;
+    height: 30.1vh;
+    cursor: pointer;
+    transition: 130ms;
+} */
+
+.carousel-image{
+    width: 170px;
+    height: 200px;
+}
+
+.descricao{
+    text-align: center;
+    padding-top: 30px;
+    align-items: center;
+    justify-content: center;
+}
+.nome{
+    font-size: 25px;
+}
+
+#preco{
+    padding-top: 30px;
+    font-size: 20px;
+    font-weight: 300;
+    color: green;
+}

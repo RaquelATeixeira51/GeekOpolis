@@ -77,7 +77,6 @@ root.render(
       <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/principal" element={<LadingPage/>} />
-        
         <Route path="/produto/:id" element={<Produto/>} />
         <Route
           path="/inicio"

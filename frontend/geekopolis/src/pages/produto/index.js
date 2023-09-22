@@ -9,7 +9,6 @@ export default function Produto() {
   const [redirect, setRedirect] = React.useState('');
   const [product, setProduct] = React.useState({});
 
-  
   React.useEffect(() => {
     fetch(`http://localhost:8080/produto/listaProduto/${id}`, {
       method: 'GET',
@@ -41,7 +40,19 @@ export default function Produto() {
 
   return (
     <>
-      {product.nome}
+      <div className='product-col'>
+        <div className='product-col-01'>
+          <div className='product-col-01-image'>pp</div>
+          <div className='product-col-01-desc'>
+            <h2>DESCRIÇÃO DO PRODUTO</h2>
+            <p>{product.descricao}</p>
+          </div>
+        </div>
+        <div className='product-col-02'>
+          asdad
+        </div>
+      </div>
     </>
   );
 }
+

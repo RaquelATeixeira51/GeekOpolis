@@ -1,7 +1,9 @@
 /* eslint-disable no-debugger */
+/* eslint-disable react/jsx-boolean-value */
 import * as React from 'react';
 import './index.css';
 import { Navigate, useParams } from 'react-router-dom';
+import ReactStars from 'react-stars';
 import makeToast from '../../shared/toaster';
 
 export default function Produto() {
@@ -42,14 +44,29 @@ export default function Produto() {
     <>
       <div className='product-col'>
         <div className='product-col-01'>
-          <div className='product-col-01-image'>pp</div>
+          <div className='product-col-01-image'>
+            {product.imagesPath.map((image) => (
+              <>
+                <img src={image} alt={product.nome} />
+              </>
+            ))}
+          </div>
           <div className='product-col-01-desc'>
             <h2>DESCRIÇÃO DO PRODUTO</h2>
             <p>{product.descricao}</p>
           </div>
         </div>
         <div className='product-col-02'>
-          asdad
+          <h2>{product.nome}</h2>
+          <ReactStars
+            count={5}
+            size={40}
+            half={true}
+            edit={false}
+            value={product.avaliacao}
+            color2="#fdd835"
+          />
+          <p>R$ {Number(product.preco).toFixed(2)}</p>
         </div>
       </div>
     </>

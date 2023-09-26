@@ -9,11 +9,11 @@
 }
 
 .inside{
-    background-color: white;
-    width: 80%;
+    background-color: var(--white-color);
+    width: 250px;
     border-radius: 10px;
-    height: 37vh;
-    box-shadow: 0px 4px 4px 2px #00000040;
+    height: 400px;
+    box-shadow: var(--black-box-shadow);
 }
 
 /* .inside:hover{
@@ -42,5 +42,5 @@
     padding-top: 30px;
     font-size: 20px;
     font-weight: 300;
-    color: green;
+    color: var(--green-90-color);
 }

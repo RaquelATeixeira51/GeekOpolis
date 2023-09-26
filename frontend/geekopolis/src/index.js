@@ -18,7 +18,7 @@ import Cadastro from './pages/cadastro';
 import ListaProdutos from './pages/ListaProdutos';
 import Inicio from './pages/Inicio';
 import Produto from './pages/produto';
-import LadingPage from './pages/ladingPage';
+import LandingPage from './pages/landingPage';
 import Header from './components/Header';
 
 function ProtectedRoute({ element }) {
@@ -76,20 +76,11 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login/>} />
-        <Route path="/principal" element={<LadingPage/>} />
+        <Route path="/principal" element={<LandingPage/>} />
         <Route path="/produto/:id" element={<Produto/>} />
-        <Route
-          path="/inicio"
-          element={<ProtectedRoute element={<Inicio />} />}
-        />
-        <Route
-          path="/listaUsuarios"
-          element={<ProtectedRoute element={<ListaUsuarios />} />}
-        />
-        <Route
-          path="/cadastroProduto"
-          element={<ProtectedRoute element={<CadastroProduto />} />}
-        />
+        <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
+        <Route path="/listaUsuarios" element={<ProtectedRoute element={<ListaUsuarios />} />} />
+        <Route path="/cadastroProduto" element={<ProtectedRoute element={<CadastroProduto />} />} />
         <Route path="/cadastro" element={<ProtectedRoute element={<Cadastro/>} />} />
         <Route path="/ListaProdutos" element={<ProtectedRoute element={<ListaProdutos/>} />} />
       </Routes>

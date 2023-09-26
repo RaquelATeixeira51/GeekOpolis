@@ -1,0 +1,13 @@
+.fundo{
+    background-color: #004166;
+    width: 100%;
+    height: 150px;
+}
+
+.geekopolis-aside-logo{
+    margin-left: 10%;
+    width: 10%;
+    display: flex;
+    margin: 30px auto;
+
+}

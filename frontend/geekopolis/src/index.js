@@ -19,7 +19,7 @@ import ListaProdutos from './pages/ListaProdutos';
 import Inicio from './pages/Inicio';
 import Produto from './pages/produto';
 import LadingPage from './pages/ladingPage';
-
+import Header from './components/Header';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();

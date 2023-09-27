@@ -37,7 +37,7 @@ export default function CadastroProduto() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8080/categoria/listaCategorias`, {
+    fetch(`http://localhost:8080/categoria/buscaCategoriasSemProduto`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })

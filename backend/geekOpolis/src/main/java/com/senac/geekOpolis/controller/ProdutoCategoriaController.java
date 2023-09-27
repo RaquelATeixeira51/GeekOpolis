@@ -1,7 +1,7 @@
 package com.senac.geekOpolis.controller;
 import java.util.List;
 import java.util.Optional;
- 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Categoria;
+import com.senac.geekOpolis.models.CategoriaDto;
 import com.senac.geekOpolis.models.Produto;
 import com.senac.geekOpolis.models.ProdutoDto;
 import com.senac.geekOpolis.models.ProdutoPayloadDto;
@@ -119,5 +120,10 @@ public class ProdutoCategoriaController {
         }else{
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Problema ao listar produtos");
         }
+    }
+
+    @GetMapping("categoria/buscaCategoriasSemProduto")
+    public List<CategoriaDto> listaCategoriasSemProdutos() {
+        return categoriaRepository.findAllCategoriesWithoutProducts();
     }
 }

@@ -1,7 +1,7 @@
 .fundo{
     background-color: #004166;
     width: 112%;
-    height: 20%;
+    height: 8%;
     color: white;
     display: flex;
     justify-content:center;
@@ -18,10 +18,9 @@
     display: flex;
     justify-content: flex-start
 }
-h2{
+h3{
     display: flex;
     vertical-align: middle;
-    font-size: 12;
     font-style:inherit;
 }
 

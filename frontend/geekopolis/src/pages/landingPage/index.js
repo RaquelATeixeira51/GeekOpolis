@@ -15,6 +15,7 @@ import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import CategoryImages from '../../components/categories';
 
+
 function LandingPage() {
   const [categories, setCategories] = React.useState([]);
   // http://localhost:8080/categoria/listaCategoria/1

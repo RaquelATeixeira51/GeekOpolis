@@ -13,6 +13,7 @@ import imag4 from '../../assets/img/produtos/funko3.jfif';
 import Carousel from '../../components/Carousel';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
+import CategoryImages from '../../components/categories';
 
 function LandingPage() {
   const [categories, setCategories] = React.useState([]);
@@ -41,13 +42,14 @@ function LandingPage() {
       <div className="tudo">
         <Header />
         {categories &&
-          categories.map((category) => (
-            <>
+          categories.map((category, index) => (
+            <div key={category.id}>
               <h3 className="categoria">{category.nome}</h3>
               <div className="carousel">
                 <Carousel products={category.produtos} />
               </div>
-            </>
+              {index === 0 && <CategoryImages />} {/* Renderize CategoryImages apenas abaixo da primeira categoria */}
+            </div>
           ))}
         {/* <h3 className="categoria">Categoria</h3>
         <div className="carousel">

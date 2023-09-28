@@ -14,7 +14,6 @@ import Carousel from '../../components/Carousel';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import CategoryImages from '../../components/categories';
-import Footer from '../../components/Footer';
 
 
 function LandingPage() {
@@ -50,21 +49,9 @@ function LandingPage() {
               <div className="carousel">
                 <Carousel products={category.produtos} />
               </div>
-              {index === 0 && <CategoryImages />} {/* Renderize CategoryImages apenas abaixo da primeira categoria */}
+              {index === 0 && <CategoryImages />}
             </div>
           ))}
-        {/* <h3 className="categoria">Categoria</h3>
-        <div className="carousel">
-          <Carousel />
-        </div>
-        <h3 className="categoria">Categoria</h3>
-        <div className="carousel">
-          <Carousel />
-        </div>
-        <h3 className="categoria">Categoria</h3>
-        <div className="carousel">
-          <Carousel />
-        </div> */}
       </div>
     </>
   );

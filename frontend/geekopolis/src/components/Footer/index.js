@@ -19,13 +19,15 @@ export default function Footer() {
                 src={Logo}
                 alt="GeekOpolis Logo"
             />
-
-            <h2>
-                HOMOSAPIENS SA - CNPJ 25.561.105/0001-40
-            </h2>
-            <h3>
-                Av. Eng. Eusébio Stevaux, 823 - Santo Amaro, São Paulo - SP, 04696-000
-            </h3>
+            <div className='Mia'>
+                <h2>
+                    HOMOSAPIENS SA - CNPJ 25.561.105/0001-40
+                </h2>
+                <h3>
+                    Av. Eng. Eusébio Stevaux, 823 - Santo Amaro, São Paulo - SP, 04696-000
+                </h3>
+            </div>
+            
 
             
 

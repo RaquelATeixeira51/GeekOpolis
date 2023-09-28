@@ -13,6 +13,8 @@ import imag4 from '../../assets/img/produtos/funko3.jfif';
 import Carousel from '../../components/Carousel';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+
 
 function LandingPage() {
   const [categories, setCategories] = React.useState([]);
@@ -61,6 +63,7 @@ function LandingPage() {
         <div className="carousel">
           <Carousel />
         </div> */}
+        <Footer/>
       </div>
     </>
   );

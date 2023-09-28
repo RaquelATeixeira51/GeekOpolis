@@ -38,6 +38,7 @@ function LandingPage() {
   return (
     <>
       <div className="tudo">
+        <Header />
         {categories &&
           categories.map((category) => (
             <>

@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/jsx-boolean-value */
 import './index.css';
 import * as React from 'react';

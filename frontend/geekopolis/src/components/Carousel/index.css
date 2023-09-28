@@ -43,3 +43,8 @@
     font-weight: 300;
     color: var(--green-90-color);
 }
+
+a {
+    color: inherit; /* Use a cor padrão do texto */
+    text-decoration: none; /* Remova sublinhado padrão de links */
+  }

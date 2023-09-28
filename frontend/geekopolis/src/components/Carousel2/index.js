@@ -22,7 +22,7 @@ function Carousel2(props) {
           >
             {products.map((product) => (
               <div className="carousel-slide">
-                <div className="inside">
+                <div className="inside2">
                   <img
                     src={product.imagesPath[0]}
                     className="image-product"

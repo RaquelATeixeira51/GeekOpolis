@@ -41,27 +41,6 @@ export default function Produto() {
 
   if (redirect !== '') return <Navigate to={redirect} />;
 
-  const [categories, setCategories] = React.useState([]);
-  React.useEffect(() => {
-    fetch(`http://localhost:8080/categoria/listaCategorias`, {
-      method: 'GET',
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return null;
-      })
-      .then((data) => {
-        if (data) {
-          setCategories(data);
-        }
-      })
-      .catch((err) => {
-        makeToast('error', err);
-      });
-  }, []);
-
   return (
     <>
       <Header />

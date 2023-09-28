@@ -1,6 +1,6 @@
 
 .carousel-container{
-    width: 80%;
+    width: 90%;
     padding-bottom: 250px;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .inside{
-    background-color: var(--white-color);
+    background-color: #44B0C1;
     width: 250px;
     border-radius: 10px;
     height: 350px;
@@ -23,6 +23,7 @@
 }
 
 .carousel-image{
+    padding-top: 10px;
     width: 170px;
     height: 200px;
 }
@@ -34,14 +35,16 @@
     justify-content: center;
 }
 .nome{
-    font-size: 25px;
+    font-size: 27px;
+    color: white;
+    font-weight: bold;
 }
 
 #preco{
     padding-top: 30px;
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--green-90-color);
+    font-size: 17px;
+    color: #163741;
+    font-weight: bold;
 }
 
 a {

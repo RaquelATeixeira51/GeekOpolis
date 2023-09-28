@@ -76,7 +76,7 @@ export default function Produto() {
               categories.map((category) => (
                 <>
                   <div className="carousel">
-                    <Carousel2 products={category.produtos}/>
+                    <Carousel2 products={product.imagesPath}/>
                   </div>
                 </>
               ))}

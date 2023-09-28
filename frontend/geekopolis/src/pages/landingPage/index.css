@@ -1,7 +1,7 @@
 .tudo{
     padding-left: 10%;
     padding-top: 5%;
-    background-color: #D6D6D6;
+    background-color: #244F6B;
     width: 90%;
     padding-top: 10%;
 }
@@ -9,7 +9,7 @@
 .categoria{
     font-size: 30px;
     font-weight: bold;
-    
+    color: white;
 }
 
 .carousel{

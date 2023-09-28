@@ -11,6 +11,7 @@ import imag3 from '../../assets/img/produtos/funko2.jfif';
 import imag4 from '../../assets/img/produtos/funko3.jfif';
 import Carousel from '../../components/Carousel';
 import makeToast from '../../shared/toaster';
+import Header from '../../components/Header';
 
 function LandingPage() {
   const [categories, setCategories] = React.useState([]);
@@ -48,6 +49,7 @@ function LandingPage() {
   return (
     <>
       <div className="tudo">
+        <Header />
         {categories &&
           categories.map((category) => (
             <>

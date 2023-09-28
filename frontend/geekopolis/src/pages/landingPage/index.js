@@ -14,6 +14,7 @@ import Carousel from '../../components/Carousel';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import CategoryImages from '../../components/categories';
+import Footer from '../../components/Footer';
 
 
 function LandingPage() {

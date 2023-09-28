@@ -3,6 +3,8 @@
 /* eslint-disable react/jsx-boolean-value */
 import * as React from 'react';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
+
 import './slick.css';
 import './slick-theme.css';
 import './index.css';
@@ -13,15 +15,16 @@ function Carousel(props) {
   return (
     <>
       <div className="carousel-container">
-          <Slider
-            infinite={true}
-            speed="500"
-            slidesToShow={5}
-            slidesToScroll={1}
-            arrows={true}
-          >
-            {products.map((product) => (
-              <div className="carousel-slide">
+        <Slider
+          infinite={true}
+          speed="500"
+          slidesToShow={5}
+          slidesToScroll={1}
+          arrows={true}
+        >
+          {products.map((product) => (
+            <div className="carousel-slide" key={product.id}>
+              <Link to={`/produto/${product.id}`}>
                 <div className="inside">
                   <img
                     src={product.imagesPath[0]}
@@ -38,9 +41,10 @@ function Carousel(props) {
                     </h2>
                   </div>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              </Link>
+            </div>
+          ))}
+        </Slider>
       </div>
     </>
   );

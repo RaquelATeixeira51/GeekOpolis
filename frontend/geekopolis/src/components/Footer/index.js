@@ -3,6 +3,7 @@ import * as React from 'react';
 import './index.css';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/img/logo/GeekOpolisLogo.png';
+import Instagram from '../../assets/img/icons/logo-instagram.png'
 import CutLogo from '../../assets/img/logo/GeekOpolisLogo-cutted.png';
 import LogoutIcon from '../../assets/img/icons/logout-icon.png';
 import UsersIcon from '../../assets/img/icons/users-icon.png';
@@ -28,9 +29,11 @@ export default function Footer() {
                 </h3>
             </div>
             
-
-            
-
+            <img
+                className="Instalogo"
+                src={Instagram}
+                alt="Instagram logo"
+            />
 
         </div>
 

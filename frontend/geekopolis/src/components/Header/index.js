@@ -15,11 +15,11 @@ const hasToken = localStorage.getItem('tokenClient');
 function Header() {
   return (
     <div className="header">
-      <Link to="/Principal">
+      <Link to="/principal">
         <img className="logo" src={Logo} alt="Logo" />
       </Link>
       <div className="categorias">
-        <Link to="/Inicio">
+        <Link to="/principal">
           <img className="casaImg" src={Casa} alt="Home" />
           <p className="Home">Inicio</p>
         </Link>

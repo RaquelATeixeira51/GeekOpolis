@@ -9,6 +9,7 @@ import Carousel from '../../components/Carousel';
 import Carousel2 from '../../components/Carousel2';
 
 import Carrinho from '../../assets/img/produtos/carrinho.png'
+import Header from '../../components/Header';
 
 
 export default function Produto() {
@@ -68,6 +69,7 @@ export default function Produto() {
 
   return (
     <>
+    <Header />
       <div className='product-col'>
         <div className='limitar'>
             {categories &&

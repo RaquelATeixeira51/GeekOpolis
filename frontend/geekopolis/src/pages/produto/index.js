@@ -7,6 +7,7 @@ import ReactStars from 'react-stars';
 import makeToast from '../../shared/toaster';
 import Carousel2 from '../../components/Carousel2';
 import Header from '../../components/Header';
+import Carrinho from '../../assets/img/produtos/carrinho.png';
 
 export default function Produto() {
   const { id } = useParams();
@@ -71,6 +72,16 @@ export default function Produto() {
             <h2>DESCRIÇÃO DO PRODUTO</h2>
             <p>{product.descricao}</p>
           </div>
+          <div className="adicionar-ao" id='adicionar-posição'>
+              <div className="box">
+                <div className="overlap-2">
+                  <div className="rectangle" />
+                  <div className="adicionar-ao-2">Adicionar ao Carrinho</div>
+                  <img className="carrinho-carrinho" alt="Carrinho carrinho" src={Carrinho} />
+                  <div className="rectangle-2" />
+                </div>
+              </div>
+            </div>
         </div>
       </div>
     </>

@@ -16,7 +16,7 @@
 .limitar{
     width: 43%;
     padding-left: 5%;
-    padding-top: 10%;
+    padding-top: 4%;
 }
 
 .infos-product{
@@ -42,7 +42,7 @@
 }
 
 .classi{
-    padding-top: 50px;
+    padding-top: 30px;
     padding-left: 37%;
 }
 
@@ -68,4 +68,8 @@
     padding-top: 5%;
     color:cornsilk;
     font-weight: 200;
+}
+
+#adicionar-posição{
+    padding: 10% 25%;
 }

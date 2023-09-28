@@ -8,6 +8,7 @@ import Carousel from '../../components/Carousel';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import CategoryImages from '../../components/categories';
+import Banner from '../../assets/img/banner/Play.png';
 
 
 function LandingPage() {
@@ -33,8 +34,9 @@ function LandingPage() {
   }, []);
   return (
     <>
+      <Header />
       <div className="tudo">
-        <Header />
+        <img src={Banner} alt="banner" className='landing-page-banner' />
         {categories &&
           categories.map((category, index) => (
             <div key={category.id}>

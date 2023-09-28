@@ -1,6 +1,5 @@
 .tudo{
     padding-left: 10%;
-    padding-top: 5%;
     background-color: #244F6B;
     width: 90%;
     padding-top: 10%;
@@ -16,3 +15,11 @@
     padding-top: 30px; 
 }
 
+.landing-page-banner {
+    margin-top: -7%;
+    margin-left: -11.1%;
+    width: 111%;
+    height: 600px;
+    margin-bottom: 50px;
+    box-shadow:  0px 0px 14px cyan, 0px 0px 15px cyan;
+}

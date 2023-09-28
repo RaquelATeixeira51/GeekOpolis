@@ -10,6 +10,7 @@
     align-self: center;
     align-items: center;
     box-shadow: var(--black-box-shadow);
+    margin-top: 3%;
 }
 
 .limitar{

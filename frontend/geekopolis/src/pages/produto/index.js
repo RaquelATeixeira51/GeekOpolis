@@ -5,6 +5,11 @@ import './index.css';
 import { Navigate, useParams } from 'react-router-dom';
 import ReactStars from 'react-stars';
 import makeToast from '../../shared/toaster';
+import Carousel from '../../components/Carousel';
+import Carousel2 from '../../components/Carousel2';
+
+import Carrinho from '../../assets/img/produtos/carrinho.png'
+
 
 export default function Produto() {
   const { id } = useParams();
@@ -39,35 +44,61 @@ export default function Produto() {
 
   if (redirect !== '') return <Navigate to={redirect} />;
 
+  const [categories, setCategories] = React.useState([]);
+  // http://localhost:8080/categoria/listaCategoria/1
+  React.useEffect(() => {
+    fetch(`http://localhost:8080/categoria/listaCategorias`, {
+      method: 'GET',
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        return null;
+      })
+      .then((data) => {
+        if (data) {
+          setCategories(data);
+        }
+      })
+      .catch((err) => {
+        makeToast('error', err);
+      });
+  }, []);
 
   return (
     <>
       <div className='product-col'>
-        <div className='product-col-01'>
-          <div className='product-col-01-image'>
-            {product.imagesPath.map((image) => (
-              <>
-                <img src={image} alt={product.nome} />
-              </>
-            ))}
+        <div className='limitar'>
+            {categories &&
+              categories.map((category) => (
+                <>
+                  <div className="carousel">
+                    <Carousel2 products={category.produtos}/>
+                  </div>
+                </>
+              ))}
           </div>
-          <div className='product-col-01-desc'>
-            <h2>DESCRIÇÃO DO PRODUTO</h2>
-            <p>{product.descricao}</p>
+          <div className='infos-product'>
+            <div className='product-col-02'>
+              <h2>{product.nome}</h2>
+                <div className='classi'>
+                  <ReactStars
+                    count={5}
+                    size={40}
+                    half={true}
+                    edit={false}
+                    value={product.avaliacao}
+                    color2="#fdd835"
+                  />
+                </div>
+              <p className='valor-produto'>R$ {Number(product.preco).toFixed(2)}</p>
+          </div> 
+            <div className='product-col-01-desc'>
+              <h2>DESCRIÇÃO DO PRODUTO</h2>
+              <p>{product.descricao}</p>
+            </div>
           </div>
-        </div>
-        <div className='product-col-02'>
-          <h2>{product.nome}</h2>
-          <ReactStars
-            count={5}
-            size={40}
-            half={true}
-            edit={false}
-            value={product.avaliacao}
-            color2="#fdd835"
-          />
-          <p>R$ {Number(product.preco).toFixed(2)}</p>
-        </div>
       </div>
     </>
   );

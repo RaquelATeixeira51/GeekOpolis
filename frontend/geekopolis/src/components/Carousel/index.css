@@ -1,6 +1,6 @@
 
 .carousel-container{
-    width: 80%;
+    width: 90%;
     padding-bottom: 250px;
 }
 
@@ -12,16 +12,15 @@
     background-color: var(--white-color);
     width: 250px;
     border-radius: 10px;
-    height: 400px;
-    box-shadow: var(--black-box-shadow);
+    height: 350px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 15px;
 }
 
-/* .inside:hover{
-    width: 61%;
-    height: 30.1vh;
+.inside:hover{
     cursor: pointer;
     transition: 130ms;
-} */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 74px 75px;
+}
 
 .carousel-image{
     width: 170px;

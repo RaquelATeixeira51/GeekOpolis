@@ -93,7 +93,7 @@
   width: 27px;
 }
 
-.box .rectangle-2 {
+.box1 .rectangle-21 {
   background-color: #00000099;
   border-radius: 8px;
   height: 51px;
@@ -103,32 +103,12 @@
   width: 305px;
 }
 
-.box .group {
+.box1 .group1 {
   height: 42px;
   left: 170px;
   position: absolute;
   top: 0;
   width: 110px;
-}
-
-.status.disabled {
-  cursor: default;
-  background-color: gray;
-}
-
-.status.disabled:hover {
-  cursor: default;
-  background-color: gray;
-  color: gray;
-}
-
-.vizu.disabled {
-  cursor: default !important;
-}
-
-.vizu.disabled:hover {
-  cursor: default !important;
-  height: 30px !important;
 }
 
 .input.container.disabled-stars {

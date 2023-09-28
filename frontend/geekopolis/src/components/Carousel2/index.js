@@ -3,11 +3,11 @@
 /* eslint-disable react/jsx-boolean-value */
 import * as React from 'react';
 import Slider from 'react-slick';
-import './slick.css';
-import './slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './index.css';
 
-function Carousel(props) {
+function Carousel2(props) {
   const { products } = props;
 
   return (
@@ -16,7 +16,7 @@ function Carousel(props) {
           <Slider
             infinite={true}
             speed="500"
-            slidesToShow={5}
+            slidesToShow={1}
             slidesToScroll={1}
             arrows={true}
           >
@@ -25,18 +25,9 @@ function Carousel(props) {
                 <div className="inside">
                   <img
                     src={product.imagesPath[0]}
-                    className="carousel-image"
+                    className="image-product"
                     alt={product.nome}
                   />
-                  <div className="descricao">
-                    <h2 className="nome">{product.nome}</h2>
-                    <h2 className="nome" id="preco">
-                      {product.preco.toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL',
-                      })}
-                    </h2>
-                  </div>
                 </div>
               </div>
             ))}
@@ -46,4 +37,4 @@ function Carousel(props) {
   );
 }
 
-export default Carousel;
+export default Carousel2;

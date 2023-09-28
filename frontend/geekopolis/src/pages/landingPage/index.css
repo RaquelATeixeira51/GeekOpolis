@@ -2,19 +2,16 @@
     padding-left: 10%;
     padding-top: 5%;
     background-color: #D6D6D6;
-    width: 100%;
+    width: 90%;
 }
 
 .categoria{
     font-size: 30px;
     font-weight: bold;
+    
 }
 
 .carousel{
     padding-top: 30px; 
-}
-
-hr{
-    
 }
 

@@ -11,6 +11,7 @@ import imag3 from '../../assets/img/produtos/funko2.jfif';
 import imag4 from '../../assets/img/produtos/funko3.jfif';
 import Carousel from '../../components/Carousel';
 import makeToast from '../../shared/toaster';
+import Header from '../../components/Header';
 
 function LandingPage() {
   const [categories, setCategories] = React.useState([]);
@@ -34,17 +35,6 @@ function LandingPage() {
         makeToast('error', err);
       });
   }, []);
-
-  const [body, setBody] = React.useState({
-    nome: '',
-    avaliacao: 0,
-    descricao: '',
-    preco: 0,
-    qtdEstoque: 0,
-    imagesPath: [imag, xavier, imag2, imag3, imag4],
-    categoriaId: 0,
-    status: false,
-  });
   return (
     <>
       <div className="tudo">

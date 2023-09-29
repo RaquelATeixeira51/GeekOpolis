@@ -21,24 +21,24 @@
    padding-bottom: 75px;
 }
 
-.input-container {
+.login-input-container {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
   }
 
-  .input-container span {
+  .login-input-container span {
     color: var(--white-color);
     font-weight: bold;
     margin-top: 15px;
   }
   
-  p {
+  .login-p {
     font-weight: bold;
     color: var(--white-color);
   }
   
-  .rounded-input {
+  .login-rounded-input {
     width: 370px;
     padding: 10px;
     border: none;
@@ -48,7 +48,7 @@
     outline: none;
   }
 
-  .rounded-select {
+  .login-rounded-select {
     width: 390px;
     padding: 10px;
     border: none;
@@ -58,18 +58,18 @@
     outline: none;
   }
 
-  .esqueceu-a-senha {
+  .login-esqueceu-a-senha {
     text-align: left;
     margin-top: 15px;
     color: var(--white-color);
     font-weight: bold
   }
 
-  .entrar-button {
+  .login-entrar-button {
     padding-top: 120px;
   }
 
-  .entrar-button button {
+  .login-entrar-button button {
     color: var(--white-color);
     background-color: transparent;
     margin: 10px 0;
@@ -89,7 +89,7 @@
     border-right-width: 3px;
   }
 
-.entrar-button button {
+.login-entrar-button button {
   border-radius: 8px;
   border: 1.5px solid var(--blue-color);
   border-left-width: 3px;
@@ -98,19 +98,19 @@
   transition: .3s !important;
 }
 
-.entrar-button button:hover {
+.login-entrar-button button:hover {
   border-radius: 20px;
   border-left-width: 2px;
   border-right-width: 2px;
   transition: .3s !important;
 }
 
-.entrar-button button:hover {
+.login-entrar-button button:hover {
   text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
   transition: .2s;
 }
 
-.login-paragraph {
+.login-login-paragraph {
     text-align: center;
     color: var(--white-color);
     font-weight: bold;

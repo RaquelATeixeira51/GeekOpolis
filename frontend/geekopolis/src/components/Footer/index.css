@@ -1,38 +1,46 @@
-.fundo{
+.footer-fundo {
     background-color: #004166;
-    width: 112%;
-    height: 8%;
+    width: 100%;
+    height: fit-content;
+    padding: 0 20px;
+    /* height: 8vh; */
     color: white;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     margin: 0 auto;
     border-radius: 0;
-    margin-left: -12%;
+
 }
 
-.geekopolis-aside-logo{
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-geekopolis-aside-logo {
     margin-left: 10%;
-    width: 15%;
-    margin: 30px ;
+    width: 10%;
+    height: 50%;
+    padding-top: 3%;
+    padding-bottom: 3%;
     align-items: start;
     display: flex;
     justify-content: flex-start
 }
-h3{
-    display: flex;
-    vertical-align: middle;
-    font-style:inherit;
-}
 
-.Mia{
+.footer-Mia {
     flex-direction: column;
     display: flex;
     justify-content: flex-start;
     display: inline-block;
     font-size: 12;
-    font-style:inherit;
+    font-style: inherit;
+    margin-left: 5%;
+    padding-top: 3%;
 }
 
-.Instalogo{
+.footer-Instalogo {
     padding-left: 5%;
+    padding-top: 3%;
+    height: 50%;
 }

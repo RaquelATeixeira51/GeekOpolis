@@ -1,4 +1,4 @@
-/* eslint-disable react/self-closing-comp */ 
+/* eslint-disable react/self-closing-comp */
 import * as React from 'react';
 import './index.css';
 import { Link } from 'react-router-dom';
@@ -13,27 +13,30 @@ import ArrowIcon from '../../assets/img/icons/arrow-icon.png';
 import makeToast from '../../shared/toaster';
 
 export default function Footer() {
-    return(
-        <div className='fundo'>
-             <img
-                className="geekopolis-aside-logo"
-                src={Logo}
-                alt="GeekOpolis Logo"
-            />
-            <div className='Mia'>
-                <h3>
-                    HOMOSAPIENS SA - CNPJ 25.561.105/0001-40
-                </h3>
-                <h3>
-                    Av. Eng. Eusébio Stevaux, 823 - Santo Amaro, São Paulo - SP, 04696-000
-                </h3>
+    return (
+        <div className='footer-fundo'>
+            <div className='footer-content'>
+                <img
+                    className="footer-geekopolis-aside-logo"
+                    src={Logo}
+                    alt="GeekOpolis Logo"
+                />
+                <div className='footer-Mia'>
+                    <h3>
+                        HOMOSAPIENS SA - CNPJ 25.561.105/0001-40
+                    </h3>
+                    <h3>
+                        Av. Eng. Eusébio Stevaux, 823 - Santo Amaro, São Paulo - SP, 04696-000
+                    </h3>
+                </div>
+
+                <img
+                    className="footer-Instalogo"
+                    src={Instagram}
+                    alt="Instagram logo"
+                />
+
             </div>
-            
-            <img
-                className="Instalogo"
-                src={Instagram}
-                alt="Instagram logo"
-            />
 
         </div>
 

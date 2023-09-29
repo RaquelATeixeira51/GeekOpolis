@@ -50,28 +50,28 @@ export default function Login() {
           className="geekopolis-login-logo"
           alt="Geekopolis logo"
         />
-        <div className="input-container">
-          <p>Email</p>
+        <div className="login-input-container">
+          <p className="login-p">Email</p>
           <input
             type="email"
             id="email"
             ref={emailRef}
-            className="rounded-input"
+            className="login-rounded-input"
           />
         </div>
-        <div className="input-container">
-          <p>Senha</p>
+        <div className="login-input-container">
+          <p className="login-p">Senha</p>
           <input
             type="password"
             id="password"
             ref={passwordRef}
-            className="rounded-input"
+            className="login-rounded-input"
           />
           <span>Esqueceu a senha?</span>
         </div>
-        <div className="entrar-button">
+        <div className="login-entrar-button">
           <button type="button" onClick={handleLogin}>
-            <p>Entrar</p>
+            <p className="login-p">Entrar</p>
           </button>
         </div>
       </div>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Cliente;
+import com.senac.geekOpolis.models.ClienteLoginDto;
 import com.senac.geekOpolis.service.ClienteService;
 
 import lombok.AllArgsConstructor;
@@ -27,5 +28,9 @@ public class ClienteController {
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não é possível criar um cliente");
         }
+    }
+     @PostMapping("cliente/login")
+    public ResponseEntity<String> login(@RequestBody ClienteLoginDto clienteLoginDto) {
+        return clienteService.login(clienteLoginDto);
     }
 }

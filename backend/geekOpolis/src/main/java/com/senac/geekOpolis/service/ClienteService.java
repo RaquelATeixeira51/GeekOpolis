@@ -1,6 +1,7 @@
 package com.senac.geekOpolis.service;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.http.HttpStatus;
@@ -12,11 +13,19 @@ import org.springframework.web.server.ResponseStatusException;
 import com.senac.geekOpolis.models.Cliente;
 import com.senac.geekOpolis.models.ClienteLoginDto;
 import com.senac.geekOpolis.models.Endereco;
+import com.senac.geekOpolis.models.Usuario;
+import com.senac.geekOpolis.models.UsuarioPayloadDto;
 import com.senac.geekOpolis.repository.ClienteRepository;
 import com.senac.geekOpolis.repository.EnderecoRepository;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import jakarta.websocket.ClientEndpoint;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -86,6 +95,134 @@ public class ClienteService {
             return ResponseEntity.ok(gerarToken(clienteLoginDto));
         } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Cliente nao existe ou email ou senha errados");
+        }
+    }
+
+    public Cliente atualizaCliente(String token, Long id, Cliente cliente) {
+
+        Cliente clienteToken = verificarUsuarioPorToken(token);
+        Optional<Cliente> clienteById = clienteRepository.findById(id);
+        Cliente c = clienteById.get();
+
+        if(!clienteToken.getEmail().equals(cliente.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Você não pode alterar este cliente");
+        }
+
+        if(clienteById.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Este cliente não existe");
+        } 
+
+        if(cliente.getDataNascimento() != null) {
+            c.setDataNascimento(cliente.getDataNascimento());
+        }
+        
+        if(cliente.getGenero() != null) {
+            c.setGenero(cliente.getGenero());
+        }
+      
+        if(cliente.getNomeCompleto() != null) {
+            c.setNomeCompleto(cliente.getNomeCompleto());
+        }
+        
+        if (cliente.getSenha() != null) {
+            String encryptedPassword = bCryptPasswordEncoder.encode(cliente.getSenha());
+            c.setSenha(encryptedPassword);
+        }
+        return c;
+    }
+
+    public Endereco atualizaEnderecoPorId(String token, Long idCliente, Long idEndereco, Endereco novoEndereco) {
+        Cliente clienteToken = verificarUsuarioPorToken(token);
+        Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
+
+        if (clienteOptional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado");
+        }
+
+        Cliente cliente = clienteOptional.get();
+
+        if (!clienteToken.getEmail().equals(cliente.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Você não pode alterar o endereço deste cliente");
+        }
+
+        Optional<Endereco> enderecoOptional = enderecoRepository.findById(idEndereco);
+
+        if (enderecoOptional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Endereço não encontrado");
+        }
+
+        Endereco endereco = enderecoOptional.get();
+
+ 
+        if (novoEndereco.getLogradouro() != null) {
+            endereco.setLogradouro(novoEndereco.getLogradouro());
+        }
+        if (novoEndereco.getCidade() != null) {
+            endereco.setCidade(novoEndereco.getCidade());
+        }
+        if (novoEndereco.getUf() != null) {
+            endereco.setUf(novoEndereco.getUf());
+        }
+        if (novoEndereco.getCep() != null) {
+            endereco.setCep(novoEndereco.getCep());
+        }
+
+        if(novoEndereco.getNumero() != null) {
+            endereco.setNumero(novoEndereco.getNumero());
+        }
+
+        if(novoEndereco.getBairro() != null) {
+            endereco.setBairro(novoEndereco.getBairro());
+        }
+
+        if(novoEndereco.getComplemento() != null) {
+            endereco.setComplemento(novoEndereco.getComplemento());
+        } 
+
+        endereco.setCliente(cliente);
+        enderecoRepository.save(endereco);
+
+        return endereco;
+    }
+
+    public Endereco adicionaNovoEndereco(String token, Long idCliente, Endereco novoEndereco) {
+        Cliente clienteToken = verificarUsuarioPorToken(token);
+        Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
+
+        if (clienteOptional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado");
+        }
+
+        Cliente cliente = clienteOptional.get();
+
+        if (!clienteToken.getEmail().equals(cliente.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Você não pode alterar o endereço deste cliente");
+        }
+
+        novoEndereco.setCliente(cliente);
+        return enderecoRepository.save(novoEndereco);
+    }
+
+    public Cliente verificarUsuarioPorToken(String token) {
+        try {
+            Jws<Claims> claimsJws = Jwts.parser()
+                    .setSigningKey(CHAVE_SECRETA)
+                    .parseClaimsJws(token);
+
+            String userEmail = claimsJws.getBody().getSubject();
+            Cliente cliente = clienteRepository.findByEmail(userEmail);
+
+            if (cliente == null) {
+                throw new RuntimeException("Token válido, mas usuário não encontrado.");
+            }
+            
+            return cliente;
+        } catch (ExpiredJwtException e) {
+            throw new RuntimeException("Token expirado.");
+        } catch (MalformedJwtException | SignatureException e) {
+            throw new RuntimeException("Token inválido.");
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao verificar o token.");
         }
     }
 }

@@ -15,8 +15,6 @@ import com.senac.geekOpolis.models.Cliente;
 import com.senac.geekOpolis.models.ClienteDto;
 import com.senac.geekOpolis.models.ClienteLoginDto;
 import com.senac.geekOpolis.models.Endereco;
-import com.senac.geekOpolis.models.Usuario;
-import com.senac.geekOpolis.models.UsuarioPayloadDto;
 import com.senac.geekOpolis.repository.ClienteRepository;
 import com.senac.geekOpolis.repository.EnderecoRepository;
 
@@ -27,7 +25,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
-import jakarta.websocket.ClientEndpoint;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -155,6 +152,11 @@ public class ClienteService {
 
         Endereco endereco = enderecoOptional.get();
 
+
+        if (endereco.isEnderecoFaturamento()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Endereço de faturamento");
+        }
+
  
         if (novoEndereco.getLogradouro() != null) {
             endereco.setLogradouro(novoEndereco.getLogradouro());
@@ -277,7 +279,7 @@ public class ClienteService {
         List<Endereco> enderecos = buscaEnderecosPorCliente(token);
 
         for (Endereco endereco : enderecos) {
-            if(endereco.getId() == enderecoId) {
+            if(endereco.getId() == enderecoId && endereco.isEnderecoFaturamento() == false) {
                 endereco.setPrincipal(true);
             } else {
                 endereco.setPrincipal(false);

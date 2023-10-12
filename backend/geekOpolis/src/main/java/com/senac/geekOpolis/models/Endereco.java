@@ -30,7 +30,6 @@ public class Endereco {
     @JoinColumn(name = "cliente_id")
     @JsonIgnore
     private Cliente cliente;
-    
 
     @Column
     private boolean principal;
@@ -55,4 +54,7 @@ public class Endereco {
     
     @Column
     private String uf;
+
+    @Column
+    private boolean enderecoFaturamento;
 }

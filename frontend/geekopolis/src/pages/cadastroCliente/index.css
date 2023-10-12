@@ -1,0 +1,141 @@
+.cadastroCliente-tudo{
+    background-color: #244F6B;
+    width: 100%;
+    padding-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.quadrado-centralizado {
+    min-width: 200px; 
+    padding: 20px; 
+    background-color: #44B0C1;
+    border-radius: 10px; 
+    text-align: center;
+    position: relative;
+}
+
+.quadrado-centralizado p {
+    color: white;
+    text-align: left;
+    padding-left: 7px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 15px;
+}
+
+.quadrado-centralizado h2 {
+    color: white;
+    padding-bottom: 40px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cadastroCliente-button {
+    margin: 0 10px;
+    background: transparent;
+    border: 2px solid cyan; 
+    color: white; 
+    padding: 10px 15px;
+    border-radius: 5px; 
+    transition: all 0.4s;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.cadastroCliente-input {
+    background: transparent;
+    border: 2px solid white; 
+    color: white; 
+    padding: 10px; 
+    border-radius: 4px;
+    transition: all 0.4s;
+    width: 500px;
+    &:focus, &:active {
+        outline: none;
+        border: 2px solid white;
+        transform: scale(1.01);
+    }
+}
+
+  .quadrado-centralizado select {
+    width: 525px;
+    color: white;
+  }
+
+  .quadrado-centralizado option {
+    color: black;
+  }
+
+  .campo-faturamento {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 10px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+.campo-faturamento input {
+    width: 300px;
+}
+
+.endereco-card {
+    background-color: transparent; 
+    border: 2px solid white; 
+    padding: 10px; 
+    margin: 10px 0; 
+    border-radius: 20px;
+    width: 500px;
+  }
+
+  .endereco-card p {
+    margin: 5px 0;
+  }
+
+  .address-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #244F6B;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 999;
+    max-height: 80%;
+    overflow-y: auto; 
+    margin-top: 40px; 
+}
+  
+ 
+  .cadastroCliente-tudo.modal-open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998; 
+  }
+
+  
+  .address-modal .campo {
+    flex: 1;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  

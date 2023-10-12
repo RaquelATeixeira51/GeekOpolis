@@ -4,13 +4,11 @@ import './index.css';
 import * as React from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { CardFooter } from 'react-bootstrap';
 import Carousel from '../../components/Carousel';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import CategoryImages from '../../components/categories';
 import Banner from '../../assets/img/banner/Play.png';
-import Footer from '../../components/Footer';
 
 function LandingPage() {
   const [categories, setCategories] = React.useState([]);
@@ -48,7 +46,6 @@ function LandingPage() {
               {index === 0 && <CategoryImages />}
             </div>
           ))}
-          <Footer/>
       </div>
     </>
   );

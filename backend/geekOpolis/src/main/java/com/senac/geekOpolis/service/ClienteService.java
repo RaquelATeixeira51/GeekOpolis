@@ -1,6 +1,7 @@
 package com.senac.geekOpolis.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -257,5 +258,18 @@ public class ClienteService {
             throw new RuntimeException("Erro ao verificar o token.");
         }
     
+    }
+
+    public List<Endereco> buscaEnderecosPorCliente(String token) {
+        Cliente clienteToken = verificarUsuarioPorToken(token);
+        return enderecoRepository.findAllByClienteId(clienteToken.getId());
+    }
+
+    public Endereco buscaEnderecoPorClienteEId(String token, Long enderecoId) {
+        Cliente clienteToken = verificarUsuarioPorToken(token);
+        Optional<Endereco> endeOptional = enderecoRepository.findEnderecoByEnderecoIdAndClienteId(enderecoId, clienteToken.getId());
+
+        Endereco endereco = endeOptional.get();
+        return endereco;
     }
 }

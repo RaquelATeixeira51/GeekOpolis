@@ -1,5 +1,7 @@
 package com.senac.geekOpolis.controller;
 
+import java.util.List;
+
 import javax.print.DocFlavor.STRING;
 
 import org.apache.catalina.connector.Response;
@@ -85,5 +87,15 @@ public class ClienteController {
     public ClienteDto buscaClientePorToken(@PathVariable String token) {
         ClienteDto cliente = clienteService.retornarInformacoesCliente(token);
         return cliente;
+    }
+
+    @GetMapping("endereco/buscaEnderecosPorCliente/token/{token}")
+    public List<Endereco> buscaEnderecosPorCliente(@PathVariable String token) {
+        return clienteService.buscaEnderecosPorCliente(token);
+    }
+
+    @GetMapping("endereco/buscaEnderecoClienteEEndereco/token/{token}/idEndereco/{idEndereco}")
+    public Endereco buscaEndereco(@PathVariable String token, @PathVariable Long idEndereco) {
+        return clienteService.buscaEnderecoPorClienteEId(token, idEndereco);
     }
 }

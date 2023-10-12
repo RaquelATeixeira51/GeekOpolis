@@ -49,9 +49,9 @@ public class ClienteController {
         return clienteService.login(clienteLoginDto);
     }
 
-    @PutMapping("cliente/atualiza/id/{id}/token/{token}")
-    public ResponseEntity<String> atualizaCliente(@PathVariable String token, @PathVariable Long id, @RequestBody Cliente cliente) {
-        Cliente c = clienteService.atualizaCliente(token, id, cliente);
+    @PutMapping("cliente/atualiza/token/{token}")
+    public ResponseEntity<String> atualizaCliente(@PathVariable String token, @RequestBody Cliente cliente) {
+        Cliente c = clienteService.atualizaCliente(token,cliente);
 
         if(c != null) {
             clienteRepository.save(c);
@@ -97,5 +97,10 @@ public class ClienteController {
     @GetMapping("endereco/buscaEnderecoClienteEEndereco/token/{token}/idEndereco/{idEndereco}")
     public Endereco buscaEndereco(@PathVariable String token, @PathVariable Long idEndereco) {
         return clienteService.buscaEnderecoPorClienteEId(token, idEndereco);
+    }
+
+    @PutMapping("endereco/atualizaPrincipal/idEndereco/{idEndereco}/token/{token}")
+    public void atualizaPrincipal(@PathVariable Long idEndereco, @PathVariable String token){
+        clienteService.atualizaPrincipal(token, idEndereco);
     }
 }

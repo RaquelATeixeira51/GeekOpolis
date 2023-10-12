@@ -100,10 +100,10 @@ public class ClienteService {
         }
     }
 
-    public Cliente atualizaCliente(String token, Long id, Cliente cliente) {
+    public Cliente atualizaCliente(String token, Cliente cliente) {
 
         Cliente clienteToken = verificarUsuarioPorToken(token);
-        Optional<Cliente> clienteById = clienteRepository.findById(id);
+        Optional<Cliente> clienteById = clienteRepository.findById(clienteToken.getId());
         Cliente c = clienteById.get();
 
         if(!clienteToken.getEmail().equals(cliente.getEmail())) {
@@ -271,5 +271,19 @@ public class ClienteService {
 
         Endereco endereco = endeOptional.get();
         return endereco;
+    }
+
+    public void atualizaPrincipal(String token, Long enderecoId) {
+        List<Endereco> enderecos = buscaEnderecosPorCliente(token);
+
+        for (Endereco endereco : enderecos) {
+            if(endereco.getId() == enderecoId) {
+                endereco.setPrincipal(true);
+            } else {
+                endereco.setPrincipal(false);
+            }
+
+            enderecoRepository.save(endereco);
+        }
     }
 }

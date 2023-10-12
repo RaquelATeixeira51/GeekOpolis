@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Cliente;
+import com.senac.geekOpolis.models.ClienteDto;
 import com.senac.geekOpolis.models.ClienteLoginDto;
 import com.senac.geekOpolis.models.Endereco;
 import com.senac.geekOpolis.models.Usuario;
@@ -131,9 +132,9 @@ public class ClienteService {
         return c;
     }
 
-    public Endereco atualizaEnderecoPorId(String token, Long idCliente, Long idEndereco, Endereco novoEndereco) {
+    public Endereco atualizaEnderecoPorId(String token, Long idEndereco, Endereco novoEndereco) {
         Cliente clienteToken = verificarUsuarioPorToken(token);
-        Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
+        Optional<Cliente> clienteOptional = clienteRepository.findById(clienteToken.getId());
 
         if (clienteOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado");
@@ -185,9 +186,9 @@ public class ClienteService {
         return endereco;
     }
 
-    public Endereco adicionaNovoEndereco(String token, Long idCliente, Endereco novoEndereco) {
+    public Endereco adicionaNovoEndereco(String token, Endereco novoEndereco) {
         Cliente clienteToken = verificarUsuarioPorToken(token);
-        Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
+        Optional<Cliente> clienteOptional = clienteRepository.findById(clienteToken.getId());
 
         if (clienteOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado");
@@ -224,5 +225,37 @@ public class ClienteService {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao verificar o token.");
         }
+    }
+
+    public ClienteDto retornarInformacoesCliente(String token) {
+        try {
+            Jws<Claims> claimsJws = Jwts.parser()
+                    .setSigningKey(CHAVE_SECRETA)
+                    .parseClaimsJws(token);
+
+            String userEmail = claimsJws.getBody().getSubject();
+            Cliente cliente = clienteRepository.findByEmail(userEmail);
+            ClienteDto clienteDto = new ClienteDto();
+
+            if (cliente == null) {
+                throw new RuntimeException("Token válido, mas usuário não encontrado.");
+            }
+
+            clienteDto.setCpf(cliente.getCpf());
+            clienteDto.setDataNascimento(cliente.getDataNascimento());
+            clienteDto.setEmail(cliente.getEmail());
+            clienteDto.setGenero(cliente.getGenero());
+            clienteDto.setId(cliente.getId());
+            clienteDto.setNomeCompleto(cliente.getNomeCompleto());
+            
+            return clienteDto;
+        } catch (ExpiredJwtException e) {
+            throw new RuntimeException("Token expirado.");
+        } catch (MalformedJwtException | SignatureException e) {
+            throw new RuntimeException("Token inválido.");
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao verificar o token.");
+        }
+    
     }
 }

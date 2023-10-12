@@ -5,6 +5,7 @@ import javax.print.DocFlavor.STRING;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.senac.geekOpolis.models.Cliente;
+import com.senac.geekOpolis.models.ClienteDto;
 import com.senac.geekOpolis.models.ClienteLoginDto;
 import com.senac.geekOpolis.models.Endereco;
 import com.senac.geekOpolis.repository.ClienteRepository;
@@ -57,10 +59,10 @@ public class ClienteController {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não foi possível atualizar esse cliente");
     }
 
-    @PutMapping("endereco/atualiza/idCliente/{idCliente}/idEndereco/{idEndereco}/token/{token}")
-    public ResponseEntity<String> atualizaEndereço(@PathVariable Long idCliente, @PathVariable Long idEndereco, @PathVariable String token, @RequestBody Endereco endereco) {
+    @PutMapping("endereco/atualiza/idEndereco/{idEndereco}/token/{token}")
+    public ResponseEntity<String> atualizaEndereço(@PathVariable Long idEndereco, @PathVariable String token, @RequestBody Endereco endereco) {
         
-        Endereco e = clienteService.atualizaEnderecoPorId(token, idCliente, idEndereco, endereco);
+        Endereco e = clienteService.atualizaEnderecoPorId(token, idEndereco, endereco);
         if(e != null) {
             enderecoRepository.save(e);
             return ResponseEntity.ok("Endereço atualizado");
@@ -69,13 +71,19 @@ public class ClienteController {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não foi possível atualizar esse endereço");
     }
 
-    @PostMapping("endereco/adicionaEndereco/idCliente/{idCliente}/token/{token}")
-    public ResponseEntity<String> adicionaEndereço(@PathVariable Long idCliente, @PathVariable String token, @RequestBody Endereco endereco) {
-        Endereco e = clienteService.adicionaNovoEndereco(token, idCliente, endereco);
+    @PostMapping("endereco/adicionaEndereco/token/{token}")
+    public ResponseEntity<String> adicionaEndereço(@PathVariable String token, @RequestBody Endereco endereco) {
+        Endereco e = clienteService.adicionaNovoEndereco(token, endereco);
         if(e != null) {
              return new ResponseEntity<>("Created", HttpStatus.CREATED);
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não é possível adicionar este endereço");
         }
+    }
+
+    @GetMapping("cliente/buscaClienteByToken/token/{token}")
+    public ClienteDto buscaClientePorToken(@PathVariable String token) {
+        ClienteDto cliente = clienteService.retornarInformacoesCliente(token);
+        return cliente;
     }
 }

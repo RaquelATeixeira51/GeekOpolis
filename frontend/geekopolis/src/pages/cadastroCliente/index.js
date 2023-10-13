@@ -74,8 +74,23 @@ export default function CadastroCliente() {
 
     const adicionaEndereco = () => {
         debugger;
-        setEnderecosEntrega([...enderecosEntrega, newAddress]);
-
+        if(enderecosEntrega.length <= 0) {
+            const newAddressPrincipal = {
+                logradouro: newAddress.logradouro,
+                numero: newAddress.numero,
+                bairro: newAddress.bairro,
+                complemento: newAddress.complemento,
+                cidade: newAddress.cidade,
+                uf: newAddress.cidade,
+                enderecoFaturamento: false,
+                cep: newAddress.cep,
+                principal: true,
+            }
+            setEnderecosEntrega([...enderecosEntrega, newAddressPrincipal]);
+        } else {
+            setEnderecosEntrega([...enderecosEntrega, newAddress]);
+        }
+        
         setNewAddress({
             logradouro: '',
             numero: '',
@@ -237,7 +252,8 @@ export default function CadastroCliente() {
             cidade: cidadeFatuamento,
             uf: estadoFatuamento,
             enderecoFaturamento: false,
-            cep: cepFaturamento
+            cep: cepFaturamento,
+            principal: true
         };
         setEnderecosEntrega([...enderecosEntrega, novoEnderecoEntrega]);
     };
@@ -275,6 +291,7 @@ export default function CadastroCliente() {
     };
 
     const handleEnderecoPrincipalChange = (index) => {
+        debugger;
         const updatedEnderecosEntrega = enderecosEntrega.map((endereco, i) => {
             if (i === index) {
                 return {

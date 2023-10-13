@@ -47,6 +47,7 @@ export default function CadastroCliente() {
         uf: '',
         enderecoFaturamento: false,
         cep: '',
+        principal: false,
     });
 
     const enderecoFaturamento = {
@@ -61,16 +62,6 @@ export default function CadastroCliente() {
         principal: false,
     }
 
-    React.useEffect(() => {
-        if (enderecosEntrega.length === 1) {
-            const novoEnderecosEntrega = enderecosEntrega.map((endereco, index) => ({
-                ...endereco,
-                principal: index === 0,
-            }));
-            setEnderecosEntrega(novoEnderecosEntrega);
-        }
-    })
-
     const abreModal = () => {
         setMostrarModalEndereco(true);
         document.querySelector('.cadastroCliente-tudo').classList.add('modal-open');
@@ -82,6 +73,7 @@ export default function CadastroCliente() {
     };
 
     const adicionaEndereco = () => {
+        debugger;
         setEnderecosEntrega([...enderecosEntrega, newAddress]);
 
         setNewAddress({

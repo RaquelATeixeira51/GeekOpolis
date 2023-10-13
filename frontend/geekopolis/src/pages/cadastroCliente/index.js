@@ -1,3 +1,5 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-debugger */
@@ -6,6 +8,7 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
 import { validate as validateCPF } from 'gerador-validador-cpf';
+import { Navigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Header from '../../components/Header';
@@ -31,6 +34,8 @@ export default function CadastroCliente() {
     const [enderecosEntrega, setEnderecosEntrega] = React.useState([]);
     const [mostrarPergunta, setMostrarPergunta] = React.useState(true);
     const [mostrarModalEndereco, setMostrarModalEndereco] = React.useState(false);
+    const [enderecoSelecionado, setEnderecoSelecionado] = React.useState(0);
+    const [redirect, setRedirect] = React.useState('');
 
     const [newAddress, setNewAddress] = React.useState({
         logradouro: '',
@@ -42,11 +47,22 @@ export default function CadastroCliente() {
         enderecoFaturamento: false,
     });
 
+    const enderecoFaturamento = {
+        logradouro: logradouroFaturamento,
+        numero: numeroFatuamento,
+        bairro: bairroFatuamento,
+        complemento: complementoFatuamento,
+        cidade: cidadeFatuamento,
+        estado: estadoFatuamento,
+        enderecoFaturamento: true,
+        principal: false,
+    }
+
     const abreModal = () => {
         setMostrarModalEndereco(true);
         document.querySelector('.cadastroCliente-tudo').classList.add('modal-open');
     };
-    
+
     const fechaModal = () => {
         setMostrarModalEndereco(false);
         document.querySelector('.cadastroCliente-tudo').classList.remove('modal-open');
@@ -154,6 +170,36 @@ export default function CadastroCliente() {
             makeToast('error', 'Senhas não são iguais!');
             return;
         }
+
+        setEnderecosEntrega(enderecosEntrega.concat(enderecoFaturamento));
+
+        fetch(`http://localhost:8080/cliente/incluiCliente`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                nomeCompleto: nomeCompleto,
+                email: email,
+                senha: senha,
+                genero: genero,
+                cpf: cpf,
+                dataNascimento: dataNascimento,
+                enderecos: enderecosEntrega
+            }),
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    setRedirect('/loginCliente');
+                    return response.json();
+                }
+
+                makeToast('error', response.message);
+                return null;
+            })
+            .catch((error) => {
+                console.log(error.message);
+                setRedirect('/loginCliente');
+            });
         event.preventDefault();
     };
 
@@ -206,6 +252,27 @@ export default function CadastroCliente() {
                 makeToast('error', 'Cep inválido!');
             });
     };
+
+    const handleEnderecoPrincipalChange = (index) => {
+        const updatedEnderecosEntrega = enderecosEntrega.map((endereco, i) => {
+            if (i === index) {
+                return {
+                    ...endereco,
+                    principal: true,
+                };
+            }
+            return {
+                ...endereco,
+                principal: false,
+            };
+
+        });
+
+        setEnderecosEntrega(updatedEnderecosEntrega);
+        setEnderecoSelecionado(index);
+    };
+
+    if (redirect !== '') return <Navigate to={redirect} />;
 
     return (
         <>
@@ -373,7 +440,16 @@ export default function CadastroCliente() {
                             <div>
                                 <h2>Endereços</h2>
                                 {enderecosEntrega.map((endereco, index) => (
-                                    <div key={index} className="endereco-card">
+                                    <div key={index} className={`endereco-card ${index === enderecoSelecionado ? 'endereco-card-selected' : ''}`}>
+                                        <input
+                                            type="radio"
+                                            id={`endereco-${index}`}
+                                            name="enderecoEntrega"
+                                            value={`endereco-${index}`}
+                                            onChange={() => handleEnderecoPrincipalChange(index)}
+                                            checked={index === enderecoSelecionado}
+                                        />
+                                        <label htmlFor={`endereco-${index}`}>Endereço Principal</label>
                                         <p>Logradouro: {endereco.logradouro}</p>
                                         <p>Número: {endereco.numero}</p>
                                         <p>Bairro: {endereco.bairro}</p>
@@ -475,7 +551,7 @@ export default function CadastroCliente() {
                             {step < 3 ? (
                                 <button type="button" onClick={nextStep} className="cadastroCliente-button">Próximo</button>
                             ) : (
-                                <button type="submit" className="cadastroCliente-button">Enviar</button>
+                                <button type="submit" className="cadastroCliente-button" onClick={handleSubmit}>Cadastrar</button>
                             )}
                         </div>
                     </form>

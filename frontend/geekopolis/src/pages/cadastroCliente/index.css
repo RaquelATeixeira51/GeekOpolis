@@ -100,6 +100,8 @@
     margin: 10px 0; 
     border-radius: 20px;
     width: 500px;
+    position: relative;
+    align-items: flex-start
   }
 
   .endereco-card p {
@@ -139,3 +141,35 @@
     margin-bottom: 10px;
   }
   
+.endereco-card input[type="radio"] {
+    display: none;
+}
+
+.endereco-card label {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end; 
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.endereco-card label:before {
+    content: "";
+    width: 10px; 
+    height: 10px; 
+    background-color: white;
+    border-radius: 50%; 
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+
+.endereco-card input[type="radio"]:checked + label:before {
+    background-color: #244F6B;
+}
+
+.endereco-card-selected {
+    border: 2px solid #244F6B;
+    color: #244F6B;
+  }

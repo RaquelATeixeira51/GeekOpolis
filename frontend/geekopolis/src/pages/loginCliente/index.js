@@ -14,7 +14,7 @@ export default function loginCliente() {
   const [redirect, setRedirect] = React.useState('');
 
   const handleloginCliente = () => {
-    fetch(`http://localhost:8080/usuario/loginCliente`, {
+    fetch(`http://localhost:8080/cliente/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

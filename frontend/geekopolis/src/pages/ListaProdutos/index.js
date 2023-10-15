@@ -99,7 +99,6 @@ function ListaProdutos() {
   };
 
   const filtrar = (page) => {
-    debugger;
     const startIndex = (page - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
 

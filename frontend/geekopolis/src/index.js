@@ -12,16 +12,17 @@ import './assets/css/reset.css';
 import './assets/css/root.css';
 import './assets/css/styles.css';
 import Login from './pages/login';
-import ListaUsuarios from './pages/ListaUsuarios';
+import ListaUsuarios from './pages/listaUsuarios';
 import CadastroProduto from './pages/cadastroProduto';
 import Cadastro from './pages/cadastro';
 import ListaProdutos from './pages/ListaProdutos';
-import Inicio from './pages/Inicio';
+import Inicio from './pages/inicio';
 import Produto from './pages/produto';
 import LandingPage from './pages/landingPage';
 import Header from './components/Header';
 import CadastroCliente from './pages/cadastroCliente';
 import LoginCliente from './pages/loginCliente';
+import Cliente from './pages/editarCliente';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -86,7 +87,8 @@ root.render(
         <Route path="/cadastro" element={<ProtectedRoute element={<Cadastro/>} />} />
         <Route path="/ListaProdutos" element={<ProtectedRoute element={<ListaProdutos/>} />} />
         <Route path='/cadastroCliente' element={<CadastroCliente />} />
-        <Route path='/Login' element={<LoginCliente/>}/>
+        <Route path='/cliente' element={<Cliente />} />
+        <Route path='/loginCliente' element={<LoginCliente/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

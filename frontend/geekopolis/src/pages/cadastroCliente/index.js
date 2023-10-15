@@ -73,7 +73,6 @@ export default function CadastroCliente() {
     };
 
     const adicionaEndereco = () => {
-        debugger;
         if(enderecosEntrega.length <= 0) {
             const newAddressPrincipal = {
                 logradouro: newAddress.logradouro,
@@ -207,7 +206,6 @@ export default function CadastroCliente() {
         const updatedEnderecosComEntrega = [...updatedEnderecos, ...enderecosEntregaData];
 
 
-        debugger;
         fetch(`http://localhost:8080/cliente/incluiCliente`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -291,7 +289,6 @@ export default function CadastroCliente() {
     };
 
     const handleEnderecoPrincipalChange = (index) => {
-        debugger;
         const updatedEnderecosEntrega = enderecosEntrega.map((endereco, i) => {
             if (i === index) {
                 return {

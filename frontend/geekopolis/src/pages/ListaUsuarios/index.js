@@ -133,7 +133,6 @@ export default function ListaUsuarios() {
       makeToast('error', 'As senhas não coincidem');
       return;
     }
-    debugger;
     fetch(
       `http://localhost:8080/usuario/atualizaUsuario/${id}?token=${localStorage.getItem(
         'token'

@@ -1,0 +1,231 @@
+.loginCliente-form {
+    width: 450px;
+    min-height: 100vh;
+    max-height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--dark-blue-color); 
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  
+  .geekopolis-loginCliente-logo {
+     padding-top: 50px;
+     width: 400px;
+     padding-bottom: 75px;
+  }
+  
+  .loginCliente-input-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 30px;
+    }
+  
+    .loginCliente-input-container span {
+      color: var(--white-color);
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    
+    .loginCliente-p {
+      font-weight: bold;
+      color: var(--white-color);
+    }
+    
+    .loginCliente-rounded-input {
+      width: 370px;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      background-color:  var(--gray-color);
+      margin-top: 5px;
+      outline: none;
+    }
+  
+    .loginCliente-rounded-select {
+      width: 390px;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      background-color:  var(--gray-color);
+      margin-top: 5px;
+      outline: none;
+    }
+  
+    .loginCliente-esqueceu-a-senha {
+      text-align: left;
+      margin-top: 15px;
+      color: var(--white-color);
+      font-weight: bold
+    }
+  
+    .loginCliente-entrar-button {
+      padding-top: 120px;
+    }
+  
+    .loginCliente-entrar-button button {
+      color: var(--white-color);
+      background-color: transparent;
+      margin: 10px 0;
+      font-weight: 600;
+      gap: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .2s !important;
+      width: auto;
+      min-width: 150px;
+      padding: 10px; 
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: 1.5px solid var(--blue-color);
+      border-left-width: 3px;
+      border-right-width: 3px;
+    }
+  
+  .loginCliente-entrar-button button {
+    border-radius: 8px;
+    border: 1.5px solid var(--blue-color);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    padding: 5px 15px;
+    transition: .3s !important;
+  }
+  
+  .loginCliente-entrar-button button:hover {
+    border-radius: 20px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    transition: .3s !important;
+  }
+  
+  .loginClienteentrar-button button:hover {
+    text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+    transition: .2s;
+  }
+  
+  .loginCliente-loginCliente-paragraph {
+      text-align: center;
+      color: var(--white-color);
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+  
+    .divider {
+      text-align: center;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .divider-line {
+      flex-grow: 1;
+      border: none;
+      border-top: 1px solid var(--white-color);
+      margin: 0 10px; /* Espaçamento entre a linha e o texto "ou" */
+      width: 190px;
+    }
+    
+    .divider span {
+      color: var(--white-color);
+      font-weight: bold;
+      position: relative;
+      z-index: 1; /* Adicione esta propriedade para definir o valor z-index */
+    }
+  
+    .cadastrar-button {
+      padding-top: 10px;
+    }
+  
+    .cadastrar-button button {
+      color: var(--white-color);
+      background-color: transparent;
+      margin: 10px 0;
+      font-weight: 600;
+      gap: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .2s !important;
+      width: auto;
+      min-width: 150px;
+      padding: 10px; 
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: 1.5px solid var(--blue-color);
+      border-left-width: 3px;
+      border-right-width: 3px;
+    }
+  
+  .cadastrar-button button {
+    border-radius: 8px;
+    border: 1.5px solid var(--blue-color);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    padding: 5px 15px;
+    transition: .3s !important;
+  }
+  
+  .cadastrar-button button:hover {
+    border-radius: 20px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    transition: .3s !important;
+  }
+  
+  .cadastrar-button button:hover {
+    text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+    transition: .2s;
+  }
+  
+  .loginCliente-cadastrar-button {
+    padding-top: 10px;
+  }
+
+  .loginCliente-cadastrar-button button {
+    color: var(--white-color);
+    background-color: transparent;
+    margin: 10px 0;
+    font-weight: 600;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s !important;
+    width: auto;
+    min-width: 150px;
+    padding: 10px; 
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1.5px solid var(--blue-color);
+    border-left-width: 3px;
+    border-right-width: 3px;
+  }
+
+.loginCliente-cadastrar-button button {
+  border-radius: 8px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  padding: 5px 15px;
+  transition: .3s !important;
+}
+
+.loginCliente-cadastrar-button button:hover {
+  border-radius: 20px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  transition: .3s !important;
+}
+
+.loginCliente-cadastrar-button button:hover {
+  text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+  transition: .2s;
+}

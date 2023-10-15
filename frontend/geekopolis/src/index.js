@@ -21,6 +21,7 @@ import Produto from './pages/produto';
 import LandingPage from './pages/landingPage';
 import Header from './components/Header';
 import CadastroCliente from './pages/cadastroCliente';
+import LoginCliente from './pages/loginCliente';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -76,8 +77,8 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/principal" element={<LandingPage/>} />
+        <Route path="/" element={<LandingPage/>} />
+        <Route path="/LoginBackOffice" element={<Login/>} />
         <Route path="/produto/:id" element={<Produto/>} />
         <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
         <Route path="/listaUsuarios" element={<ProtectedRoute element={<ListaUsuarios />} />} />
@@ -85,6 +86,7 @@ root.render(
         <Route path="/cadastro" element={<ProtectedRoute element={<Cadastro/>} />} />
         <Route path="/ListaProdutos" element={<ProtectedRoute element={<ListaProdutos/>} />} />
         <Route path='/cadastroCliente' element={<CadastroCliente />} />
+        <Route path='/Login' element={<LoginCliente/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

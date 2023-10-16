@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+/* eslint-disable no-debugger */
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import './index.css';
-import Footer from '../../components/Footer';
+import makeToast from '../../shared/toaster';
 
 
 export default function EditarEndereco() {
@@ -17,6 +18,8 @@ export default function EditarEndereco() {
         estado: '',
       });
     
+      const [enderecos, setEnderecos] = useState([]);
+
       const handleChange = (e) => {
         const { name, value } = e.target;
         setEndereco((prevEndereco) => ({
@@ -29,6 +32,30 @@ export default function EditarEndereco() {
         e.preventDefault();
         console.log('Dados do endereço:', endereco);
       };
+
+      useEffect(() => {
+        debugger;
+        fetch(`http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem('token-cliente')}`, {
+            method: 'GET'
+          })
+            .then((response) => {
+              if (response.ok) {
+                return response.text();
+              }
+              makeToast('error', 'Erro ao logar, tente novamente');
+              return null;
+            })
+            .then((data) => {
+              if (data) {
+                setEnderecos(data);
+              } else {
+                makeToast('error', 'Nâo há endereços cadastrados');
+              }
+            })
+            .catch((err) => {
+              makeToast('error', err);
+            });
+      }, [])
       
   return (
     <>

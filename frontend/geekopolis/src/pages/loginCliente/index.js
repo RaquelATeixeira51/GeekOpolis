@@ -31,7 +31,7 @@ export default function loginCliente() {
       })
       .then((data) => {
         if (data) {
-          localStorage.setItem('token', data);
+          localStorage.setItem('token-cliente', data);
           setRedirect('/inicio');
         } else {
           makeToast('error', 'Erro ao logar, tente novamente');

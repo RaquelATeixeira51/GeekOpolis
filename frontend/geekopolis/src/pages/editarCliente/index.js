@@ -26,7 +26,7 @@ export default function Cliente() {
   const [redirect, setRedirect] = React.useState('');
 
   React.useEffect(() => {
-    fetch(`http://localhost:8080/cliente/buscaClienteByToken/token/${localStorage.getItem('token')}`, {
+    fetch(`http://localhost:8080/cliente/buscaClienteByToken/token/${localStorage.getItem('token-cliente')}`, {
       method: 'GET'
     })
       .then((response) => response.json())
@@ -74,7 +74,7 @@ export default function Cliente() {
       return;
     }
 
-    fetch(`http://localhost:8080/cliente/atualiza/token/${localStorage.getItem('token')}`, {
+    fetch(`http://localhost:8080/cliente/atualiza/token/${localStorage.getItem('token-cliente')}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

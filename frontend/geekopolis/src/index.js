@@ -12,17 +12,18 @@ import './assets/css/reset.css';
 import './assets/css/root.css';
 import './assets/css/styles.css';
 import Login from './pages/login';
-import ListaUsuarios from './pages/listaUsuarios';
+import ListaUsuarios from './pages/ListaUsuarios';
 import CadastroProduto from './pages/cadastroProduto';
 import Cadastro from './pages/cadastro';
 import ListaProdutos from './pages/ListaProdutos';
-import Inicio from './pages/inicio';
+import Inicio from './pages/Inicio';
 import Produto from './pages/produto';
 import LandingPage from './pages/landingPage';
-import Header from './components/Header';
 import CadastroCliente from './pages/cadastroCliente';
 import LoginCliente from './pages/loginCliente';
 import Cliente from './pages/editarCliente';
+import EditarEndereco from './pages/editarEndereco';
+
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -79,6 +80,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage/>} />
+        <Route path="/editarEndereco" element={<EditarEndereco/>} />
         <Route path="/LoginBackOffice" element={<Login/>} />
         <Route path="/produto/:id" element={<Produto/>} />
         <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />

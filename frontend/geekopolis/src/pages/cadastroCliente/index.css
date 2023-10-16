@@ -1,5 +1,4 @@
 .cadastroCliente-tudo{
-    background-color: #244F6B;
     width: 100%;
     padding-top: 10%;
     display: flex;
@@ -11,7 +10,7 @@
 .quadrado-centralizado {
     min-width: 200px; 
     padding: 20px; 
-    background-color: #44B0C1;
+    background-color: var(--dark-blue-color); 
     border-radius: 10px; 
     text-align: center;
     position: relative;
@@ -166,10 +165,10 @@
 
 
 .endereco-card input[type="radio"]:checked + label:before {
-    background-color: #244F6B;
+    background-color: cyan;
 }
 
 .endereco-card-selected {
-    border: 2px solid #244F6B;
-    color: #244F6B;
+    border: 2px solid cyan;
+    color: cyan;
   }

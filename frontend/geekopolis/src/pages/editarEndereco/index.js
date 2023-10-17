@@ -43,7 +43,7 @@ export default function EditarEndereco() {
         if (response.ok) {
           return response.json();
         }
-        makeToast('error', 'Erro ao logar, tente novamente');
+        makeToast('error', 'Nâo há endereços cadastrados');
         return null;
       })
       .then((data) => {

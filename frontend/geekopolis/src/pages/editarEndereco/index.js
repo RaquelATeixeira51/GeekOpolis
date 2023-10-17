@@ -75,7 +75,7 @@ export default function EditarEndereco() {
                   onClick={() => setSelectedAddress(address)}
                   key={index}
                 >
-                  <p>Endereço {index + 1}</p>
+                  <p>{address.logradouro}</p>
                 </button>
               ))}
             </div>

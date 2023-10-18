@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-debugger */
 import React, { useState, useEffect } from 'react';
@@ -9,13 +10,15 @@ import makeToast from '../../shared/toaster';
 export default function EditarEndereco() {
 
   const [endereco, setEndereco] = useState({
-    cep: '',
-    rua: '',
+    logradouro: '',
     numero: '',
-    complemento: '',
     bairro: '',
+    complemento: '',
     cidade: '',
-    estado: '',
+    uf: '',
+    enderecoFaturamento: false,
+    cep: '',
+    principal: false,
   });
 
   const [enderecos, setEnderecos] = useState([]);
@@ -30,8 +33,48 @@ export default function EditarEndereco() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Dados do endereço:', endereco);
+    fetch(`http://localhost:8080/endereco/adicionaEndereco/token/${localStorage.getItem('token-cliente')}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(endereco),
+  })
+      .then((response) => response.json())
+      .then((response) => {
+          if (response.ok) {
+              makeToast('success', "Endereço cadastrado!");
+              setEndereco(null);
+              return response.text();
+          }
+          makeToast('error', response.message);
+          return null;
+      })
+      .catch((error) => {
+          console.log(error.message);
+      });
+  };
+
+  const handleCEP = (e) => {
+    const newCEP = e.target.value;
+
+    fetch(`https://viacep.com.br/ws/${newCEP}/json/`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.erro) {
+          console.error('CEP não encontrado');
+        } else {
+          setEndereco({
+            logradouro: data.logradouro,
+            bairro: data.bairro,
+            complemento: data.complemento,
+            cidade: data.localidade,
+            uf: data.uf,
+            cep: newCEP
+          })
+        }
+      })
+      .catch((error) => {
+        makeToast('error', 'Cep inválido!');
+      });
   };
 
   useEffect(() => {
@@ -65,7 +108,7 @@ export default function EditarEndereco() {
         <div className='fundo-endereco'>
           <div className='tabela-endereco'>
             <div className='botoes-endereco'>
-              <button type='button' className='botao-endereco'>
+              <button type='button' className='botao-endereco' onClick={() => setSelectedAddress(null)}>
                 <p>cadastrar</p>
               </button>
               {enderecos.map((address, index) => (
@@ -97,6 +140,7 @@ export default function EditarEndereco() {
                     name="cep"
                     value={endereco.cep}
                     onChange={handleChange}
+                    onBlur={handleCEP}
                     required
                     className='input-endereco'
                   />
@@ -106,7 +150,7 @@ export default function EditarEndereco() {
                     type="text"
                     id="rua"
                     name="rua"
-                    value={endereco.rua}
+                    value={endereco.logradouro}
                     onChange={handleChange}
                     required
                     className='input-endereco'
@@ -164,12 +208,12 @@ export default function EditarEndereco() {
                     type="text"
                     id="estado"
                     name="estado"
-                    value={endereco.estado}
+                    value={endereco.uf}
                     onChange={handleChange}
                     required
                     className='input-endereco'
                   />
-                  <button type="submit" className="botao-adicionar" id='botao-endereco'>Cadastrar</button>
+                  <button type="submit" className="botao-adicionar" id='botao-endereco' onClick={handleSubmit}>Cadastrar</button>
                 </form>
               </>
             )}

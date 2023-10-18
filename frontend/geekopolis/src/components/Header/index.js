@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import * as React from 'react';
 import './index.css';
 import { Link } from 'react-router-dom';
@@ -9,8 +10,15 @@ import Caneca from '../../assets/img/icons/caneca.png';
 import Carrinho from '../../assets/img/icons/carrinho.png';
 import Sair from '../../assets/img/icons/sair.png';
 import LoginIcon from '../../assets/img/icons/login-icon.png';
+import LogoutIcon from '../../assets/img/icons/logout-icon.png';
 
-const hasToken = localStorage.getItem('tokenClient');
+debugger;
+const hasToken = localStorage.getItem('token-cliente');
+
+const handleLogout = () => {
+  localStorage.removeItem('token-cliente');
+  window.location.href = '/';
+};
 
 function Header() {
   return (
@@ -41,19 +49,22 @@ function Header() {
           <img className="Carrinho" src={Carrinho} alt="Carrinho" />
         </Link>
         {hasToken ? (
-          <Link to="/">
-            <div className="login-content">
-              <img className="sairImg" src={Sair} alt="Sair" />
-              <p className="Sair">Sair</p>
-            </div>
-          </Link>
+          <div className="geekopolis-aside-footer border-0 ">
+          <button type="button" onClick={handleLogout}>
+            <img
+              src={LogoutIcon}
+              alt="GeekOpolis Logout Icon"
+              className="large"
+            />
+          </button>
+        </div>
         ) : (
-          <Link to="/Login">
-            <div className="login-content">
-              <img className="loginImg" src={LoginIcon} alt="Login" />
-              <p className="Sair">Login</p>
-            </div>
-          </Link>
+          <Link to="/loginCliente">
+          <div className="login-content">
+            <img className="sairImg" src={LoginIcon} alt="Sair" />
+            <p className="Sair">Login</p>
+          </div>
+        </Link>
         )}
       </div>
     </div>

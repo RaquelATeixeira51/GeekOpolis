@@ -74,13 +74,62 @@ function ProtectedRoute({ element }) {
   return tokenValid ? element : <Navigate to="/" />;
 }
 
+function ProtectedRouteCliente({ element }) {
+  const navigate = useNavigate();
+  const [tokenValid, setTokenValid] = useState(true);
+
+  const checkTokenValidity = async () => {
+    const token = localStorage.getItem('token-cliente');
+    if (!token) {
+      setTokenValid(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/token/valid?token=${localStorage.getItem(
+          'token-cliente'
+        )}`
+      );
+      const isValid = await response.json();
+
+      if (!isValid) {
+        localStorage.removeItem('token-cliente');
+        setTokenValid(false);
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Erro ao verificar a validade do token', error);
+    }
+  };
+
+  useEffect(() => {
+    const tokenCheckInterval = setInterval(checkTokenValidity, 60 * 1000);
+
+    checkTokenValidity();
+
+    return () => {
+      clearInterval(tokenCheckInterval);
+    };
+  }, [navigate]);
+
+  useEffect(() => {
+    if (!tokenValid) {
+      localStorage.removeItem('token-cliente');
+      navigate('/');
+    }
+  }, [tokenValid, navigate]);
+
+  return tokenValid ? element : <Navigate to="/" />;
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage/>} />
-        <Route path="/editarEndereco" element={<EditarEndereco/>} />
+        <Route path="/editarEndereco" element={<ProtectedRouteCliente element={<EditarEndereco/>} />} />
         <Route path="/LoginBackOffice" element={<Login/>} />
         <Route path="/produto/:id" element={<Produto/>} />
         <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
@@ -89,7 +138,7 @@ root.render(
         <Route path="/cadastro" element={<ProtectedRoute element={<Cadastro/>} />} />
         <Route path="/ListaProdutos" element={<ProtectedRoute element={<ListaProdutos/>} />} />
         <Route path='/cadastroCliente' element={<CadastroCliente />} />
-        <Route path='/cliente' element={<Cliente />} />
+        <Route path='/cliente' element={<ProtectedRouteCliente element={<Cliente />} />} />
         <Route path='/loginCliente' element={<LoginCliente/>}/>
       </Routes>
     </BrowserRouter>

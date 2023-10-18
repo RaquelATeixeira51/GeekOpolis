@@ -12,7 +12,6 @@ import Sair from '../../assets/img/icons/sair.png';
 import LoginIcon from '../../assets/img/icons/login-icon.png';
 import LogoutIcon from '../../assets/img/icons/logout-icon.png';
 
-debugger;
 const hasToken = localStorage.getItem('token-cliente');
 
 const handleLogout = () => {

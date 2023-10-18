@@ -10,10 +10,10 @@ import org.springframework.data.repository.query.Param;
 import com.senac.geekOpolis.models.Endereco;
 
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
-    @Query("SELECT e FROM Endereco e WHERE e.cliente.id = :clienteId AND e.enderecoFaturamento = false")
+    @Query("SELECT e FROM Endereco e WHERE e.cliente.id = :clienteId AND e.enderecoFaturamento = false AND e.ativo = true")
     List<Endereco> findAllByClienteId(@Param("clienteId") Long clienteId);
 
-    @Query("SELECT e FROM Endereco e WHERE e.id = :enderecoId AND e.cliente.id = :clienteId AND e.enderecoFaturamento = false")
+    @Query("SELECT e FROM Endereco e WHERE e.id = :enderecoId AND e.cliente.id = :clienteId AND e.enderecoFaturamento = false AND e.ativo = true")
     Optional<Endereco> findEnderecoByEnderecoIdAndClienteId(
         @Param("enderecoId") Long enderecoId, 
         @Param("clienteId") Long clienteId

@@ -57,4 +57,7 @@ public class Endereco {
 
     @Column
     private boolean enderecoFaturamento;
+
+    @Column
+    private boolean ativo;
 }

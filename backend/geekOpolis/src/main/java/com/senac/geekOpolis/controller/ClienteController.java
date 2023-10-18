@@ -103,4 +103,9 @@ public class ClienteController {
     public void atualizaPrincipal(@PathVariable Long idEndereco, @PathVariable String token){
         clienteService.atualizaPrincipal(token, idEndereco);
     }
+
+    @PutMapping("endereco/inativarEndereco/idEndereco/{idEndereco}/token/{token}")
+    public void inativarEndereco(@PathVariable Long idEndereco, @PathVariable String token) {
+        clienteService.inativarEndereco(idEndereco, token);
+    }
 }

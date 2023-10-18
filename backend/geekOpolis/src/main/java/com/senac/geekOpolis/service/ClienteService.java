@@ -288,4 +288,16 @@ public class ClienteService {
             enderecoRepository.save(endereco);
         }
     }
+
+    public void inativarEndereco(Long enderecoId, String token) {
+        List<Endereco> enderecos = buscaEnderecosPorCliente(token);
+
+        for (Endereco endereco : enderecos) {
+            if(endereco.getId() == enderecoId) {
+                endereco.setAtivo(false);;
+            }
+            
+            enderecoRepository.save(endereco);
+        }
+    }
 }

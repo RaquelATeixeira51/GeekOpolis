@@ -48,6 +48,7 @@ export default function CadastroCliente() {
         enderecoFaturamento: false,
         cep: '',
         principal: false,
+        ativo: true,
     });
 
     const enderecoFaturamento = {
@@ -60,6 +61,7 @@ export default function CadastroCliente() {
         enderecoFaturamento: true,
         cep: cepFaturamento,
         principal: false,
+        ativo: true,
     }
 
     const abreModal = () => {
@@ -84,6 +86,7 @@ export default function CadastroCliente() {
                 enderecoFaturamento: false,
                 cep: newAddress.cep,
                 principal: true,
+                ativo: true
             }
             setEnderecosEntrega([...enderecosEntrega, newAddressPrincipal]);
         } else {
@@ -99,6 +102,7 @@ export default function CadastroCliente() {
             uf: '',
             cep: '',
             enderecoFaturamento: false,
+            ativo: true
         });
 
         fechaModal();
@@ -200,7 +204,8 @@ export default function CadastroCliente() {
             uf: enderecoEntrega.uf,
             cep: enderecoEntrega.cep,
             enderecoFaturamento: false,
-            principal: enderecoEntrega.principal
+            principal: enderecoEntrega.principal,
+            ativo: true
         }));
 
         const updatedEnderecosComEntrega = [...updatedEnderecos, ...enderecosEntregaData];
@@ -251,7 +256,8 @@ export default function CadastroCliente() {
             uf: estadoFatuamento,
             enderecoFaturamento: false,
             cep: cepFaturamento,
-            principal: true
+            principal: true,
+            ativo: true
         };
         setEnderecosEntrega([...enderecosEntrega, novoEnderecoEntrega]);
     };

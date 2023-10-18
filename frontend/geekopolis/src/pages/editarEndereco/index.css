@@ -24,6 +24,7 @@
     height: 100%;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    overflow-x: auto;
 }
 
 .botoes-endereco{
@@ -120,3 +121,49 @@
     background-color: var(--dark-blue-color);
 }
 
+
+.botao-endereco {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+  }
+  
+  .botoes-label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .botao-endereco input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .botao-endereco label {
+    opacity: 0.5;
+  }
+
+  .lixeira-icon {
+    width: 20px; 
+    height: 20px;
+    cursor: pointer; 
+    position: absolute;
+    bottom: 5px;
+    left: 5px; 
+  }
+
+  .onClickImg {
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  .botao-endereco {
+    display: flex; 
+    align-items: center;
+  }
+  

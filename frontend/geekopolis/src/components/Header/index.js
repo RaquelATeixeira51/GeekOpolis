@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import * as React from 'react';
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Link,Navigate } from 'react-router-dom';
 import Logo from '../../assets/img/logo/GeekOpolisLogo.png';
 import Casa from '../../assets/img/icons/casinha.png';
 import Bone from '../../assets/img/icons/bone.png';
@@ -11,8 +11,8 @@ import Carrinho from '../../assets/img/icons/carrinho.png';
 import Sair from '../../assets/img/icons/sair.png';
 import LoginIcon from '../../assets/img/icons/login-icon.png';
 import LogoutIcon from '../../assets/img/icons/logout-icon.png';
+import makeToast from '../../shared/toaster';
 
-const hasToken = localStorage.getItem('token-cliente');
 
 const handleLogout = () => {
   const shouldLogout = window.confirm('Deseja mesmo deslogar?');
@@ -23,14 +23,41 @@ const handleLogout = () => {
   }
 };
 
+
 function Header() {
+  
+  const [redirect, setRedirect] = React.useState('');
+  const [isLogged, setIsLogged] = React.useState(false);
+  const hasToken = localStorage.getItem('token-cliente');
+
+  React.useEffect(() => {
+    fetch(`http://localhost:8080/cliente/buscaClienteByToken/token/${localStorage.getItem('token-cliente')}`, {
+      method: 'GET'
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if(response.status === 500){
+          setIsLogged(false);
+        }
+        else{
+          setIsLogged(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setRedirect('/');
+      });
+  },[])
+
+  if (redirect !== '') return <Navigate to={redirect} />;
+
   return (
     <div className="header">
-      <Link to="/principal">
+      <Link to={isLogged?"/Principal":"/"}>
         <img className="logo" src={Logo} alt="Logo" />
       </Link>
       <div className="categorias">
-        <Link to="/principal">
+        <Link to="/">
           <img className="casaImg" src={Casa} alt="Home" />
           <p className="Home">Inicio</p>
         </Link>

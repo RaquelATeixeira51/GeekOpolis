@@ -32,7 +32,7 @@ export default function loginCliente() {
       .then((data) => {
         if (data) {
           localStorage.setItem('token-cliente', data);
-          setRedirect('/inicio');
+          setRedirect('/Principal');
         } else {
           makeToast('error', 'Erro ao logar, tente novamente');
         }

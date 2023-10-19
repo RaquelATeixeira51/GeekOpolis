@@ -23,7 +23,7 @@ import CadastroCliente from './pages/cadastroCliente';
 import LoginCliente from './pages/loginCliente';
 import Cliente from './pages/editarCliente';
 import EditarEndereco from './pages/editarEndereco';
-
+import InicioCliente from './pages/InicioCliente';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -140,6 +140,7 @@ root.render(
         <Route path='/cadastroCliente' element={<CadastroCliente />} />
         <Route path='/cliente' element={<ProtectedRouteCliente element={<Cliente />} />} />
         <Route path='/loginCliente' element={<LoginCliente/>}/>
+        <Route path='/principal' element={<InicioCliente/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

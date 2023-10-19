@@ -10,6 +10,7 @@ import makeToast from '../../shared/toaster';
 import lixeiraIcon from '../../assets/img/icons/lixeira-de-reciclagem.png';
 
 
+
 export default function EditarEndereco() {
 
   const [enderecos, setEnderecos] = useState([]);
@@ -160,7 +161,7 @@ export default function EditarEndereco() {
   return (
     <>
       <Header />
-      <div className='tudo-endereco'>
+        <div className='tudo-endereco'>
         <div className='fundo-endereco'>
           <div className='tabela-endereco'>
             <div className='botoes-endereco'>

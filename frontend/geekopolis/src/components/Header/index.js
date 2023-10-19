@@ -15,8 +15,12 @@ import LogoutIcon from '../../assets/img/icons/logout-icon.png';
 const hasToken = localStorage.getItem('token-cliente');
 
 const handleLogout = () => {
-  localStorage.removeItem('token-cliente');
-  window.location.href = '/';
+  const shouldLogout = window.confirm('Deseja mesmo deslogar?');
+
+  if (shouldLogout) {
+    localStorage.removeItem('token-cliente');
+    window.location.href = '/';
+  }
 };
 
 function Header() {

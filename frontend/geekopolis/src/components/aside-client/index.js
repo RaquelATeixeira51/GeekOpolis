@@ -3,18 +3,19 @@
 /* eslint-disable react/no-unknown-property */
 import * as React from 'react';
 import './index.css';
-import { Link,Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import LogoutIcon from '../../assets/img/icons/logout-icon.png';
 import UsersIcon from '../../assets/img/icons/users-icon.png';
 import ProductsIcon from '../../assets/img/icons/products-icon.png';
 import ArrowIcon from '../../assets/img/icons/arrow-icon.png';
 import makeToast from '../../shared/toaster';
+import Pedidos from '../../assets/img/icons/pedidos.png';
 
 
 
 export default function Aside() {
   const [asideOpen, setAsideOpen] = React.useState(false);
-  
+
 
   const handleOpenAside = () => {
     setAsideOpen(!asideOpen);
@@ -22,8 +23,8 @@ export default function Aside() {
     if (asideOpen) aside.style.width = '60px';
     else if (!asideOpen) aside.style.width = '200px';
   };
-  
-  
+
+
 
   return (
     <>
@@ -43,7 +44,7 @@ export default function Aside() {
         </div>
         {asideOpen ? (
           <>
-           
+
 
             <div className="geekopolis-aside-links">
               <Link to="/cliente">
@@ -66,6 +67,16 @@ export default function Aside() {
                   Editar Endereços
                 </p>
               </Link>
+              <Link to="/pedidos">
+                <img
+                  src={Pedidos}
+                  alt="Editar endereço"
+                  className="large"
+                />
+                <p>
+                  Pedidos
+                </p>
+              </Link>
             </div>
 
             {/* <div className="geekopolis-aside-footer">
@@ -82,7 +93,7 @@ export default function Aside() {
           </>
         ) : (
           <>
-            
+
             <div className="geekopolis-aside-links">
               <img
                 src={UsersIcon}
@@ -91,6 +102,11 @@ export default function Aside() {
               />
               <img
                 src={ProductsIcon}
+                alt="GeekOpolis Products Icon"
+                className="large"
+              />
+              <img
+                src={Pedidos}
                 alt="GeekOpolis Products Icon"
                 className="large"
               />

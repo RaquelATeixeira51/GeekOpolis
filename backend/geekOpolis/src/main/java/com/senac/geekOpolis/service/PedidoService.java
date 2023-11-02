@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.stereotype.Service;
 
 import com.senac.geekOpolis.models.Cliente;
@@ -16,7 +15,6 @@ import com.senac.geekOpolis.models.PedidoDto;
 import com.senac.geekOpolis.models.ProdutoPedidoDto;
 import com.senac.geekOpolis.models.ProdutoPedidoQtDto;
 import com.senac.geekOpolis.models.StatusPedido;
-import com.senac.geekOpolis.repository.ItemPedidoRepository;
 import com.senac.geekOpolis.repository.PedidoRepository;
 
 import lombok.AllArgsConstructor;
@@ -27,51 +25,53 @@ public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
     private final ClienteService clienteService;
-    private final ItemPedidoRepository itemPedidoRepository;
 
     public String incluiPedido(String token, PedidoDto pedidoDto) {
-        Cliente cliente = clienteService.verificarUsuarioPorToken(token);
-
-        Pedido pedido = new Pedido();
-
-        String codigoPedido = geraCodigoPedido();
-        pedido.setCodigoPedido(codigoPedido);
-        pedido.setCliente(cliente);
-        List<ItemPedido> itens = new ArrayList<>();
-        for (ProdutoPedidoQtDto produtoQtDto : pedidoDto.getProdutos()) {
-            ProdutoPedidoDto produtoDto = produtoQtDto.getProduto();
-            
-            ItemPedido itemPedido = new ItemPedido();
-            itemPedido.setPedido(pedido);
-            itemPedido.setProduto(produtoDto);
-            itemPedido.setQuantidade(produtoQtDto.getQuantidade());
-            
-
-            itens.add(itemPedido);
+        try {
+            Cliente cliente = clienteService.verificarUsuarioPorToken(token);
+    
+            Pedido pedido = new Pedido();
+    
+            String codigoPedido = geraCodigoPedido();
+            pedido.setCodigoPedido(codigoPedido);
+            pedido.setCliente(cliente);
+            List<ItemPedido> itens = new ArrayList<>();
+            for (ProdutoPedidoQtDto produtoQtDto : pedidoDto.getProdutos()) {
+                ProdutoPedidoDto produtoDto = produtoQtDto.getProduto();
+                
+                ItemPedido itemPedido = new ItemPedido();
+                itemPedido.setPedido(pedido);
+                itemPedido.setProduto(produtoDto);
+                itemPedido.setQuantidade(produtoQtDto.getQuantidade());
+                
+                itens.add(itemPedido);
+            }
+    
+            pedido.setProdutos(itens);
+            Endereco endereco = clienteService.buscaEnderecoPorClienteEId(token, pedidoDto.getEnderecoId());
+    
+            pedido.setEnderecoDeEntrega(endereco);
+            pedido.setMetodoDePagamento(pedidoDto.getMetodoDePagamento());
+            pedido.setStatus(StatusPedido.AGUARDANDOPAGAMENTO);
+            Frete frete = new Frete();
+            frete.setPedido(pedido);
+            frete.setTipo(pedidoDto.getFrete().getTipo());
+            frete.setValor(pedidoDto.getFrete().getValor());
+            pedido.setFrete(frete);
+            pedido.setTotal(pedidoDto.getTotal());
+    
+            pedidoRepository.save(pedido);
+    
+            return codigoPedido;
+        } catch (Exception e) {
+            return null;
         }
-
-        pedido.setProdutos(itens);
-        Endereco endereco = clienteService.buscaEnderecoPorClienteEId(token, pedidoDto.getEnderecoId());
-
-        pedido.setEnderecoDeEntrega(endereco);
-        pedido.setMetodoDePagamento(pedidoDto.getMetodoDePagamento());
-        pedido.setStatus(StatusPedido.AGUARDANDOPAGAMENTO);
-        Frete frete = new Frete();
-        frete.setPedido(pedido);
-        frete.setTipo(pedidoDto.getFrete().getTipo());
-        frete.setValor(pedidoDto.getFrete().getValor());
-        pedido.setFrete(frete);
-        pedido.setTotal(pedidoDto.getTotal());
-
-        pedidoRepository.save(pedido);
-
-        return codigoPedido;
     }
 
     private String geraCodigoPedido(){
-        String caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        String caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        int lenght = 5;
+        int lenght = 10;
 
             StringBuilder randomString = new StringBuilder();
             Random random = new Random();

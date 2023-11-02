@@ -14,11 +14,13 @@ import Carrinho from '../../assets/img/produtos/carrinho.png';
 import QuantidadeSelector from '../../components/seletorQuantidade';
 import cartUtils from '../../methods';
 
+
 export default function Produto() {
   const { id } = useParams();
   const [redirect, setRedirect] = React.useState('');
   const [product, setProduct] = React.useState({});
   const [quantidade, setQuantidade] = React.useState(1);
+  
 
   const produtoCarrinho = {
     produto: {
@@ -42,6 +44,8 @@ export default function Produto() {
 
   const adicionarAoCarrinho = () => {
     cartUtils.adicionaProdutoAoCarrinho(produtoCarrinho);
+    setQuantidade(1);
+    makeToast('success', `Produto ${product.nome} foi adicionado ao carrinho`);
   }
 
   React.useEffect(() => {

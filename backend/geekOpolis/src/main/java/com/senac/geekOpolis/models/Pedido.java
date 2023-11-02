@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,47 +25,36 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "endereco")
-public class Endereco {
+@Table(name = "pedido")
+public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @Column
+    private String codigoPedido;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> produtos;
+
+    @ManyToOne
+    @JoinColumn(name = "endereco_id")
+    private Endereco enderecoDeEntrega;
+
+    @Column
+    private MetodoDePagamento metodoDePagamento;
+
+    @Column
+    private StatusPedido status;
+
+    @Column
+    private double total;
+
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Frete frete;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     @JsonIgnore
     private Cliente cliente;
-
-    @Column
-    private boolean principal;
-
-    @Column
-    private String cep;
-    
-    @Column
-    private String logradouro;
-    
-    @Column
-    private String numero;
-    
-    @Column
-    private String complemento;
-    
-    @Column
-    private String bairro;
-    
-    @Column
-    private String cidade;
-    
-    @Column
-    private String uf;
-
-    @Column
-    private boolean enderecoFaturamento;
-
-    @Column
-    private boolean ativo;
-
-    @OneToMany(mappedBy = "enderecoDeEntrega")
-    private List<Pedido> pedidos;
 }

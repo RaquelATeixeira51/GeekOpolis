@@ -12,6 +12,7 @@ import com.senac.geekOpolis.models.Frete;
 import com.senac.geekOpolis.models.ItemPedido;
 import com.senac.geekOpolis.models.Pedido;
 import com.senac.geekOpolis.models.PedidoDto;
+import com.senac.geekOpolis.models.PedidoRetorno;
 import com.senac.geekOpolis.models.ProdutoPedidoDto;
 import com.senac.geekOpolis.models.ProdutoPedidoQtDto;
 import com.senac.geekOpolis.models.StatusPedido;
@@ -83,5 +84,25 @@ public class PedidoService {
             }
 
             return randomString.toString();
+    }
+
+    public List<PedidoRetorno> getPedidosByClienteId(String token) {
+        Cliente cliente = clienteService.verificarUsuarioPorToken(token);
+        List<Pedido> pedidos = pedidoRepository.findByClienteId(cliente.getId());
+
+        List<PedidoRetorno> retorno = new ArrayList<>();
+
+        for (Pedido pedido : pedidos) {
+            PedidoRetorno pRetorno = new PedidoRetorno();
+
+            pRetorno.setDataDoPedido(pedido.getCreatedDate());
+            pRetorno.setPedidoCode(pedido.getCodigoPedido());
+            pRetorno.setStatus(pedido.getStatus());
+            pRetorno.setTotal(pedido.getTotal());
+
+            retorno.add(pRetorno);
         }
+
+        return retorno;
+    }
 }

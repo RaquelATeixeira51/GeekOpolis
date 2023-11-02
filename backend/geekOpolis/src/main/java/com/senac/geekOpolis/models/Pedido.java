@@ -1,5 +1,7 @@
 package com.senac.geekOpolis.models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -57,4 +59,7 @@ public class Pedido {
     @JoinColumn(name = "cliente_id")
     @JsonIgnore
     private Cliente cliente;
+
+    @Column
+    private String createdDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 }

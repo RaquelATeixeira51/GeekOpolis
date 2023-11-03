@@ -14,39 +14,37 @@ import Carrinho from '../../assets/img/produtos/carrinho.png';
 import QuantidadeSelector from '../../components/seletorQuantidade';
 import cartUtils from '../../methods';
 
-
 export default function Produto() {
   const { id } = useParams();
   const [redirect, setRedirect] = React.useState('');
   const [product, setProduct] = React.useState({});
   const [quantidade, setQuantidade] = React.useState(1);
-  
 
   const produtoCarrinho = {
     produto: {
       nome: product.nome,
       preco: product.preco,
-      img: product.imagesPath.length > 0 ? product.imagesPath[0] : '',
-      id: product.id
+      img: product.imagesPath /* .length > 0 */ ? product.imagesPath[0] : '',
+      id: product.id,
     },
-    quantidade: quantidade
-  }
+    quantidade: quantidade,
+  };
 
   const diminui = () => {
     if (quantidade > 1) {
       setQuantidade(quantidade - 1);
     }
-  }
+  };
 
   const aumenta = () => {
     setQuantidade(quantidade + 1);
-  }
+  };
 
   const adicionarAoCarrinho = () => {
     cartUtils.adicionaProdutoAoCarrinho(produtoCarrinho);
     setQuantidade(1);
     makeToast('success', `Produto ${product.nome} foi adicionado ao carrinho`);
-  }
+  };
 
   React.useEffect(() => {
     fetch(`http://localhost:8080/produto/listaProduto/${id}`, {
@@ -106,17 +104,21 @@ export default function Produto() {
             <h2>DESCRIÇÃO DO PRODUTO</h2>
             <p>{product.descricao}</p>
           </div>
-          <div className="adicionar-ao" id='adicionar-posição'>
+          <div className="adicionar-ao" id="adicionar-posição">
             <div className="box" onClick={adicionarAoCarrinho}>
               <div className="overlap-2">
                 <div className="rectangle" />
                 <div className="adicionar-ao-2">Adicionar ao Carrinho</div>
-                <img className="carrinho-carrinho" alt="Carrinho carrinho" src={Carrinho} />
+                <img
+                  className="carrinho-carrinho"
+                  alt="Carrinho carrinho"
+                  src={Carrinho}
+                />
                 <div className="rectangle-2" />
               </div>
             </div>
           </div>
-          <div className='seletor-quantidade-produto'>
+          <div className="seletor-quantidade-produto">
             <QuantidadeSelector
               quantidade={quantidade}
               onDecrement={diminui}

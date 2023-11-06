@@ -52,6 +52,25 @@ const cartUtils = {
       localStorage.setItem('carrinho', JSON.stringify(cart));
     }
   },
+  deletarProdutoDoCarrinho: (produto) => {
+    const cart =
+      JSON.parse(localStorage.getItem('carrinho')) ||
+      cartUtils.initializeCart();
+    const { produtos } = cart;
+
+    const produtoExiste = produtos.find(
+      (item) => item.produto.id === produto.produto.id
+    );
+
+    if (produtoExiste) {
+      const index = produtos.indexOf(produtoExiste);
+      if (index !== -1) {
+        produtos.splice(index, 1);
+      }
+
+      localStorage.setItem('carrinho', JSON.stringify(cart));
+    }
+  },
   adicionarFrete: (frete) => {
     const cart =
       JSON.parse(localStorage.getItem('carrinho')) ||

@@ -42,6 +42,13 @@ export default function Carrinho() {
     });
     window.location.reload();
   };
+  const deleteProduct = (product) => {
+    cartUtils.deletarProdutoDoCarrinho({
+      produto: product.produto,
+      quantidade: 1,
+    });
+    window.location.reload();
+  };
 
   const checkout = () => {
     cartUtils.adicionaProdutoAoCarrinho(produto);
@@ -63,9 +70,16 @@ export default function Carrinho() {
   };
 
   React.useEffect(() => {
-    const cart =
-      JSON.parse(localStorage.getItem('carrinho')) ||
-      cartUtils.initializeCart();
+    let cart = localStorage.getItem('carrinho');
+
+    if (cart) {
+      cart = JSON.parse(cart);
+    } else {
+      cart = cartUtils.initializeCart();
+      window.location.reload();
+      return;
+    }
+
     cartUtils.calcularEAtualizarTotal();
     setCarrinho(cart);
     setTotal(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
@@ -128,17 +142,28 @@ export default function Carrinho() {
                     </div>
                   </Link>
                   <div className="cart-item-actions">
-                    <h3>Quantidade:</h3>
-                    <button
-                      type="button"
-                      onClick={() => removeProduct(product)}
-                    >
-                      -
-                    </button>
-                    <h3>{product.quantidade}</h3>
-                    <button type="button" onClick={() => addProduct(product)}>
-                      +
-                    </button>
+                    <div className="cart-item-actions-row">
+                      <h3>Quantidade:</h3>
+                      <button
+                        type="button"
+                        onClick={() => removeProduct(product)}
+                      >
+                        -
+                      </button>
+                      <h3>{product.quantidade}</h3>
+                      <button type="button" onClick={() => addProduct(product)}>
+                        +
+                      </button>
+                    </div>
+                    <div className="cart-item-actions-row">
+                      <button
+                        type="button"
+                        className="cart-item-actions-delete"
+                        onClick={() => deleteProduct(product)}
+                      >
+                        Remover do carrinho
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}

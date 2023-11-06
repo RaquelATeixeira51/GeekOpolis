@@ -63,7 +63,7 @@ public class UsuarioService {
     // gera um token de duraçao de 10 minutos para o usuario caso o login de certo
     public String gerarToken(UsuarioLoginDto usuarioLoginDto) {
         long agora = System.currentTimeMillis();
-        long expiracao = agora + TimeUnit.MINUTES.toMillis(10);
+        long expiracao = agora + TimeUnit.DAYS.toMillis(10);
 
         Usuario usuario = usuarioRepository.findByEmail(usuarioLoginDto.getEmail());
 

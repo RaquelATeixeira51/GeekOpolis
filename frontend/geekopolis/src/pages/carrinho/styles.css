@@ -58,9 +58,10 @@
 
 .cart-item-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-top: 20px;
   color: var(--white-color);
+  flex-direction: column;
 }
 
 .cart-item-actions button {
@@ -102,4 +103,14 @@
   font-weight: bold;
   margin-top: 20px;
   color: var(--white-color);
+}
+
+.cart-item-actions-row {
+  display: flex;
+}
+
+.cart-item-actions-delete {
+  width: fit-content !important;
+  margin: 10px auto !important;
+  padding: 10px 5px;
 }

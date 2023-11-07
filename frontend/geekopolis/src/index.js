@@ -25,6 +25,7 @@ import Cliente from './pages/editarCliente';
 import EditarEndereco from './pages/editarEndereco';
 import InicioCliente from './pages/InicioCliente';
 import Carrinho from './pages/carrinho';
+import Checkout from './pages/conferencia';
 import Pedidos from './pages/pedidos';
 
 function ProtectedRoute({ element }) {
@@ -144,6 +145,7 @@ root.render(
         <Route path='/loginCliente' element={<LoginCliente/>}/>
         <Route path='/principal' element={<InicioCliente/>}/>
         <Route path='/carrinho' element={<Carrinho />} />
+        <Route path='/checkout' element={<Checkout />} />
         <Route path='/pedidos' element={<ProtectedRouteCliente element={<Pedidos />} />} />
       </Routes>
     </BrowserRouter>

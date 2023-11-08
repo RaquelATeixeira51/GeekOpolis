@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/no-unknown-property */
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import cartUtils from '../../methods';
@@ -13,7 +15,7 @@ export default function Carrinho() {
   const [endereco, setEndereco] = React.useState({});
   const [total, setTotal] = React.useState(0.0);
 
-  const produto = {
+  const produtos = {
     produto: {
       nome: 'short do naruto',
       preco: 67.8,
@@ -22,7 +24,6 @@ export default function Carrinho() {
     },
     quantidade: 5,
   };
-
   const frete = {
     tipo: 0,
     valor: 12.6,
@@ -114,8 +115,8 @@ export default function Carrinho() {
                   >
                     <div className="cart-item-image">
                       <img
-                        src={product.produto.img}
-                        alt={product.produto.nome}
+                        src={produtos.produto.img}
+                        alt={produtos.produto.nome}
                       />
                     </div>
                     <div className="cart-item-info">
@@ -185,12 +186,58 @@ export default function Carrinho() {
                 </div>
             </div>
             <div className='cart-baixo'>
-                <p>a</p>
+              <select name="Options" id="Pagamento">
+                <option value="Cred">Cartão de Crédito</option>
+                <option value="Bole">Boleto</option>
+                <option value="PIX">PIX</option>
+              </select>
+              
+              <div className="cadastrogeral-input">
+                <p>Nome Completo</p>
+                <input
+                  type="text"
+                  className="cadastrogrande-input"
+                  placeholder="Joel Miller"
+
+                />
+              </div>
+
+              <div className="cadastrogeral-input">
+                <p>Nº Cartão</p>
+                <input
+                  type="text"
+                  className="cadastro-input"
+                  placeholder="**** **** **** ****"
+
+                />
+              </div>
+              
+              <div className='cadastrofinal-input'>
+                <div className="cadastrogeral-input">
+                  <p>Validade</p>
+                  <input
+                    type="text"
+                    className="cadastropequeno-input"
+                    placeholder="**/**"
+
+                  />
+                </div>
+                <div className="cadastrogeral-input">
+                  <p>CV</p>
+                  <input
+                    type="text"
+                    className="cadastropequeno-input"
+                    placeholder="***"
+
+                  />
+                </div>
+              </div>
+                 
             </div>
         </div>
-        <div className='cart-total'>
-            <h2 className="cart-total">Total: R$ {total}</h2>
-            <button  className="cart-button" type="button" onClick={checkout}>
+        <div className='cart-total-conf'>
+            <h2>Total: R$ {total}</h2>
+            <button  className="cart-address-buttom" type="button" onClick={checkout}>
                 Finalizar
             </button>
         </div>

@@ -60,6 +60,8 @@
     margin-left: 30px;
     padding: 40px 20px;
     border-radius: 20px;
+    color: var(--white-color);
+
 }
 
   .cart-produto {
@@ -77,27 +79,108 @@
     padding: 10px 0;
   }
 
-  .cart-total {
+  .cart-total-conf {
     width: 20%;
     height: 80%;
     background-color: var(--dark-blue-color);
     margin-left: 30px;
     padding: 40px 20px;
     border-radius: 20px;
+    align-content: center;
+    color: var(--white-color);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .cart-button {
-    width: 20px;
-    height: 20px;
-    margin: 0 10px;
-    border-radius: 10px;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--white-color);
+  .cart-address {
+    border: .3px solid var(--gray-color);
     color: var(--white-color);
-    cursor: pointer;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 20px 10px;
+    height: 80%;
   }
   
-  
+  .cart-address-buttom {
+    margin: 10px 0 0 0;
+    border: .3px solid var(--white-color);
+    color: var(--white-color);
+    background-color: var(--blue-color);
+    border-radius: 10px;
+    height: 38px;
+    width: 215px;
+    
+  }
+
+#Pagamento{
+  background-color: var(--blue-color);
+  margin: 10px 0 0 0;
+  border: .3px solid var(--white-color);
+  color: var(--white-color);
+  background-color: var(--blue-color);
+  border-radius: 10px;
+  height: 38px;
+  width: 215px;
+  font-size:large;
+  margin-left: 15px;
+}
+
+.cadastro-input {
+  background: transparent;
+  border: 2px solid white; 
+  color: white; 
+  padding: 10px; 
+  border-radius: 4px;
+  transition: all 0.4s;
+  width: 180px;
+  &:focus, &:active {
+      outline: none;
+      border: 2px solid white;
+      transform: scale(1.01);
+  }
+  margin-top: 10px;
+  font-size: large;
+}
+
+.cadastrogrande-input {
+  background: transparent;
+  border: 2px solid white; 
+  color: white; 
+  padding: 10px; 
+  border-radius: 4px;
+  transition: all 0.4s;
+  width: 200px;
+  &:focus, &:active {
+      outline: none;
+      border: 2px solid white;
+      transform: scale(1.01);
+  }
+  margin-top: 10px;
+  font-size: large;
+}
+.cadastropequeno-input {
+  background: transparent;
+  border: 2px solid white; 
+  color: white; 
+  padding: 10px; 
+  border-radius: 4px;
+  transition: all 0.4s;
+  width: 50px;
+  &:focus, &:active {
+      outline: none;
+      border: 2px solid white;
+      transform: scale(1.01);
+  }
+  margin-top: 10px;
+  font-size: large;
+}
+
+.cadastrogeral-input{
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.cadastrofinal-input{
+  display: flex;
+}

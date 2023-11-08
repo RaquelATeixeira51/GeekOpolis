@@ -114,3 +114,19 @@
   margin: 10px auto !important;
   padding: 10px 5px;
 }
+
+.cart-rounded-input {
+  border-radius: 10px;
+  border: 1px solid var(--white-color);
+  color: var(--white-color);
+  background-color: transparent;
+  text-align: center;
+  padding: 5px 0;
+  margin: 10px 0;
+  width: 150px;
+}
+
+.cart-address-info {
+  display: flex;
+  flex-direction: column;
+}

@@ -4,14 +4,19 @@ import cartUtils from '../../methods';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import './styles.css';
+import getDistanceFromLatLonInKm from '../../utils/getDistance';
 
 export default function Carrinho() {
+  const cepRef = React.createRef();
   const checkoutURL = `http://localhost:8080/pedido/criaPedido/token/${localStorage.getItem(
     'token-cliente'
   )}`;
   const [carrinho, setCarrinho] = React.useState({});
   const [endereco, setEndereco] = React.useState({});
   const [total, setTotal] = React.useState(0.0);
+  const [valorFrete, setValorFrete] = React.useState(null);
+  const [cep, setCep] = React.useState(null);
+  const [totalProdutos, setTotalProdutos] = React.useState(null);
 
   const produto = {
     produto: {
@@ -69,6 +74,39 @@ export default function Carrinho() {
       });
   };
 
+  const calcularFrete = () => {
+    if (!cepRef.current.value) {
+      makeToast('error', 'Digite um CEP válido');
+      return;
+    }
+    if (valorFrete && cep === cepRef.current.value) {
+      makeToast('error', 'Frete já calculado');
+      return;
+    }
+
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&address=${cepRef.current.value}`,
+      {
+        method: 'GET',
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const { lat, lng } = data.results[0].geometry.location;
+        setTotal(
+          !valorFrete || cep !== cepRef.current.value
+            ? Number(getDistanceFromLatLonInKm(lat, lng) * 1.5) +
+                Number(totalProdutos.replace(',', '.'))
+            : total
+        );
+        setCep(cepRef.current.value);
+        setValorFrete(Number(getDistanceFromLatLonInKm(lat, lng) * 1.5));
+      })
+      .catch(() => {
+        makeToast('error', 'Erro ao buscar endereços');
+      });
+  };
+
   React.useEffect(() => {
     let cart = localStorage.getItem('carrinho');
 
@@ -83,6 +121,7 @@ export default function Carrinho() {
     cartUtils.calcularEAtualizarTotal();
     setCarrinho(cart);
     setTotal(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
+    setTotalProdutos(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
 
     fetch(
       `http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem(
@@ -94,8 +133,10 @@ export default function Carrinho() {
     )
       .then((response) => response.json())
       .then((data) => {
-        if (data.length > 0)
+        if (data.length > 0) {
           setEndereco(data.find((e) => e.principal === true));
+          calcularFrete();
+        }
       })
       .catch(() => {
         makeToast('error', 'Erro ao buscar endereços');
@@ -170,18 +211,22 @@ export default function Carrinho() {
             </div>
 
             <div className="cart-address">
-              <h2>Endereço de entrega:</h2>
+              <h2>CEP:</h2>
               <div className="cart-address-info">
-                <h3>
-                  {endereco?.logradouro}, {endereco?.numero}
-                </h3>
-                <h3>
-                  {endereco?.bairro}, {endereco?.cidade}
-                </h3>
-                <h3>{endereco?.cep}</h3>
-                <div className="cart-address-change">
-                  <Link to="/editarEndereco">Alterar endereço de entrega</Link>
-                </div>
+                <input
+                  type="text"
+                  id="email"
+                  ref={cepRef}
+                  className="cart-rounded-input"
+                  value={endereco?.cep ? endereco?.cep : null}
+                />
+                <button
+                  type="button"
+                  className="cart-address-change"
+                  onClick={calcularFrete}
+                >
+                  Calcular Frete
+                </button>
               </div>
             </div>
 

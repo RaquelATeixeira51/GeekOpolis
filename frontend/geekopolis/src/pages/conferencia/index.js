@@ -1,3 +1,7 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-else-return */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/no-unknown-property */
 import * as React from 'react';
@@ -14,7 +18,65 @@ export default function Carrinho() {
   const [carrinho, setCarrinho] = React.useState({});
   const [endereco, setEndereco] = React.useState({});
   const [total, setTotal] = React.useState(0.0);
+  const [tipoPag, setTipoPag] = React.useState('');
+ 
+  const alternType = () => {
+    setTipoPag(Pagamento.value);
+    if(tipoPag === 'Cred'){
+      return(
+        <>
+        <div className="cadastrogeral-input">
+                <p>Nome Completo</p>
+                <input
+                  type="text"
+                  className="cadastrogrande-input"
+                  placeholder="Joel Miller"
 
+                />
+              </div>
+
+              <div className="cadastrogeral-input">
+                <p>Nº Cartão</p>
+                <input
+                  type="text"
+                  className="cadastro-input"
+                  placeholder="**** **** **** ****"
+
+                />
+              </div>
+              
+              <div className='cadastrofinal-input'>
+                <div className="cadastrogeral-input">
+                  <p>Validade</p>
+                  <input
+                    type="text"
+                    className="cadastropequeno-input"
+                    placeholder="**/**"
+
+                  />
+                </div>
+                <div className="cadastrogeral-input">
+                  <p>CV</p>
+                  <input
+                    type="text"
+                    className="cadastropequeno-input"
+                    placeholder="***"
+
+                  />
+                </div>
+              </div>
+        </>
+      )
+    }else{
+      return(
+        <>
+        <h2>
+          O boleto será gerado após finalizar
+        </h2>
+        </>
+      )
+    }
+  }
   const produtos = {
     produto: {
       nome: 'short do naruto',
@@ -186,56 +248,15 @@ export default function Carrinho() {
                 </div>
             </div>
             <div className='cart-baixo'>
-              <select name="Options" id="Pagamento">
+              <select name="Options" id="Pagamento"  onChange={alternType}>
                 <option value="Cred">Cartão de Crédito</option>
                 <option value="Bole">Boleto</option>
-                <option value="PIX">PIX</option>
               </select>
-              
-              <div className="cadastrogeral-input">
-                <p>Nome Completo</p>
-                <input
-                  type="text"
-                  className="cadastrogrande-input"
-                  placeholder="Joel Miller"
-
-                />
-              </div>
-
-              <div className="cadastrogeral-input">
-                <p>Nº Cartão</p>
-                <input
-                  type="text"
-                  className="cadastro-input"
-                  placeholder="**** **** **** ****"
-
-                />
-              </div>
-              
-              <div className='cadastrofinal-input'>
-                <div className="cadastrogeral-input">
-                  <p>Validade</p>
-                  <input
-                    type="text"
-                    className="cadastropequeno-input"
-                    placeholder="**/**"
-
-                  />
-                </div>
-                <div className="cadastrogeral-input">
-                  <p>CV</p>
-                  <input
-                    type="text"
-                    className="cadastropequeno-input"
-                    placeholder="***"
-
-                  />
-                </div>
-              </div>
                  
             </div>
         </div>
         <div className='cart-total-conf'>
+            <h2>Frete: R$ {total}</h2>
             <h2>Total: R$ {total}</h2>
             <button  className="cart-address-buttom" type="button" onClick={checkout}>
                 Finalizar

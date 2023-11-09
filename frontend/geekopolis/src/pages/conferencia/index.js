@@ -17,8 +17,6 @@ import Header from '../../components/Header';
 import './index.css';
 import EditarEndereco from '../editarEndereco';
 
-
-
 export default function Carrinho() {
   const checkoutURL = `http://localhost:8080/pedido/criaPedido/token/${localStorage.getItem(
     'token-cliente'
@@ -31,7 +29,34 @@ export default function Carrinho() {
   const [tipoPag, setTipoPag] = useState("Cred");
  
   
-
+  function ProtectedRouteCliente({ element }) {
+    const navigate = useNavigate();
+    const [tokenValid, setTokenValid] = useState(true);
+  
+    const checkTokenValidity = async () => {
+      const token = localStorage.getItem('token-cliente');
+      if (!token) {
+        setTokenValid(false);
+        return;
+      }
+  
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/token/valid?token=${localStorage.getItem(
+            'token-cliente'
+          )}`
+        );
+        const isValid = await response.json();
+  
+        if (!isValid) {
+          localStorage.removeItem('token-cliente');
+          setTokenValid(false);
+          navigate('/');
+        }
+      } catch (error) {
+        console.error('Erro ao verificar a validade do token', error);
+      }
+    }};
   const produtos = {
     produto: {
       nome: 'short do naruto',
@@ -217,6 +242,9 @@ export default function Carrinho() {
                                 </Route>
                             </Router>
                         </Modal>
+                        <button className='modal-botoes' onClick={isModalOpen}>
+                          Adicionar novo endereço
+                        </button>                       
                       </div>
                     </div>
                 </div>
@@ -287,6 +315,21 @@ export default function Carrinho() {
             </button>
         </div>
         </div>
+      <Modal
+        isOpen={isModalOpen2}
+        onRequestClose={closeModal2}
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+          <h1 className='conf-modal'>
+            Pedido finalizado!
+          </h1>
+          <h2 className='conf-modal'>
+            Agradecemos a preferência.
+          </h2>
+
+
+      </Modal>
     </>
   );
 }

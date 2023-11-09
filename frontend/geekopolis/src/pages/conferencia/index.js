@@ -59,20 +59,6 @@ export default function Carrinho() {
     });
     window.location.reload();
   };
-  const removeProduct = (product) => {
-    cartUtils.removerProdutoDoCarrinho({
-      produto: product.produto,
-      quantidade: 1,
-    });
-    window.location.reload();
-  };
-  const deleteProduct = (product) => {
-    cartUtils.deletarProdutoDoCarrinho({
-      produto: product.produto,
-      quantidade: 1,
-    });
-    window.location.reload();
-  };
 
   const checkout = () => {
     cartUtils.adicionarEnderecoId(1);
@@ -153,8 +139,8 @@ export default function Carrinho() {
                   >
                     <div className="cart-item-image">
                       <img
-                        src={produtos.produto.img}
-                        alt={produtos.produto.nome}
+                        src={product.produto.img}
+                        alt={product.produto.nome}
                       />
                     </div>
                     <div className="cart-item-info">

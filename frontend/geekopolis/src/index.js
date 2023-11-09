@@ -131,7 +131,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Checkout/>} />
+        <Route path="/" element={<LandingPage/>} />
         <Route path="/editarEndereco" element={<ProtectedRouteCliente element={<EditarEndereco/>} />} />
         <Route path="/LoginBackOffice" element={<Login/>} />
         <Route path="/produto/:id" element={<Produto/>} />

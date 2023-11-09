@@ -94,6 +94,7 @@ export default function Carrinho() {
       .then((response) => {
         cartUtils.initializeCart();
         makeToast('success', response);
+        setIsModalOpen2(true); 
       })
       .catch((error) => {
         cartUtils.initializeCart();
@@ -108,6 +109,7 @@ export default function Carrinho() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    location.reload();
   };
 
   const closeModal2 = () => {

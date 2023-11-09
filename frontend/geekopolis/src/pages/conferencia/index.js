@@ -1,11 +1,18 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/no-unknown-property */
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
 import cartUtils from '../../methods';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import './index.css';
+import EditarEndereco from '../editarEndereco';
+
 
 export default function Carrinho() {
   const checkoutURL = `http://localhost:8080/pedido/criaPedido/token/${localStorage.getItem(
@@ -14,6 +21,10 @@ export default function Carrinho() {
   const [carrinho, setCarrinho] = React.useState({});
   const [endereco, setEndereco] = React.useState({});
   const [total, setTotal] = React.useState(0.0);
+  
+  const [body, setBody] = React.useState({});
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const produtos = {
     produto: {
@@ -67,6 +78,21 @@ export default function Carrinho() {
         makeToast('error', error);
       });
   };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setBody(endereco);
+    }
+  }, [isModalOpen, endereco]);
+
 
   React.useEffect(() => {
     let cart = localStorage.getItem('carrinho');
@@ -180,7 +206,24 @@ export default function Carrinho() {
                     </h3>
                     <h3>{endereco?.cep}</h3>
                     <div className="cart-address-change">
-                    <Link to="/editarEndereco">Alterar endereço de entrega</Link>
+                      <div>
+                        <button className='modal-botoes' onClick={isModalOpen}>Adicionar novo endereço</button>
+                        <Modal open={openModal} 
+                        onClose={closeModal}
+                        className="modal-content"
+                        overlayClassName="modal-overlay">
+                            <Router>
+                              <Routes>
+                                <Route path="/editarEndereco" component={EditarEndereco} />
+                                <Route>
+                                <button onClick={isModalOpen}>
+                                <Link to="/editarEndereco">Adicionar novo endereço</Link>
+                                </button>
+                                </Route>
+                              </Routes>
+                            </Router>
+                        </Modal>
+                      </div>
                     </div>
                 </div>
                 </div>

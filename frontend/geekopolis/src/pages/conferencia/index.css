@@ -232,3 +232,7 @@
 .Mensagem-conferencia{
   margin-top: 4%;
 }
+
+.conf-modal{
+  color: var(--white-color);
+}

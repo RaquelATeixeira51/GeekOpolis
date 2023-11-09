@@ -18,6 +18,7 @@ import './index.css';
 import EditarEndereco from '../editarEndereco';
 
 
+
 export default function Carrinho() {
   const checkoutURL = `http://localhost:8080/pedido/criaPedido/token/${localStorage.getItem(
     'token-cliente'
@@ -25,11 +26,9 @@ export default function Carrinho() {
   const [carrinho, setCarrinho] = React.useState({});
   const [endereco, setEndereco] = React.useState({});
   const [total, setTotal] = React.useState(0.0);
-  
   const [body, setBody] = React.useState({});
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [tipoPag, setTipoPag] = useState("Cred");
  
   
@@ -75,6 +74,7 @@ export default function Carrinho() {
         cartUtils.initializeCart();
         makeToast('error', error);
       });
+    setIsModalOpen2(true); 
   };
 
   const openModal = () => {
@@ -83,6 +83,10 @@ export default function Carrinho() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const closeModal2 = () => {
+    setIsModalOpen2(false);
   };
 
   useEffect(() => {
@@ -292,6 +296,21 @@ export default function Carrinho() {
             </button>
         </div>
         </div>
+      <Modal
+        isOpen={isModalOpen2}
+        onRequestClose={closeModal2}
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+          <h1 className='conf-modal'>
+            Pedido finalizado!
+          </h1>
+          <h2 className='conf-modal'>
+            Agradecemos a preferência.
+          </h2>
+
+
+      </Modal>
     </>
   );
 }

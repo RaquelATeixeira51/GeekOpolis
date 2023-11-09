@@ -29,10 +29,32 @@ export default function Carrinho() {
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [tipoPag, setTipoPag] = useState("Cred");
  
-  
+  const [creditCard, setCreditCard] = useState({
+    nomeCompleto: '',
+    numCartao: '',
+    validade: '',
+    cvv: '',
+  });
+   
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setCreditCard({
+      ...creditCard,
+      [name]: value,
+    });
+  };
+
+  const isFormValid = () => (
+    creditCard.nomeCompleto.trim() !== '' &&
+    creditCard.numCartao.trim() !== '' &&
+    creditCard.validade.trim() !== '' &&
+    creditCard.cvv.trim() !== ''
+  );
+
   function ProtectedRouteCliente({ element }) {
     const navigate = useNavigate();
     const [tokenValid, setTokenValid] = useState(true);
+    
   
     const checkTokenValidity = async () => {
       const token = localStorage.getItem('token-cliente');
@@ -84,7 +106,12 @@ export default function Carrinho() {
     window.location.reload();
   };
 
+
   const checkout = () => {
+    if (tipoPag === "Cred" && !isFormValid()) {
+      makeToast('error', 'Preencha todos os campos do cartão de crédito.');
+      return;
+    }
     cartUtils.adicionarEnderecoId(1);
     cartUtils.adicionarMetodoDePagamento(0);
     cartUtils.calcularEAtualizarTotal();
@@ -249,6 +276,8 @@ export default function Carrinho() {
           <div className="cadastrogeral-input">
             <p>Nome Completo</p>
             <input
+              value={creditCard.nomeCompleto}
+              onChange={handleInputChange}
               type="text"
               className="cadastrogrande-input"
               placeholder="Joel Miller"
@@ -257,6 +286,8 @@ export default function Carrinho() {
           <div className="cadastrogeral-input">
             <p>Nº Cartão</p>
             <input
+              value={creditCard.numCartao}
+              onChange={handleInputChange} 
               type="text"
               className="cadastro-input"
               placeholder="**** **** **** ****"
@@ -267,14 +298,18 @@ export default function Carrinho() {
             <div className="cadastrogeral-input">
               <p>Validade</p>
               <input
+                value={creditCard.validade}
+                onChange={handleInputChange} 
                 type="text"
                 className="cadastropequeno-input"
                 placeholder="**/**"
               />
             </div>
             <div className="cadastrogeral-input">
-              <p>CV</p>
+              <p>CVV</p>
               <input
+                value={creditCard.cvv}
+                onChange={handleInputChange} 
                 type="text"
                 className="cadastropequeno-input"
                 placeholder="***"
@@ -296,7 +331,7 @@ export default function Carrinho() {
         <div className='cart-total-conf'>
             <h2>Frete: R$ {total}</h2>
             <h2>Total: R$ {total}</h2>
-            <button  className="cart-address-buttom" type="button" onClick={checkout}>
+            <button className="cart-address-buttom" type="button" onClick={checkout}>
                 Finalizar
             </button>
         </div>

@@ -30,64 +30,9 @@ export default function Carrinho() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [tipoPag, setTipoPag] = React.useState('');
-
-  const alternType = () => {
-    setTipoPag(Pagamento.value);
-    if(tipoPag === 'Cred'){
-      return(
-        <>
-        <div className="cadastrogeral-input">
-                <p>Nome Completo</p>
-                <input
-                  type="text"
-                  className="cadastrogrande-input"
-                  placeholder="Joel Miller"
-                />
-              </div>
-
-              <div className="cadastrogeral-input">
-                <p>Nº Cartão</p>
-                <input
-                  type="text"
-                  className="cadastro-input"
-                  placeholder="**** **** **** ****"
-
-                />
-              </div>
-
-              <div className='cadastrofinal-input'>
-                <div className="cadastrogeral-input">
-                  <p>Validade</p>
-                  <input
-                    type="text"
-                    className="cadastropequeno-input"
-                    placeholder="**/**"
-
-                  />
-                </div>
-                <div className="cadastrogeral-input">
-                  <p>CV</p>
-                  <input
-                    type="text"
-                    className="cadastropequeno-input"
-                    placeholder="***"
-
-                  />
-                </div>
-              </div>
-        </>
-      )
-    }else{
-      return(
-        <>
-        <h2>
-          O boleto será gerado após finalizar
-        </h2>
-        </>
-      )
-    }
-  }
+  const [tipoPag, setTipoPag] = useState("Cred");
+ 
+  
 
   const produtos = {
     produto: {
@@ -296,54 +241,62 @@ export default function Carrinho() {
                 </div>
             </div>
             <div className='cart-baixo'>
-              <select name="Options" id="Pagamento" value={tipoPag} onChange={setTipoPag}>
-                <option value="Cred">Cartão de Crédito</option>
-                <option value="Bole">Boleto</option>
-                <option value="PIX">PIX</option>
-              </select>
-              
-              <div className="cadastrogeral-input">
-                <p>Nome Completo</p>
-                <input
-                  type="text"
-                  className="cadastrogrande-input"
-                  placeholder="Joel Miller"
+      <select name="Options" id="Pagamento" value={tipoPag} onChange={(e) => setTipoPag(e.target.value)}>
+        <option value="Cred">Cartão de Crédito</option>
+        <option value="Bole">Boleto</option>
+        <option value="PIX">PIX</option>
+      </select>
 
-                />
-              </div>
+      {tipoPag === "Cred" && (
+        
+        <div>
+          <div className="cadastrogeral-input">
+            <p>Nome Completo</p>
+            <input
+              type="text"
+              className="cadastrogrande-input"
+              placeholder="Joel Miller"
+            />
+          </div>
+          <div className="cadastrogeral-input">
+            <p>Nº Cartão</p>
+            <input
+              type="text"
+              className="cadastro-input"
+              placeholder="**** **** **** ****"
+            />
+          </div>
 
-              <div className="cadastrogeral-input">
-                <p>Nº Cartão</p>
-                <input
-                  type="text"
-                  className="cadastro-input"
-                  placeholder="**** **** **** ****"
-
-                />
-              </div>
-              
-              <div className='cadastrofinal-input'>
-                <div className="cadastrogeral-input">
-                  <p>Validade</p>
-                  <input
-                    type="text"
-                    className="cadastropequeno-input"
-                    placeholder="**/**"
-
-                  />
-                </div>
-                <div className="cadastrogeral-input">
-                  <p>CV</p>
-                  <input
-                    type="text"
-                    className="cadastropequeno-input"
-                    placeholder="***"
-
-                  />
-                </div>
-              </div>
-                 
+          <div className='cadastrofinal-input'>
+            <div className="cadastrogeral-input">
+              <p>Validade</p>
+              <input
+                type="text"
+                className="cadastropequeno-input"
+                placeholder="**/**"
+              />
             </div>
+            <div className="cadastrogeral-input">
+              <p>CV</p>
+              <input
+                type="text"
+                className="cadastropequeno-input"
+                placeholder="***"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {tipoPag === "Bole" && (
+        <p className='Mensagem-conferencia'>O boleto será gerado após finalizar</p>
+      )}
+
+      {tipoPag === "PIX" && (
+        <p className='Mensagem-conferencia'>O Pix será gerado após finalizar</p>
+      )}
+    </div>
+
         </div>
         <div className='cart-total-conf'>
             <h2>Frete: R$ {total}</h2>

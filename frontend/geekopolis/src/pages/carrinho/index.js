@@ -231,10 +231,12 @@ export default function Carrinho() {
             </div>
 
             <h2 className="cart-total">Total: R$ {total}</h2>
-
-            <button type="button" onClick={checkout}>
-              checkout
-            </button>
+            <Link to="/checkout">
+              <button type="button" onClick={checkout} className="cart-address-change">
+                checkout
+              </button>
+            </Link>
+            
           </div>
         </main>
       </div>

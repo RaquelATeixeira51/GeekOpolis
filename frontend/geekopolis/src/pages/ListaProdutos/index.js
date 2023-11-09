@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/img-redundant-alt */

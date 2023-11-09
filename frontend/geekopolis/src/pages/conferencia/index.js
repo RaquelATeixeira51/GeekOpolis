@@ -8,8 +8,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-else-return */
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { useState } from 'react';
 import Modal from 'react-modal';
 import cartUtils from '../../methods';
 import makeToast from '../../shared/toaster';
@@ -28,7 +28,6 @@ export default function Carrinho() {
   const [total, setTotal] = React.useState(0.0);
   const [body, setBody] = React.useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [tipoPag, setTipoPag] = useState("Cred");
  
   
@@ -74,8 +73,8 @@ export default function Carrinho() {
         cartUtils.initializeCart();
         makeToast('error', error);
       });
-    setIsModalOpen2(true); 
   };
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -85,15 +84,12 @@ export default function Carrinho() {
     setIsModalOpen(false);
   };
 
-  const closeModal2 = () => {
-    setIsModalOpen2(false);
-  };
 
-  useEffect(() => {
-    if (isModalOpen) {
-      setBody(endereco);
-    }
-  }, [isModalOpen, endereco]);
+  // useEffect(() => {
+  //   if (isModalOpen) {
+  //     setBody(endereco);
+  //   }
+  // }, [isModalOpen, endereco]);
 
 
   React.useEffect(() => {
@@ -207,22 +203,18 @@ export default function Carrinho() {
                     {endereco?.bairro}, {endereco?.cidade}
                     </h3>
                     <h3>{endereco?.cep}</h3>
+
                     <div className="cart-address-change">
                       <div>
-                        <button className='modal-botoes' onClick={isModalOpen}>Adicionar novo endereço</button>
-                        <Modal open={openModal} 
-                        onClose={closeModal}
-                        className="modal-content"
-                        overlayClassName="modal-overlay">
+                      <button className='modal-botoes' onClick={openModal}>Adicionar novo endereço</button>
+                          <Modal isOpen={isModalOpen} onRequestClose={closeModal} className="modal-content" overlayClassName="modal-overlay">
                             <Router>
-                              <Routes>
                                 <Route path="/editarEndereco" component={EditarEndereco} />
                                 <Route>
-                                <button onClick={isModalOpen}>
+                                <button onClick={openModal}>
                                 <Link to="/editarEndereco">Adicionar novo endereço</Link>
                                 </button>
                                 </Route>
-                              </Routes>
                             </Router>
                         </Modal>
                       </div>
@@ -286,7 +278,6 @@ export default function Carrinho() {
         <p className='Mensagem-conferencia'>O Pix será gerado após finalizar</p>
       )}
     </div>
-
         </div>
         <div className='cart-total-conf'>
             <h2>Frete: R$ {total}</h2>
@@ -296,21 +287,6 @@ export default function Carrinho() {
             </button>
         </div>
         </div>
-      <Modal
-        isOpen={isModalOpen2}
-        onRequestClose={closeModal2}
-        className="modal-content"
-        overlayClassName="modal-overlay"
-      >
-          <h1 className='conf-modal'>
-            Pedido finalizado!
-          </h1>
-          <h2 className='conf-modal'>
-            Agradecemos a preferência.
-          </h2>
-
-
-      </Modal>
     </>
   );
 }

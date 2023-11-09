@@ -26,6 +26,7 @@ export default function Carrinho() {
   const [total, setTotal] = React.useState(0.0);
   const [body, setBody] = React.useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [tipoPag, setTipoPag] = useState("Cred");
  
   
@@ -106,6 +107,10 @@ export default function Carrinho() {
   };
 
   const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const closeModal2 = () => {
     setIsModalOpen(false);
   };
 
@@ -223,19 +228,9 @@ export default function Carrinho() {
 
                     <div className="cart-address-change">
                       <div>
-                        <button className="modal-botoes" onClick={openModal}>
+                        <button className='modal-botoes' onClick={openModal}>
                           Adicionar novo endereço
                         </button>
-                        <Modal isOpen={isModalOpen} onRequestClose={closeModal} className="modal-content" overlayClassName="modal-overlay">
-                          <Router>
-                            <Route path="/editarEndereco" component={EditarEndereco} />
-                            <Route>
-                              <button onClick={openModal}>
-                                <Link to="/editarEndereco">Adicionar novo endereço</Link>
-                              </button>
-                            </Route>
-                          </Router>
-                        </Modal>
                       </div>
                     </div>
                   </div>
@@ -318,6 +313,13 @@ export default function Carrinho() {
           <h2 className='conf-modal'>
             Agradecemos a preferência.
           </h2>
+      </Modal>
+
+      <Modal isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        className="modal-content"
+        overlayClassName="modal-overlay">
+          <EditarEndereco/>
       </Modal>
     </>
   );

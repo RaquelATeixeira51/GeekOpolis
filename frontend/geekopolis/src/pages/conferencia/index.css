@@ -92,7 +92,9 @@
     align-items: center;
     text-align: center;
   }
-
+.cart-total-conf h2{
+  margin: 10px 0;
+}
   .cart-address {
     border: .3px solid var(--gray-color);
     color: var(--white-color);

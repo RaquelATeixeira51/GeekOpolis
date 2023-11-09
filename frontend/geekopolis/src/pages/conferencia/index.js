@@ -308,8 +308,6 @@ export default function Carrinho() {
           <h2 className='conf-modal'>
             Agradecemos a preferência.
           </h2>
-
-
       </Modal>
     </>
   );

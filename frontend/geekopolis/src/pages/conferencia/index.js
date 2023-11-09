@@ -109,14 +109,6 @@ export default function Carrinho() {
     setIsModalOpen(false);
   };
 
-
-  // useEffect(() => {
-  //   if (isModalOpen) {
-  //     setBody(endereco);
-  //   }
-  // }, [isModalOpen, endereco]);
-
-
   React.useEffect(() => {
     let cart = localStorage.getItem('carrinho');
 
@@ -218,36 +210,35 @@ export default function Carrinho() {
         </div>
         <div className='cart-conteiner-meio'>
             <div className='cart-cima'>
-                <div className="cart-address">
-                <h2>Endereço de entrega:</h2>
+              <div className="cart-address">
+              <h2>Endereço de entrega:</h2>
                 <div className="cart-address-info">
-                    <h3>
-                    {endereco?.logradouro}, {endereco?.numero}
-                    </h3>
-                    <h3>
+                  <h3>
+                  {endereco?.logradouro}, {endereco?.numero}
+                  </h3>
+                  <h3>
                     {endereco?.bairro}, {endereco?.cidade}
-                    </h3>
-                    <h3>{endereco?.cep}</h3>
+                  </h3>
+                  <h3>{endereco?.cep}</h3>
 
                     <div className="cart-address-change">
                       <div>
-                      <button className='modal-botoes' onClick={openModal}>Adicionar novo endereço</button>
-                          <Modal isOpen={isModalOpen} onRequestClose={closeModal} className="modal-content" overlayClassName="modal-overlay">
-                            <Router>
-                                <Route path="/editarEndereco" component={EditarEndereco} />
-                                <Route>
-                                <button onClick={openModal}>
-                                <Link to="/editarEndereco">Adicionar novo endereço</Link>
-                                </button>
-                                </Route>
-                            </Router>
-                        </Modal>
-                        <button className='modal-botoes' onClick={isModalOpen}>
+                        <button className="modal-botoes" onClick={openModal}>
                           Adicionar novo endereço
-                        </button>                       
+                        </button>
+                        <Modal isOpen={isModalOpen} onRequestClose={closeModal} className="modal-content" overlayClassName="modal-overlay">
+                          <Router>
+                            <Route path="/editarEndereco" component={EditarEndereco} />
+                            <Route>
+                              <button onClick={openModal}>
+                                <Link to="/editarEndereco">Adicionar novo endereço</Link>
+                              </button>
+                            </Route>
+                          </Router>
+                        </Modal>
                       </div>
                     </div>
-                </div>
+                  </div>
                 </div>
             </div>
             <div className='cart-baixo'>
@@ -315,21 +306,6 @@ export default function Carrinho() {
             </button>
         </div>
         </div>
-      <Modal
-        isOpen={isModalOpen2}
-        onRequestClose={closeModal2}
-        className="modal-content"
-        overlayClassName="modal-overlay"
-      >
-          <h1 className='conf-modal'>
-            Pedido finalizado!
-          </h1>
-          <h2 className='conf-modal'>
-            Agradecemos a preferência.
-          </h2>
-
-
-      </Modal>
     </>
   );
 }

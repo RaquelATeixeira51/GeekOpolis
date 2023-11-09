@@ -91,6 +91,10 @@ export default function Carrinho() {
     valor: 12.6,
   };
 
+  const handleSelectChange = (e) => {
+    setTipoPag(e.target.value); // Atualiza o valor selecionado quando a opção é alterada
+  };
+
   const addProduct = (product) => {
     cartUtils.adicionaProdutoAoCarrinho({
       produto: product.produto,
@@ -248,11 +252,11 @@ export default function Carrinho() {
                 </div>
             </div>
             <div className='cart-baixo'>
-              <select name="Options" id="Pagamento"  onChange={alternType}>
+              <select  name="Options" id="Pagamento" value={tipoPag} onChange={setTipoPag}>
                 <option value="Cred">Cartão de Crédito</option>
                 <option value="Bole">Boleto</option>
               </select>
-                 
+              
             </div>
         </div>
         <div className='cart-total-conf'>

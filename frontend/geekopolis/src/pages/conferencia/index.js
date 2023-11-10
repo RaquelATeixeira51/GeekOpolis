@@ -15,7 +15,7 @@ import cartUtils from '../../methods';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import './index.css';
-import EditarEndereco from '../editarEndereco';
+import EditarEndereco2 from '../../components/Endereco';
 
 export default function Carrinho() {
   const checkoutURL = `http://localhost:8080/pedido/criaPedido/token/${localStorage.getItem(
@@ -269,7 +269,6 @@ export default function Carrinho() {
       <select name="Options" id="Pagamento" value={tipoPag} onChange={(e) => setTipoPag(e.target.value)}>
         <option value="Cred">Cartão de Crédito</option>
         <option value="Bole">Boleto</option>
-        <option value="PIX">PIX</option>
       </select>
 
       {tipoPag === "Cred" && (
@@ -278,7 +277,8 @@ export default function Carrinho() {
           <div className="cadastrogeral-input">
             <p>Nome Completo</p>
             <input
-              value={creditCard.nomeCompleto}
+              /* value={creditCard.nomeCompleto} */
+              required
               onChange={handleInputChange}
               type="text"
               className="cadastrogrande-input"
@@ -288,7 +288,8 @@ export default function Carrinho() {
           <div className="cadastrogeral-input">
             <p>Nº Cartão</p>
             <input
-              value={creditCard.numCartao}
+              /* value={creditCard.numCartao} */
+              required
               onChange={handleInputChange} 
               type="text"
               className="cadastro-input"
@@ -300,7 +301,8 @@ export default function Carrinho() {
             <div className="cadastrogeral-input">
               <p>Validade</p>
               <input
-                value={creditCard.validade}
+                /* value={creditCard.numCartao} */
+              required
                 onChange={handleInputChange} 
                 type="text"
                 className="cadastropequeno-input"
@@ -310,7 +312,8 @@ export default function Carrinho() {
             <div className="cadastrogeral-input">
               <p>CVV</p>
               <input
-                value={creditCard.cvv}
+                /* value={creditCard.numCartao} */
+              required
                 onChange={handleInputChange} 
                 type="text"
                 className="cadastropequeno-input"
@@ -323,10 +326,6 @@ export default function Carrinho() {
 
       {tipoPag === "Bole" && (
         <p className='Mensagem-conferencia'>O boleto será gerado após finalizar</p>
-      )}
-
-      {tipoPag === "PIX" && (
-        <p className='Mensagem-conferencia'>O Pix será gerado após finalizar</p>
       )}
     </div>
         </div>
@@ -356,7 +355,7 @@ export default function Carrinho() {
         onRequestClose={closeModal}
         className="modal-content"
         overlayClassName="modal-overlay">
-          <EditarEndereco/>
+          <EditarEndereco2/>
       </Modal>
     </>
   );

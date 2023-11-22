@@ -1,5 +1,7 @@
+/* eslint-disable no-debugger */
 import * as React from 'react';
 import './index.css';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Header'
 import makeToast from '../../shared/toaster';
 
@@ -19,6 +21,7 @@ export default function Pedidos() {
           })
           .then((data) => {
             if (data) {
+              debugger;
               setPedidos(data);
             } else {
               makeToast('error', 'Nâo há pedidos');
@@ -50,7 +53,7 @@ export default function Pedidos() {
                         <div>
                         <strong>Status:</strong> {pedido.status}
                         </div>
-                        <button type='button'>Detalhes</button>
+                        <Link to={`/pedido/${pedido.id}`}>Detalhes</Link>
                     </div>
                     ))}
                 </div>

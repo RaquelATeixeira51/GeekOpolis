@@ -105,6 +105,7 @@ public class PedidoService {
             pRetorno.setStatus(pedido.getStatus());
             pRetorno.setTotal(pedido.getTotal());
             pRetorno.setData(pedido.getCreatedDate());
+            pRetorno.setId(pedido.getId());
 
             retorno.add(pRetorno);
         }
@@ -125,6 +126,7 @@ public class PedidoService {
             pRetorno.setStatus(pedido.getStatus());
             pRetorno.setTotal(pedido.getTotal());
             pRetorno.setData(pedido.getCreatedDate());
+            pRetorno.setId(pedido.getId());
 
             retorno.add(pRetorno);
         }

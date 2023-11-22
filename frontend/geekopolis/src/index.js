@@ -27,6 +27,7 @@ import InicioCliente from './pages/InicioCliente';
 import Carrinho from './pages/carrinho';
 import Checkout from './pages/conferencia';
 import Pedidos from './pages/pedidos';
+import Detalhe from './pages/detalhePedido';
 
 function ProtectedRoute({ element }) {
   const navigate = useNavigate();
@@ -147,6 +148,7 @@ root.render(
         <Route path='/carrinho' element={<Carrinho />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/pedidos' element={<ProtectedRouteCliente element={<Pedidos />} />} />
+        <Route path="/pedido/:id" element={<Detalhe />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

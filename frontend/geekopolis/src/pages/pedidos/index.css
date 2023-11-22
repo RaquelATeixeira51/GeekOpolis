@@ -39,7 +39,7 @@
     flex-direction: column;
   }
   
-  .pedido-card button {
+  .pedido-card a {
     background-color: #007bff;
     color: white;
     align-self: flex-end;
@@ -50,7 +50,7 @@
     transition: background-color 0.3s;
   }
   
-  .pedido-card button:hover {
+  .pedido-card a:hover {
     background-color: #0056b3;
   }
 

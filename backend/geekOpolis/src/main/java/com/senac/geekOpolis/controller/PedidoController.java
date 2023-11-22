@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senac.geekOpolis.models.Pedido;
+import com.senac.geekOpolis.models.PedidoDetalhe;
 import com.senac.geekOpolis.models.PedidoDto;
 import com.senac.geekOpolis.models.PedidoRetorno;
 import com.senac.geekOpolis.models.StatusPedido;
@@ -55,5 +56,10 @@ public class PedidoController {
         } catch (Exception e) {
            return new ResponseEntity<>("Nâo foi possível atualizar", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("pedido/retornaPedido/id/{id}")
+    public PedidoDetalhe retornaPedidoDetalhe(@PathVariable Long id) {
+        return pedidoService.retornaDetalhePedido(id);
     }
 }

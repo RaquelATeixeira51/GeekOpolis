@@ -12,11 +12,14 @@ import com.senac.geekOpolis.models.Endereco;
 import com.senac.geekOpolis.models.Frete;
 import com.senac.geekOpolis.models.ItemPedido;
 import com.senac.geekOpolis.models.Pedido;
+import com.senac.geekOpolis.models.PedidoDetalhe;
 import com.senac.geekOpolis.models.PedidoDto;
 import com.senac.geekOpolis.models.PedidoRetorno;
+import com.senac.geekOpolis.models.Produto;
 import com.senac.geekOpolis.models.ProdutoPedidoDto;
 import com.senac.geekOpolis.models.ProdutoPedidoQtDto;
 import com.senac.geekOpolis.models.StatusPedido;
+import com.senac.geekOpolis.repository.EnderecoRepository;
 import com.senac.geekOpolis.repository.PedidoRepository;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +30,7 @@ public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
     private final ClienteService clienteService;
+    private final EnderecoRepository enderecoRepository;
 
     public String incluiPedido(String token, PedidoDto pedidoDto) {
         try {
@@ -156,5 +160,31 @@ public class PedidoService {
         }
     
         pedidoRepository.save(pedido);
+    }
+
+    public PedidoDetalhe retornaDetalhePedido(Long id) {
+        Optional<Pedido> opPedido = pedidoRepository.findById(id);
+        Pedido pedido = opPedido.get();
+        List<ProdutoPedidoQtDto> produtos = new ArrayList<>();
+
+        PedidoDetalhe pedidoDetalhe = new PedidoDetalhe();
+        for (ItemPedido produto: pedido.getProdutos()) {
+            ProdutoPedidoQtDto p = new ProdutoPedidoQtDto();
+
+            p.setProduto(produto.getProduto());
+            p.setQuantidade(produto.getQuantidade());
+
+            produtos.add(p);
+        }
+
+        pedidoDetalhe.setProdutos(produtos);
+        pedidoDetalhe.setTotal(pedido.getTotal());
+        pedidoDetalhe.setValorFrete(pedido.getFrete().getValor());
+        pedidoDetalhe.setMetodoDePagamento(pedido.getMetodoDePagamento());
+        Optional<Endereco> optEndereco = enderecoRepository.findById(pedido.getEnderecoDeEntrega().getId());
+        Endereco endereco = optEndereco.get();
+        pedidoDetalhe.setEndereco(endereco);
+
+        return pedidoDetalhe;
     }
 }

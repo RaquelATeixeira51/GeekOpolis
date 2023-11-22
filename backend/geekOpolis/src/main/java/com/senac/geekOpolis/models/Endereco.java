@@ -65,5 +65,6 @@ public class Endereco {
     private boolean ativo;
 
     @OneToMany(mappedBy = "enderecoDeEntrega")
+    @JsonIgnore
     private List<Pedido> pedidos;
 }

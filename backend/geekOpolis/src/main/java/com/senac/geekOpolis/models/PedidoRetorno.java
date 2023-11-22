@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PedidoRetorno {
+    private String data;
     private String pedidoCode;
     private String dataDoPedido;
     private double total;

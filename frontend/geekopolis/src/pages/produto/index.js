@@ -24,7 +24,7 @@ export default function Produto() {
     produto: {
       nome: product.nome,
       preco: product.preco,
-      img: product.imagesPath /* .length > 0 */ ? product.imagesPath[0] : '',
+      img: product.imagesPath ? product.imagesPath[0] : '',
       id: product.id,
     },
     quantidade: quantidade,

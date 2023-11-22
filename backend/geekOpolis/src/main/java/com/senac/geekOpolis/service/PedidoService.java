@@ -2,6 +2,7 @@ package com.senac.geekOpolis.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
@@ -99,10 +100,61 @@ public class PedidoService {
             pRetorno.setPedidoCode(pedido.getCodigoPedido());
             pRetorno.setStatus(pedido.getStatus());
             pRetorno.setTotal(pedido.getTotal());
+            pRetorno.setData(pedido.getCreatedDate());
 
             retorno.add(pRetorno);
         }
 
         return retorno;
+    }
+
+    public List<PedidoRetorno> getPedidos() {
+        List<Pedido> pedidos = pedidoRepository.findAll();
+
+        List<PedidoRetorno> retorno = new ArrayList<>();
+
+        for (Pedido pedido : pedidos) {
+            PedidoRetorno pRetorno = new PedidoRetorno();
+
+            pRetorno.setDataDoPedido(pedido.getCreatedDate());
+            pRetorno.setPedidoCode(pedido.getCodigoPedido());
+            pRetorno.setStatus(pedido.getStatus());
+            pRetorno.setTotal(pedido.getTotal());
+            pRetorno.setData(pedido.getCreatedDate());
+
+            retorno.add(pRetorno);
+        }
+
+        return retorno;
+    }
+
+    public void atualizaStatus(Long pedidoId, int status) {
+        Optional<Pedido> opPedido = pedidoRepository.findById(pedidoId);
+        Pedido pedido = opPedido.get();
+
+        switch (status) {
+            case 0:
+                pedido.setStatus(StatusPedido.AGUARDANDOPAGAMENTO);
+                break;
+            case 1:
+                pedido.setStatus(StatusPedido.PAGAMENTOREJEITADO);
+                break;
+            case 2:
+                pedido.setStatus(StatusPedido.PAGAMENTOCOMSUCESSO);
+                break;
+             case 3:
+                pedido.setStatus(StatusPedido.AGUARDANDORETIRADA);
+                break;
+             case 4:
+                pedido.setStatus(StatusPedido.EMTRANSITO);
+                break;
+             case 5:
+                pedido.setStatus(StatusPedido.ENTREGUE);
+                break;
+            default:
+                break;
+        }
+    
+        pedidoRepository.save(pedido);
     }
 }

@@ -1,3 +1,6 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-empty */
+/* eslint-disable no-const-assign */
 import * as React from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import cartUtils from '../../methods';
@@ -5,6 +8,7 @@ import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import './styles.css';
 import getDistanceFromLatLonInKm from '../../utils/getDistance';
+import login from '../loginCliente'
 
 export default function Carrinho() {
   const cepRef = React.createRef();
@@ -19,6 +23,7 @@ export default function Carrinho() {
   const [totalProdutos, setTotalProdutos] = React.useState(null);
   const [redirect, setRedirect] = React.useState('');
   const [freightType, setFreightType] = React.useState(0);
+  const [chk,setChk] = React.useState(0);
 
   const produto = {
     produto: {
@@ -58,13 +63,18 @@ export default function Carrinho() {
   };
 
   const checkout = () => {
-    cartUtils.adicionarFrete({
-      tipo: freightType,
-      valor: valorFrete,
-    });
-    cartUtils.adicionarEnderecoId(endereco.id);
-    cartUtils.adicionarMetodoDePagamento(0);
-    cartUtils.calcularEAtualizarTotal();
+    if(chk === 1){
+      cartUtils.adicionarFrete({
+        tipo: freightType,
+        valor: valorFrete,
+      });
+      cartUtils.adicionarEnderecoId(endereco.id);
+      cartUtils.adicionarMetodoDePagamento(0);
+      cartUtils.calcularEAtualizarTotal();
+      window.location.href = '/checkout';
+    }else{
+      window.location.href = '/loginCliente';
+    }
   };
 
   const handleFirstFreight = (cepParam, totalProdutos) => {
@@ -157,9 +167,11 @@ export default function Carrinho() {
           const endereco = data.find((e) => e.principal === true);
           setEndereco(endereco);
           handleFirstFreight(endereco.cep, cart.total);
+          setChk(1);
         }
       })
       .catch(() => {
+        setChk(0);
         makeToast('error', 'Erro ao buscar endereços');
       });
   }, []);
@@ -297,7 +309,7 @@ export default function Carrinho() {
             <h2 className="cart-total">
               Total: R$ {total?.toLocaleString('pt-BR', { currency: 'BRL' })}
             </h2>
-            <Link to="/chekout">
+
               <button
                 type="button"
                 onClick={checkout}
@@ -305,7 +317,7 @@ export default function Carrinho() {
               >
                 Checkout
               </button>
-            </Link>
+
           </div>
         </main>
       </div>

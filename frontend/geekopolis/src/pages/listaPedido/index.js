@@ -16,6 +16,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import Aside from '../../components/aside';
 import makeToast from '../../shared/toaster';
+import './index.css';
 import Pagination from '../../components/Pagination';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -41,82 +42,8 @@ function ListaPedido() {
 
   console.log(pedidos)
 
-  const buscaProdutos = (page) => {
-    const startIndex = (page - 1) * productsPerPage;
-    const endIndex = startIndex + productsPerPage;
-
-    fetch(
-      `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
-        nameRef.current.value
-      }`,
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        makeToast('error', 'Erro ao carregar produtos, tente novamente');
-        return null;
-      })
-      .then((data) => {
-        const productsOnPage = data.produtos.slice(startIndex, endIndex);
-        setRequests(productsOnPage);
-        const totalPage = Math.ceil(data.qtdTotal / productsPerPage);
-        setTotalPages(totalPage);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const filtrar = (page) => {
-    const startIndex = (page - 1) * productsPerPage;
-    const endIndex = startIndex + productsPerPage;
-
-    setRequests([]);
-    fetch(
-      `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
-        nameRef.current.value
-      }`,
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        makeToast('error', 'Erro ao carregar produtos, tente novamente');
-        return null;
-      })
-      .then((data) => {
-        const productsOnPage = data.produtos.slice(startIndex, endIndex);
-        setRequests(productsOnPage);
-        const totalPage = Math.ceil(data.qtdTotal / productsPerPage);
-        setTotalPages(totalPage);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    buscaProdutos(currentPage);
-  }, [currentPage]);
-  let disabled;
-
-  if(cargo === "ESTOQUISTA") {
-    disabled = true;
-  } else {
-    disabled = false;
-  }
-
   React.useEffect(() => {
-    fetch(`http://localhost:8080/pedido/retornaPedidos/token/${localStorage.getItem('token-cliente')}`, {
+    fetch(`http://localhost:8080/pedido/retornaPedidos`, {
       method: 'GET'
     })
       .then((response) => {
@@ -169,33 +96,6 @@ function ListaPedido() {
       <Aside />
       <div className="container">
         <div className="fundo">
-          <div className="filtro">
-            <input
-              type="text"
-              name="nome"
-              id="nome"
-              ref={nameRef}
-              placeholder="Pesquisar produto"
-              className="inserir"
-            />
-            <button type="button" className="botao-Filtro" onClick={() => filtrar(currentPage)}>
-              <p>Filtrar</p>
-            </button>
-            <div className="adicionar-Produto" />
-            <button
-              type="button"
-              className="botao-adicionar"
-              disabled={cargo === "ESTOQUISTA"}
-              onClick={() => {
-                if (cargo !== "ESTOQUISTA") {
-                  window.location.href = '/cadastroProduto';
-                }
-              }}
-            >
-              <h2>Adicionar produto</h2>
-              <p>+</p>
-            </button>
-          </div>
           <tbody className="user-list">
             <table className="request-table">
               <thead className="lista">
@@ -209,18 +109,19 @@ function ListaPedido() {
               pedidos.map((pedido) => (
                 <tr className="coluns">
                   <td className="user-data">{pedido.dataDoPedido}</td>
-                  <td className="user-data">{pedido.id}</td>
+                  <td className="user-data">{pedido.pedidoCode}</td>
                   <td className="user-data">R$ {pedido.total.toFixed(2)}</td>
                   <td className="user-data" id='status-pedidos'>
                   <select
+                      className="pedidos-input"
                       onChange={(e) => handleStatusUpdate(pedido.id, e.target.value)}
                     >
-                      <option value="AGUARDANDOPAGAMENTO">Aguardando Pagamento</option>
-                      <option value="PAGAMENTOREJEITADO">Pagamento Rejeitado</option>
-                      <option value="PAGAMENTOCOMSUCESSO">Pagamento com Sucesso</option>
-                      <option value="AGUARDANDORETIRADA">Aguardando Retirada</option>
-                      <option value="EMTRANSITO">Em Trânsito</option>
-                      <option value="ENTREGUE">Entregue</option>
+                      <option value="0">Aguardando Pagamento</option>
+                      <option value="1">Pagamento Rejeitado</option>
+                      <option value="2">Pagamento com Sucesso</option>
+                      <option value="3">Aguardando Retirada</option>
+                      <option value="4">Em Trânsito</option>
+                      <option value="5">Entregue</option>
                     </select>
 
                   </td> 

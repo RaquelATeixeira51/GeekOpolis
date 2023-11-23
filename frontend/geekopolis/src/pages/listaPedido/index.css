@@ -1,0 +1,18 @@
+.pedidos-input {
+    background: transparent;
+    border: 2px solid white; 
+    color: white; 
+    padding: 10px; 
+    border-radius: 4px;
+    transition: all 0.4s;
+    width: 200px;
+    &:focus, &:active {
+        outline: none;
+        border: 2px solid white;
+        transform: scale(1.01);
+    }
+}
+
+.fundo option {
+    color: black;
+  }

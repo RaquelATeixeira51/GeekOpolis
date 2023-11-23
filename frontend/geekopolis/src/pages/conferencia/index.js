@@ -122,14 +122,13 @@ export default function Carrinho() {
     window.location.reload();
   };
 
-
   const checkout = () => {
     if (tipoPag === "Cred" && !isFormValid()) {
       makeToast('error', 'Preencha todos os campos do cartão de crédito.');
       return;
     }
-    cartUtils.adicionarEnderecoId(1);
-    cartUtils.adicionarMetodoDePagamento(0);
+    cartUtils.adicionarEnderecoId(endereco.id);
+    cartUtils.adicionarMetodoDePagamento((creditCard.numCartao.trim() === "" ? 0 : 1));
     cartUtils.calcularEAtualizarTotal();
 
     cartUtils

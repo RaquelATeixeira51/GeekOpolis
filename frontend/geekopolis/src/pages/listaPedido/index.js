@@ -107,62 +107,6 @@ function ListaPedido() {
   useEffect(() => {
     buscaProdutos(currentPage);
   }, [currentPage]);
-
-  const atualizaAcesso = (id) => {
-    fetch(
-      `http://localhost:8080/produto/atualizaStatusProduto/${id}?token=${localStorage.getItem(
-        'token'
-      )}`,
-      {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        }
-        makeToast('error', 'Erro na atualização de status do produto.');
-        return null;
-      })
-      .then(() => {
-        window.location.href = '/listaProdutos';
-      })
-      .catch((err) => {
-        console.error(err);
-        window.location.href = '/listaProdutos';
-      });
-  };
-
-
-
-  useEffect(() => {
-    fetch(`http://localhost:8080/usuario/informacoes?jwtToken=${localStorage.getItem(
-      'token'
-    )}`,
-    {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }
-    )
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-
-      makeToast('error', 'Erro ao verificar usuario.');
-      return null;
-    })
-    .then((data) => {
-      setCargo(data.grupo);
-    })
-    .catch((err) => {
-      console.error(err);
-      window.location.href = '/listaUsuarios';
-    });
-
-  }, [])
-
   let disabled;
 
   if(cargo === "ESTOQUISTA") {
@@ -195,7 +139,31 @@ function ListaPedido() {
       });
   }, [])
 
+  
+  const [selectedStatus, setSelectedStatus] = useState('');
 
+  const handleStatusUpdate = (orderId, newStatus) => {
+    fetch(`http://localhost:8080/pedido/atualizaStatusPedido/id/${orderId}?status=${newStatus}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          makeToast('success', 'Status atualizado com sucesso');
+        } else {
+          makeToast('error', 'Erro ao atualizar o status');
+        }
+      })
+      .catch((error) => {
+        console.error('Error updating status:', error);
+        makeToast('error', 'Erro ao atualizar o status');
+      });
+  };
+  
+
+  console.log(pedidos.status)
   return (
     <>
       <Aside />
@@ -231,34 +199,31 @@ function ListaPedido() {
           <tbody className="user-list">
             <table className="request-table">
               <thead className="lista">
-                <th>data</th>
-                <th>numero</th>
+                <th>data do pedido</th>
+                <th>ID</th>
                 <th>valor</th>
                 <th>Status</th>
               </thead>
             </table>
-            {requests &&
-              requests.map((client) => (
+            {pedidos &&
+              pedidos.map((pedido) => (
                 <tr className="coluns">
-                  <td className="user-data">{client.nome}</td>
-                  <td className="user-data">{client.preco}</td>
-                  <td className="user-data">{client.qtdEstoque}</td>
-                  <td className="user-data">
-                  <button
-                      disabled={disabled}
-                      type="button"
-                      className={`status ${client.status ? 'ativo' : 'inativo'} ${cargo !== 'ESTOQUISTA' ? 'able' : 'disabled'}`}
-                      onClick={() => {
-                        if(cargo !== 'ESTOQUISTA'){
-                          atualizaAcesso(client.id);
-                        }
-                      }
-                    }
+                  <td className="user-data">{pedido.dataDoPedido}</td>
+                  <td className="user-data">{pedido.id}</td>
+                  <td className="user-data">R$ {pedido.total.toFixed(2)}</td>
+                  <td className="user-data" id='status-pedidos'>
+                  <select
+                      onChange={(e) => handleStatusUpdate(pedido.id, e.target.value)}
                     >
-                      {client.status ? 'Ativo' : 'Inativo'}
-                    </button>
-                  </td>
-                 
+                      <option value="AGUARDANDOPAGAMENTO">Aguardando Pagamento</option>
+                      <option value="PAGAMENTOREJEITADO">Pagamento Rejeitado</option>
+                      <option value="PAGAMENTOCOMSUCESSO">Pagamento com Sucesso</option>
+                      <option value="AGUARDANDORETIRADA">Aguardando Retirada</option>
+                      <option value="EMTRANSITO">Em Trânsito</option>
+                      <option value="ENTREGUE">Entregue</option>
+                    </select>
+
+                  </td> 
                 </tr>
               ))}
           </tbody>

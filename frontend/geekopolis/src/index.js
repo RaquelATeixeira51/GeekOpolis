@@ -150,7 +150,7 @@ root.render(
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/pedidos' element={<ProtectedRouteCliente element={<Pedidos />} />} />
         <Route path="/pedido/:id" element={<Detalhe />} />
-        <Route path='listaPedido' element={<ListaPedido/>}/>
+        <Route path='/listaPedido' element={<ListaPedido/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

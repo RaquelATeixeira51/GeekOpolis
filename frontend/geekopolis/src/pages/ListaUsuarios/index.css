@@ -108,6 +108,7 @@
 .lista th,
 .coluns td {
   width: calc(100% / 6);
+  margin-top: 10px;
 }
 
 .user-list {
@@ -129,6 +130,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  
 }
 
 .status {
@@ -216,4 +218,8 @@
 .modal-botoes {
   padding-top: 30px;
   margin-left: 90px;
+}
+
+#status-pedidos{
+  color: green;
 }

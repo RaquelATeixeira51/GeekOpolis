@@ -135,14 +135,15 @@ export default function Carrinho() {
     cartUtils
       .checkout(checkoutURL)
       .then((response) => {
-        cartUtils.initializeCart();
-        makeToast('success', response);
-        setIsModalOpen2(true); 
-        window.location.href = '/pedidos';
+        if (response.status === 201) {
+          cartUtils.initializeCart();
+          makeToast('success', response);
+          setIsModalOpen2(true);
+          window.location.href = '/pedidos';
+        } else {
+          makeToast('error', 'Erro ao processar o pedido. Tente novamente.');
+        }
       })
-      .catch((error) => {
-        makeToast('error', error);
-      });
   };
 
 

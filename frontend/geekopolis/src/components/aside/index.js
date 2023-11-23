@@ -7,9 +7,11 @@ import CutLogo from '../../assets/img/logo/GeekOpolisLogo-cutted.png';
 import LogoutIcon from '../../assets/img/icons/logout-icon.png';
 import UsersIcon from '../../assets/img/icons/users-icon.png';
 import ProductsIcon from '../../assets/img/icons/products-icon.png';
+import PedidosIcon from '../../assets/img/icons/lista-de-controle.png';
 import LoginIcon from '../../assets/img/icons/login-icon.png';
 import ArrowIcon from '../../assets/img/icons/arrow-icon.png';
 import makeToast from '../../shared/toaster';
+
 
 export default function Aside() {
   const [userRole, setUserRole] = React.useState('');
@@ -87,6 +89,10 @@ export default function Aside() {
                   <img src={UsersIcon} alt="GeekOpolis Users Icon" />
                   <p>Usuários</p>
                 </Link>
+                <Link to="/ListaPedido">
+                  <img src={PedidosIcon} alt="GeekOpolis Users Icon" />
+                  <p>Pedidos</p>
+                </Link>
               </div>
               <div className="geekopolis-aside-footer">
                 <button type="button" onClick={handleLogout}>
@@ -117,6 +123,13 @@ export default function Aside() {
                 <Link to="/listaUsuarios">
                   <img
                     src={UsersIcon}
+                    alt="GeekOpolis Users Icon"
+                    className="large"
+                  />
+                </Link>
+                <Link to="/listaPedido">
+                  <img
+                    src={PedidosIcon}
                     alt="GeekOpolis Users Icon"
                     className="large"
                   />

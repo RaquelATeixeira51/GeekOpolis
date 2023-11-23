@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-undef */
@@ -123,27 +122,27 @@ export default function Carrinho() {
     window.location.reload();
   };
 
+
   const checkout = () => {
     if (tipoPag === "Cred" && !isFormValid()) {
       makeToast('error', 'Preencha todos os campos do cartão de crédito.');
       return;
     }
-    cartUtils.adicionarEnderecoId(endereco.id);
-    cartUtils.adicionarMetodoDePagamento((creditCard.numCartao.trim() === "" ? 0 : 1));
+    cartUtils.adicionarEnderecoId(1);
+    cartUtils.adicionarMetodoDePagamento(0);
     cartUtils.calcularEAtualizarTotal();
 
     cartUtils
       .checkout(checkoutURL)
       .then((response) => {
-        if (response.status === 201) {
-          setIsModalOpen2(true);
-          cartUtils.initializeCart();
-          makeToast('success', response);
-          window.location.href = '/pedidos';
-        } else {
-          makeToast('error', 'Erro ao processar o pedido. Tente novamente.');
-        }
+        cartUtils.initializeCart();
+        makeToast('success', response);
+        setIsModalOpen2(true); 
+        window.location.href = '/pedidos';
       })
+      .catch((error) => {
+        makeToast('error', error);
+      });
   };
 
 
@@ -231,6 +230,30 @@ export default function Carrinho() {
                       </div>
                     </div>
                   </Link>
+                  <div className="cart-item-actions">
+                    <div className="cart-item-actions-row">
+                      <h3>Quantidade:</h3>
+                      <button
+                        type="button"
+                        onClick={() => removeProduct(product)}
+                      >
+                        -
+                      </button>
+                      <h3>{product.quantidade}</h3>
+                      <button type="button" onClick={() => addProduct(product)}>
+                        +
+                      </button>
+                    </div>
+                    <div className="cart-item-actions-row">
+                      <button
+                        type="button"
+                        className="cart-item-actions-delete"
+                        onClick={() => deleteProduct(product)}
+                      >
+                        Remover do carrinho
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))}
               </div>
@@ -264,7 +287,8 @@ export default function Carrinho() {
         <option value="Bole">Boleto</option>
       </select>
 
-      {tipoPag === "Cred" && endereco.id !== undefined && (
+      {tipoPag === "Cred" && (
+        
         <div>
           <div className="cadastrogeral-input">
             <p>Nome Completo</p>
@@ -317,67 +341,6 @@ export default function Carrinho() {
                 placeholder="***"
                 maxLength={3}
                 disabled={!creditCard.validade}
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
-{tipoPag === "Cred" && endereco.id === undefined && (
-        
-        <div>
-          <div className="cadastrogeral-input">
-            <p>Nome Completo</p>
-            <input
-              name="nomeCompleto"
-              value={creditCard.nomeCompleto}
-              onChange={handleInputChange}
-              type="text"
-              className="cadastrogrande-input"
-              placeholder="Joel Miller"
-              readOnly
-            />
-          </div>
-
-          <div className="cadastrogeral-input">
-            <p>Nº Cartão</p>
-            <input
-              name='numCartao'
-              value={creditCard.numCartao}
-              onChange={handleInputChange} 
-              type="text"
-              className="cadastro-input"
-              placeholder="**** **** **** ****"
-              maxLength={16}
-              readOnly
-            />
-          </div>
-
-          <div className='cadastrofinal-input'>
-            <div className="cadastrogeral-input">
-              <p>Validade</p>
-              <input
-                name='validade'
-                value={creditCard.validade}
-                onChange={handleInputChange} 
-                type="text"
-                className="cadastropequeno-input"
-                placeholder="**/**"
-                maxLength={5}
-                readOnly
-              />
-            </div>
-            <div className="cadastrogeral-input">
-              <p>CVV</p>
-              <input
-                name='cvv'
-                value={creditCard.cvv}
-                onChange={handleInputChange} 
-                type="text"
-                className="cadastropequeno-input"
-                placeholder="***"
-                maxLength={3}
-                readOnly
               />
             </div>
           </div>

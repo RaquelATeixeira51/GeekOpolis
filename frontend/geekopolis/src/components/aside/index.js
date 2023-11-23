@@ -89,10 +89,6 @@ export default function Aside() {
                   <img src={UsersIcon} alt="GeekOpolis Users Icon" />
                   <p>Usuários</p>
                 </Link>
-                <Link to="/ListaPedido">
-                  <img src={PedidosIcon} alt="GeekOpolis Users Icon" />
-                  <p>Pedidos</p>
-                </Link>
               </div>
               <div className="geekopolis-aside-footer">
                 <button type="button" onClick={handleLogout}>
@@ -123,13 +119,6 @@ export default function Aside() {
                 <Link to="/listaUsuarios">
                   <img
                     src={UsersIcon}
-                    alt="GeekOpolis Users Icon"
-                    className="large"
-                  />
-                </Link>
-                <Link to="/listaPedido">
-                  <img
-                    src={PedidosIcon}
                     alt="GeekOpolis Users Icon"
                     className="large"
                   />
@@ -184,6 +173,14 @@ export default function Aside() {
                   <img src={ProductsIcon} alt="GeekOpolis Products Icon" />
                   <p>Produtos</p>
                 </Link>
+                <Link to="/listaPedido">
+                  <img
+                    src={PedidosIcon}
+                    alt="GeekOpolis Users Icon"
+                    className="large"
+                  />
+                  <p>Pedidos</p>
+                </Link>
               </div>
               <div className="geekopolis-aside-footer">
                 <button type="button" onClick={handleLogout}>
@@ -208,6 +205,13 @@ export default function Aside() {
                   <img
                     src={ProductsIcon}
                     alt="GeekOpolis Products Icon"
+                    className="large"
+                  />
+                </Link>
+                <Link to="/listaPedido">
+                  <img
+                    src={PedidosIcon}
+                    alt="GeekOpolis Users Icon"
                     className="large"
                   />
                 </Link>

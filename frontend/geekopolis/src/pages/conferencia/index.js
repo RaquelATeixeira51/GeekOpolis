@@ -121,7 +121,6 @@ export default function Carrinho() {
         setIsModalOpen2(true); 
       })
       .catch((error) => {
-        cartUtils.initializeCart();
         makeToast('error', error);
       });
   };

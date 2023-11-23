@@ -70,6 +70,7 @@ public class PedidoService {
     
             return codigoPedido;
         } catch (Exception e) {
+            System.out.println("ERRO"+e);
             return null;
         }
     }

@@ -8,8 +8,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-else-return */
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Link, useNavigate  } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import cartUtils from '../../methods';
 import makeToast from '../../shared/toaster';
@@ -35,10 +35,29 @@ export default function Carrinho() {
     validade: '',
     cvv: '',
   });
+
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const tokenCliente = localStorage.getItem('token-cliente');
+
+  //   if (!tokenCliente) {
+  //     navigate('/loginCliente');
+  //   } else {
+  //     (!isValid) 
+  //       localStorage.removeItem('token');
+  //       setTokenValid(false);
+  //       navigate('/');
+  //     console.log('Token válido. Continue com o checkout.');
+  //   }
+  // }, [navigate]);
    
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setCreditCard({ ...creditCard, [name]: value });
+    setCreditCard({
+      ...creditCard,
+      [name]: value,
+    });
   };
 
   const isFormValid = () => (
@@ -292,6 +311,7 @@ export default function Carrinho() {
               className="cadastro-input"
               placeholder="**** **** **** ****"
               maxLength={16}
+              disabled={!creditCard.nomeCompleto}
             />
           </div>
 
@@ -306,6 +326,7 @@ export default function Carrinho() {
                 className="cadastropequeno-input"
                 placeholder="**/**"
                 maxLength={5}
+                disabled={!creditCard.numCartao}
               />
             </div>
             <div className="cadastrogeral-input">
@@ -318,6 +339,7 @@ export default function Carrinho() {
                 className="cadastropequeno-input"
                 placeholder="***"
                 maxLength={3}
+                disabled={!creditCard.validade}
               />
             </div>
           </div>

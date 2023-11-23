@@ -132,16 +132,28 @@ export default function Carrinho() {
     cartUtils.adicionarMetodoDePagamento(0);
     cartUtils.calcularEAtualizarTotal();
 
-    cartUtils
-      .checkout(checkoutURL)
+    const cart = JSON.parse(localStorage.getItem('carrinho'));
+
+    fetch(`http://localhost:8080/pedido/criaPedido/token/${localStorage.getItem(
+      'token-cliente'
+    )}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(cart),
+    })
       .then((response) => {
-        cartUtils.initializeCart();
-        makeToast('success', response);
-        setIsModalOpen2(true); 
-        window.location.href = '/pedidos';
+        if (response.ok) {
+          cartUtils.initializeCart();
+          setIsModalOpen2(true); 
+          setTimeout(() => {
+            window.location.href = '/pedidos';
+          }, 4000);
+        }
+        makeToast('error', error);
+        return null;
       })
       .catch((error) => {
-        makeToast('error', error);
+        console.log(error.message);
       });
   };
 

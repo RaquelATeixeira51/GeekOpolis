@@ -34,5 +34,6 @@
     "react/jsx-no-useless-fragment": "off",
     "no-unused-vars": "warn",
     "no-shadow": "off",
+    "no-unreachable": "off"
   }
 }

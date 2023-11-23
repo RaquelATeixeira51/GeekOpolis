@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import cartUtils from '../../methods';
 import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
@@ -17,6 +17,8 @@ export default function Carrinho() {
   const [valorFrete, setValorFrete] = React.useState(null);
   const [cep, setCep] = React.useState(null);
   const [totalProdutos, setTotalProdutos] = React.useState(null);
+  const [redirect, setRedirect] = React.useState('');
+  const [freightType, setFreightType] = React.useState(0);
 
   const produto = {
     produto: {
@@ -56,22 +58,13 @@ export default function Carrinho() {
   };
 
   const checkout = () => {
-    cartUtils.adicionaProdutoAoCarrinho(produto);
-    cartUtils.adicionarFrete(frete);
-    cartUtils.adicionarEnderecoId(1);
+    cartUtils.adicionarFrete({
+      tipo: freightType,
+      valor: valorFrete,
+    });
+    cartUtils.adicionarEnderecoId(endereco.id);
     cartUtils.adicionarMetodoDePagamento(0);
     cartUtils.calcularEAtualizarTotal();
-
-    cartUtils
-      .checkout(checkoutURL)
-      .then((response) => {
-        cartUtils.initializeCart();
-        makeToast('success', response);
-      })
-      .catch((error) => {
-        cartUtils.initializeCart();
-        makeToast('error', error);
-      });
   };
 
   const handleFirstFreight = (cepParam, totalProdutos) => {
@@ -84,6 +77,7 @@ export default function Carrinho() {
       .then((response) => response.json())
       .then((data) => {
         const { lat, lng } = data.results[0].geometry.location;
+        setFreightType(0);
         setTotal(
           !valorFrete || cep !== cepParam
             ? Number(getDistanceFromLatLonInKm(lat, lng) * 1.5) +
@@ -98,46 +92,39 @@ export default function Carrinho() {
       });
   };
 
-  const calcularFrete = () => {
-    if (!cepRef.current.value) {
-      makeToast('error', 'Digite um CEP válido');
-      return;
-    }
-    if (valorFrete && cep === cepRef.current.value) {
-      makeToast('error', 'Frete já calculado');
-      return;
-    }
-
+  const calcularFrete = (cepParam, freightType, type) => {
     fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&address=${cepRef.current.value}`,
+      `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&address=${cepParam}`,
       {
         method: 'GET',
       }
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         const { lat, lng } = data.results[0].geometry.location;
         setEndereco({
           ...endereco,
-          cep: cepRef.current.value,
           logradouro: data.results[0].address_components[1].long_name,
           cidade: data.results[0].address_components[3].long_name,
           uf: data.results[0].address_components[4].short_name,
         });
+
         setTotal(
-          !valorFrete || cep !== cepRef.current.value
-            ? Number(getDistanceFromLatLonInKm(lat, lng) * 1.5) +
-                Number(totalProdutos.replace(',', '.'))
-            : total
+          Number(getDistanceFromLatLonInKm(lat, lng) * freightType) +
+            Number(totalProdutos.replace('.', '').replace(',', '.'))
         );
-        setCep(cepRef.current.value);
-        setValorFrete(Number(getDistanceFromLatLonInKm(lat, lng) * 1.5));
+        setFreightType(type);
+        setValorFrete(
+          Number(getDistanceFromLatLonInKm(lat, lng) * freightType)
+        );
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         makeToast('error', 'Erro ao calcular frete');
       });
+  };
+
+  const handleFreight = (freight, type) => {
+    calcularFrete(endereco?.cep, Number(freight), Number(type));
   };
 
   React.useEffect(() => {
@@ -176,6 +163,8 @@ export default function Carrinho() {
         makeToast('error', 'Erro ao buscar endereços');
       });
   }, []);
+
+  if (redirect !== '') return <Navigate to={redirect} />;
 
   return (
     <>
@@ -244,30 +233,71 @@ export default function Carrinho() {
               ))}
             </div>
 
-            <div className="cart-address">
-              <h2>CEP: {endereco?.cep}</h2>
-              <h2>Logradouro: {endereco?.logradouro}</h2>
-              <h2>Cidade: {endereco?.cidade}</h2>
-              <h2>UF: {endereco?.uf}</h2>
-              <h2>Numero: {endereco?.numero}</h2>
-              <h2>Complemento: {endereco?.complemento}</h2>
+            {endereco.cep ? (
+              <>
+                <div className="cart-address">
+                  <h2>CEP: {endereco?.cep}</h2>
+                  <h2>Logradouro: {endereco?.logradouro}</h2>
+                  <h2>Cidade: {endereco?.cidade}</h2>
+                  <h2>UF: {endereco?.uf}</h2>
+                  <h2>Numero: {endereco?.numero}</h2>
+                  <h2>Complemento: {endereco?.complemento}</h2>
 
-              <div className="cart-address-change">
-                <Link to="/editarEndereco">Alterar Endereço de entrega</Link>
-              </div>
-            </div>
+                  <div className="cart-address-change">
+                    <Link to="/editarEndereco">
+                      Alterar Endereço de entrega
+                    </Link>
+                  </div>
+                </div>
 
-            <h3 className="cart-subtotal cart-total">
-              Subtotal: R$ {totalProdutos}{' '}
-            </h3>
-            <h3 className="cart-subtotal cart-total">
-              Frete: R${' '}
-              {valorFrete?.toLocaleString('pt-BR', { currency: 'BRL' })}{' '}
-            </h3>
+                <div className="cart-freight">
+                  <h2>Escolha o formato de frete:</h2>
+                  <div className="cart-freight-input">
+                    <input
+                      type="radio"
+                      name="entregadora"
+                      value="1.8"
+                      defaultChecked
+                      onChange={() => handleFreight(1.5, 0)}
+                    />
+                    <span>SEDEX (3 a 6 dias úteis)</span>
+                  </div>
+                  <div className="cart-freight-input">
+                    <input
+                      type="radio"
+                      value="2.4"
+                      name="entregadora"
+                      onChange={() => handleFreight(2, 1)}
+                    />
+                    <span>PAC (3 a 5 dias úteis)</span>
+                  </div>
+                  <div className="cart-freight-input">
+                    <input
+                      type="radio"
+                      value="2.8"
+                      name="entregadora"
+                      onChange={() => handleFreight(2.1, 2)}
+                    />
+                    <span>Total Express (2 a 6 dias úteis)</span>
+                  </div>
+                </div>
+
+                <h3 className="cart-subtotal cart-total">
+                  Subtotal: R$ {totalProdutos}{' '}
+                </h3>
+                <h3 className="cart-subtotal cart-total">
+                  Frete: R${' '}
+                  {valorFrete?.toLocaleString('pt-BR', { currency: 'BRL' })}{' '}
+                </h3>
+              </>
+            ) : (
+              <div className="none" />
+            )}
+
             <h2 className="cart-total">
               Total: R$ {total?.toLocaleString('pt-BR', { currency: 'BRL' })}
             </h2>
-            <Link to="/checkout">
+            <Link to="/chekout">
               <button
                 type="button"
                 onClick={checkout}

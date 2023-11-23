@@ -138,6 +138,7 @@ export default function Carrinho() {
         cartUtils.initializeCart();
         makeToast('success', response);
         setIsModalOpen2(true); 
+        window.location.href = '/pedidos';
       })
       .catch((error) => {
         makeToast('error', error);
@@ -354,11 +355,9 @@ export default function Carrinho() {
         <div className='cart-total-conf'>
             <h2>Frete: R$ {total}</h2>
             <h2>Total: R$ {total}</h2>
-            <Link to="/pedidos">
-              <button className="cart-address-buttom" type="button" onClick={checkout}>
-                  Finalizar
-              </button>
-            </Link>
+            <button className="cart-address-buttom" type="button" onClick={checkout}>
+                Finalizar
+            </button>
         </div>
         </div>
       <Modal

@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable consistent-return */
 /* eslint-disable no-empty */
 /* eslint-disable no-const-assign */
@@ -23,7 +24,7 @@ export default function Carrinho() {
   const [totalProdutos, setTotalProdutos] = React.useState(null);
   const [redirect, setRedirect] = React.useState('');
   const [freightType, setFreightType] = React.useState(0);
-  const [chk,setChk] = React.useState(0);
+  const [chk, setChk] = React.useState(0);
 
   const produto = {
     produto: {
@@ -63,7 +64,7 @@ export default function Carrinho() {
   };
 
   const checkout = () => {
-    if(chk === 1){
+    if (chk === 1) {
       cartUtils.adicionarFrete({
         tipo: freightType,
         valor: valorFrete,
@@ -72,7 +73,7 @@ export default function Carrinho() {
       cartUtils.adicionarMetodoDePagamento(0);
       cartUtils.calcularEAtualizarTotal();
       window.location.href = '/checkout';
-    }else{
+    } else {
       window.location.href = '/loginCliente';
     }
   };
@@ -91,7 +92,7 @@ export default function Carrinho() {
         setTotal(
           !valorFrete || cep !== cepParam
             ? Number(getDistanceFromLatLonInKm(lat, lng) * 1.5) +
-                Number(totalProdutos)
+            Number(totalProdutos)
             : total
         );
         setCep(cepParam);
@@ -103,6 +104,7 @@ export default function Carrinho() {
   };
 
   const calcularFrete = (cepParam, freightType, type) => {
+    debugger;
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&address=${cepParam}`,
       {
@@ -121,20 +123,20 @@ export default function Carrinho() {
 
         setTotal(
           Number(getDistanceFromLatLonInKm(lat, lng) * freightType) +
-            Number(totalProdutos.replace('.', '').replace(',', '.'))
+          Number(totalProdutos.replace('.', '').replace(',', '.'))
         );
         setFreightType(type);
         setValorFrete(
           Number(getDistanceFromLatLonInKm(lat, lng) * freightType)
         );
       })
-      .catch(() => {
-        makeToast('error', 'Erro ao calcular frete');
+      .catch((error) => {
+        makeToast('error', error);
       });
   };
 
   const handleFreight = (freight, type) => {
-    calcularFrete(endereco?.cep, Number(freight), Number(type));
+    calcularFrete(cep, Number(freight), Number(type));
   };
 
   React.useEffect(() => {
@@ -153,27 +155,34 @@ export default function Carrinho() {
     setTotal(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
     setTotalProdutos(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
 
-    fetch(
-      `http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem(
-        'token-cliente'
-      )}`,
-      {
-        method: 'GET',
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.length > 0) {
-          const endereco = data.find((e) => e.principal === true);
-          setEndereco(endereco);
-          handleFirstFreight(endereco.cep, cart.total);
-          setChk(1);
+
+    const isLogado = localStorage.getItem('token-cliente'); 
+
+    debugger;
+    if(isLogado){
+      fetch(
+        `http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem(
+          'token-cliente'
+        )}`,
+        {
+          method: 'GET',
         }
-      })
-      .catch(() => {
-        setChk(0);
-        makeToast('error', 'Erro ao buscar endereços');
-      });
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.length > 0) {
+            const endereco = data.find((e) => e.principal === true);
+            setEndereco(endereco);
+            handleFirstFreight(endereco.cep, cart.total);
+            setChk(1);
+            setCep(endereco.cep)
+          }
+        })
+        .catch(() => {
+          setChk(0);
+          makeToast('error', 'Erro ao buscar endereços');
+        });
+    }
   }, []);
 
   if (redirect !== '') return <Navigate to={redirect} />;
@@ -244,24 +253,16 @@ export default function Carrinho() {
                 </div>
               ))}
             </div>
-
-            {endereco.cep ? (
+            <div className='carrinho-cep-input'>
+            <input
+              placeholder='CEP'
+              type="text"
+              value={cep}
+              onChange={(e) => setCep(e.target.value)}
+            />
+            </div>
+            {cep ? (
               <>
-                <div className="cart-address">
-                  <h2>CEP: {endereco?.cep}</h2>
-                  <h2>Logradouro: {endereco?.logradouro}</h2>
-                  <h2>Cidade: {endereco?.cidade}</h2>
-                  <h2>UF: {endereco?.uf}</h2>
-                  <h2>Numero: {endereco?.numero}</h2>
-                  <h2>Complemento: {endereco?.complemento}</h2>
-
-                  <div className="cart-address-change">
-                    <Link to="/editarEndereco">
-                      Alterar Endereço de entrega
-                    </Link>
-                  </div>
-                </div>
-
                 <div className="cart-freight">
                   <h2>Escolha o formato de frete:</h2>
                   <div className="cart-freight-input">
@@ -290,7 +291,7 @@ export default function Carrinho() {
                       name="entregadora"
                       onChange={() => handleFreight(2.1, 2)}
                     />
-                    <span>Total Express (2 a 6 dias úteis)</span>
+                    <span>MINI ENVIOS (2 a 6 dias úteis)</span>
                   </div>
                 </div>
 
@@ -310,13 +311,13 @@ export default function Carrinho() {
               Total: R$ {total?.toLocaleString('pt-BR', { currency: 'BRL' })}
             </h2>
 
-              <button
-                type="button"
-                onClick={checkout}
-                className="cart-address-change"
-              >
-                Checkout
-              </button>
+            <button
+              type="button"
+              onClick={checkout}
+              className="cart-address-change"
+            >
+              Checkout
+            </button>
 
           </div>
         </main>

@@ -153,3 +153,21 @@
 .none {
   display: none;
 }
+
+.carrinho-cep-input input {
+  background: transparent;
+  border: 2px solid white; 
+  color: white; 
+  padding: 10px; 
+  border-radius: 4px;
+  transition: all 0.4s;
+  padding: 10px;
+  width: 150px;
+  &:focus, &:active {
+      outline: none;
+      border: 2px solid white;
+      transform: scale(1.01);
+  }
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

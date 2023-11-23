@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-undef */

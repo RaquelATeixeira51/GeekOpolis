@@ -1,16 +1,16 @@
 .product-col {
     display: flex;
     width: 80%;
-    height: 80vh;
+    height: fit-content;
     background-color: var(--dark-blue-color);
     border-radius: 25px;
     border: 1px solid var(--gray-color);
-    margin: 0 auto;
+    margin: 8% auto 30px auto;
     justify-content: left;
     align-self: center;
     align-items: center;
     box-shadow: var(--black-box-shadow);
-    margin-top: 3%;
+    padding: 10px 0;
 }
 
 .limitar {
@@ -43,7 +43,9 @@
 
 .classi {
     padding-top: 30px;
-    padding-left: 37%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .valor-produto {
@@ -71,7 +73,10 @@
 }
 
 #adicionar-posição {
-    padding: 10% 25%;
+    padding: 10% 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .seletor-quantidade-produto {
@@ -80,6 +85,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin: 0 0 10px 0;
 }
 
 .box {

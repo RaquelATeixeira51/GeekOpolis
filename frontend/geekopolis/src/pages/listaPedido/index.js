@@ -28,8 +28,8 @@ function ListaPedido() {
     nome: '',
     avaliacao: 0,
     descricao: '',
-    preco: 0, 
-    qtdEstoque: 0, 
+    preco: 0,
+    qtdEstoque: 0,
     imagesPath: 0,
     categoriaId: 0,
     status: false,
@@ -40,11 +40,11 @@ function ListaPedido() {
   const [totalPages, setTotalPages] = useState(1);
   const productsPerPage = 10;
 
-  console.log(pedidos)
+  console.log(pedidos);
 
   React.useEffect(() => {
     fetch(`http://localhost:8080/pedido/retornaPedidos`, {
-      method: 'GET'
+      method: 'GET',
     })
       .then((response) => {
         if (response.ok) {
@@ -55,7 +55,6 @@ function ListaPedido() {
       })
       .then((data) => {
         if (data) {
-          debugger;
           setPedidos(data);
         } else {
           makeToast('error', 'Nâo há pedidos');
@@ -64,18 +63,20 @@ function ListaPedido() {
       .catch((err) => {
         makeToast('error', err);
       });
-  }, [])
+  }, []);
 
-  
   const [selectedStatus, setSelectedStatus] = useState('');
 
   const handleStatusUpdate = (orderId, newStatus) => {
-    fetch(`http://localhost:8080/pedido/atualizaStatusPedido/id/${orderId}?status=${newStatus}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(
+      `http://localhost:8080/pedido/atualizaStatusPedido/id/${orderId}?status=${newStatus}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
       .then((response) => {
         if (response.ok) {
           makeToast('success', 'Status atualizado com sucesso');
@@ -88,9 +89,8 @@ function ListaPedido() {
         makeToast('error', 'Erro ao atualizar o status');
       });
   };
-  
 
-  console.log(pedidos.status)
+  console.log(pedidos.status);
   return (
     <>
       <Aside />
@@ -111,10 +111,12 @@ function ListaPedido() {
                   <td className="user-data">{pedido.dataDoPedido}</td>
                   <td className="user-data">{pedido.pedidoCode}</td>
                   <td className="user-data">R$ {pedido.total.toFixed(2)}</td>
-                  <td className="user-data" id='status-pedidos'>
-                  <select
+                  <td className="user-data" id="status-pedidos">
+                    <select
                       className="pedidos-input"
-                      onChange={(e) => handleStatusUpdate(pedido.id, e.target.value)}
+                      onChange={(e) =>
+                        handleStatusUpdate(pedido.id, e.target.value)
+                      }
                     >
                       <option value="0">Aguardando Pagamento</option>
                       <option value="1">Pagamento Rejeitado</option>
@@ -123,12 +125,11 @@ function ListaPedido() {
                       <option value="4">Em Trânsito</option>
                       <option value="5">Entregue</option>
                     </select>
-
-                  </td> 
+                  </td>
                 </tr>
               ))}
           </tbody>
-          
+
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

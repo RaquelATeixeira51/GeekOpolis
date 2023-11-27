@@ -1,40 +1,42 @@
-.tudo-endereco{
+.tudo-endereco {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
 
-.fundo-endereco{
+.fundo-endereco {
     background-color: var(--white-color);
     width: 60%;
-    height: 80%;
-    margin-top: 3%;
+    height: fit-content;
+    margin: 120px 0 30px 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     border-radius: 20px;
-    border: 1.5px solid ;
+    border: 1.5px solid;
 }
 
-.tabela-endereco{
+.tabela-endereco {
     background-color: var(--dark-blue-color);
-    width: 25%;
-    height: 100%;
+    min-width: 200px;
+    width: 30%;
+    height: auto;
+    padding: 0 0 60% 0;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     overflow-x: auto;
 }
 
-.botoes-endereco{
+.botoes-endereco {
     margin-top: 8%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.botao-endereco{
+.botao-endereco {
     margin-bottom: 20px;
     padding: 20px 50px;
     width: 80%;
@@ -46,16 +48,16 @@
     transition: .3s !important;
 }
 
-.botao-endereco:hover{
+.botao-endereco:hover {
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 15px;
-    border:2px solid var(--green-color);
+    border: 2px solid var(--green-color);
     border-radius: 20px;
     transition: .3s !important;
-    
+
 }
 
-.dados-endereco{
+.dados-endereco {
     width: 90%;
     height: 100%;
     border-top-right-radius: 10px;
@@ -66,7 +68,7 @@
     align-items: center;
 }
 
-.form-endereco{
+.form-endereco {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -74,24 +76,25 @@
     height: 100%;
 }
 
-.h2-endereco{
+.h2-endereco {
     font-size: 20px;
     font-weight: bold;
     padding-top: 7%;
 }
 
-.label-endereco{
+.label-endereco {
     font-size: 20px;
     padding-top: 2%;
-    
+
 }
 
-.label2-endereco{
+.label2-endereco {
     font-size: 20px;
     padding-top: 2%;
     display: flex;
 }
-.input-endereco{
+
+.input-endereco {
     margin-top: 1%;
     padding: 15px;
     width: 42%;
@@ -99,15 +102,16 @@
     border: none;
     border-radius: 10px;
 }
-.numero-endereco{
+
+.numero-endereco {
     display: flex;
     margin-top: 2%;
     width: 100%;
     justify-content: center;
-    
+
 }
 
-.input2-endereco{
+.input2-endereco {
     margin-top: 2%;
     padding: 15px;
     width: 80%;
@@ -116,7 +120,7 @@
     border-radius: 10px;
 }
 
-#botao-endereco{
+#botao-endereco {
     margin-top: 5%;
     background-color: var(--dark-blue-color);
 }
@@ -131,39 +135,38 @@
     flex-direction: column;
     align-items: flex-end;
     position: relative;
-  }
-  
-  .botoes-label {
+}
+
+.botoes-label {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 5px;
-  }
-  
-  .botao-endereco input[type="radio"] {
-    margin-right: 5px;
-  }
-  
-  .botao-endereco label {
-    opacity: 0.5;
-  }
+}
 
-  .lixeira-icon {
-    width: 20px; 
+.botao-endereco input[type="radio"] {
+    margin-right: 5px;
+}
+
+.botao-endereco label {
+    opacity: 0.5;
+}
+
+.lixeira-icon {
+    width: 20px;
     height: 20px;
-    cursor: pointer; 
+    cursor: pointer;
     position: absolute;
     bottom: 5px;
-    left: 5px; 
-  }
+    left: 5px;
+}
 
-  .onClickImg {
+.onClickImg {
     margin-left: auto;
     cursor: pointer;
-  }
+}
 
-  .botao-endereco {
-    display: flex; 
+.botao-endereco {
+    display: flex;
     align-items: center;
-  }
-  
+}

@@ -9,7 +9,7 @@ import makeToast from '../../shared/toaster';
 import Header from '../../components/Header';
 import './styles.css';
 import getDistanceFromLatLonInKm from '../../utils/getDistance';
-import login from '../loginCliente'
+import login from '../loginCliente';
 
 export default function Carrinho() {
   const cepRef = React.createRef();
@@ -92,7 +92,7 @@ export default function Carrinho() {
         setTotal(
           !valorFrete || cep !== cepParam
             ? Number(getDistanceFromLatLonInKm(lat, lng) * 1.5) +
-            Number(totalProdutos)
+                Number(totalProdutos)
             : total
         );
         setCep(cepParam);
@@ -104,7 +104,6 @@ export default function Carrinho() {
   };
 
   const calcularFrete = (cepParam, freightType, type) => {
-    debugger;
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&address=${cepParam}`,
       {
@@ -123,7 +122,7 @@ export default function Carrinho() {
 
         setTotal(
           Number(getDistanceFromLatLonInKm(lat, lng) * freightType) +
-          Number(totalProdutos.replace('.', '').replace(',', '.'))
+            Number(totalProdutos.replace('.', '').replace(',', '.'))
         );
         setFreightType(type);
         setValorFrete(
@@ -155,11 +154,9 @@ export default function Carrinho() {
     setTotal(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
     setTotalProdutos(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
 
+    const isLogado = localStorage.getItem('token-cliente');
 
-    const isLogado = localStorage.getItem('token-cliente'); 
-
-    debugger;
-    if(isLogado){
+    if (isLogado) {
       fetch(
         `http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem(
           'token-cliente'
@@ -172,10 +169,11 @@ export default function Carrinho() {
         .then((data) => {
           if (data.length > 0) {
             const endereco = data.find((e) => e.principal === true);
+            cartUtils.adicionarEnderecoId(endereco.id);
             setEndereco(endereco);
             handleFirstFreight(endereco.cep, cart.total);
             setChk(1);
-            setCep(endereco.cep)
+            setCep(endereco.cep);
           }
         })
         .catch(() => {
@@ -253,13 +251,13 @@ export default function Carrinho() {
                 </div>
               ))}
             </div>
-            <div className='carrinho-cep-input'>
-            <input
-              placeholder='CEP'
-              type="text"
-              value={cep}
-              onChange={(e) => setCep(e.target.value)}
-            />
+            <div className="carrinho-cep-input">
+              <input
+                placeholder="CEP"
+                type="text"
+                value={cep}
+                onChange={(e) => setCep(e.target.value)}
+              />
             </div>
             {cep ? (
               <>
@@ -318,7 +316,6 @@ export default function Carrinho() {
             >
               Checkout
             </button>
-
           </div>
         </main>
       </div>

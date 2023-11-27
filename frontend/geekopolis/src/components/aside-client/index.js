@@ -11,11 +11,8 @@ import ArrowIcon from '../../assets/img/icons/arrow-icon.png';
 import makeToast from '../../shared/toaster';
 import Pedidos from '../../assets/img/icons/pedidos.png';
 
-
-
 export default function Aside() {
   const [asideOpen, setAsideOpen] = React.useState(false);
-
 
   const handleOpenAside = () => {
     setAsideOpen(!asideOpen);
@@ -23,8 +20,6 @@ export default function Aside() {
     if (asideOpen) aside.style.width = '60px';
     else if (!asideOpen) aside.style.width = '200px';
   };
-
-
 
   return (
     <>
@@ -44,38 +39,22 @@ export default function Aside() {
         </div>
         {asideOpen ? (
           <>
-
-
-            <div className="geekopolis-aside-links">
+            <div className="geekopolis-aside-links aside-client-links">
               <Link to="/cliente">
-                <img
-                  src={UsersIcon}
-                  alt="Editar Usuário"
-                  className="large"
-                />
-                <p>
-                  Editar dados
-                </p>
+                <img src={UsersIcon} alt="Editar Usuário" className="large" />
+                <p>Editar dados</p>
               </Link>
               <Link to="/editarEndereco">
                 <img
                   src={ProductsIcon}
                   alt="Editar endereço"
-                  className="large"
+                  className="medium"
                 />
-                <p>
-                  Editar Endereços
-                </p>
+                <p>Editar Endereços</p>
               </Link>
               <Link to="/pedidos">
-                <img
-                  src={Pedidos}
-                  alt="Editar endereço"
-                  className="large"
-                />
-                <p>
-                  Pedidos
-                </p>
+                <img src={Pedidos} alt="Editar endereço" className="large" />
+                <p>Pedidos</p>
               </Link>
             </div>
 
@@ -93,7 +72,6 @@ export default function Aside() {
           </>
         ) : (
           <>
-
             <div className="geekopolis-aside-links">
               <img
                 src={UsersIcon}
@@ -103,7 +81,7 @@ export default function Aside() {
               <img
                 src={ProductsIcon}
                 alt="GeekOpolis Products Icon"
-                className="large"
+                className="medium"
               />
               <img
                 src={Pedidos}

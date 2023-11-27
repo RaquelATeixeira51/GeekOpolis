@@ -13,10 +13,10 @@
 /* eslint-disable import/order */
 import './index.css';
 import Carrinho from '../../assets/img/produtos/carrinho.png';
-import avaliacao from '../../assets/img/produtos/avaliacao.png'
-import Pix from '../../assets/img/produtos/pix.svg'
+import avaliacao from '../../assets/img/produtos/avaliacao.png';
+import Pix from '../../assets/img/produtos/pix.svg';
 import * as React from 'react';
-import { MdCloudUpload, MdDelete} from 'react-icons/md';
+import { MdCloudUpload, MdDelete } from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Aside from '../../components/aside';
@@ -37,8 +37,8 @@ function ListaProdutos() {
     nome: '',
     avaliacao: 0,
     descricao: '',
-    preco: 0, 
-    qtdEstoque: 0, 
+    preco: 0,
+    qtdEstoque: 0,
     imagesPath: 0,
     categoriaId: 0,
     status: false,
@@ -73,9 +73,7 @@ function ListaProdutos() {
     const endIndex = startIndex + productsPerPage;
 
     fetch(
-      `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
-        nameRef.current.value
-      }`,
+      `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${nameRef.current.value}`,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -105,9 +103,7 @@ function ListaProdutos() {
 
     setRequests([]);
     fetch(
-      `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${
-        nameRef.current.value
-      }`,
+      `http://localhost:8080/produto/buscaProdutos/?nomeFiltro=${nameRef.current.value}`,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -162,13 +158,10 @@ function ListaProdutos() {
   };
 
   const buscaProduto = (id) => {
-    fetch(
-      `http://localhost:8080/produto/listaProduto/${id}`,
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    )
+    fetch(`http://localhost:8080/produto/listaProduto/${id}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -244,7 +237,7 @@ function ListaProdutos() {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
-        .then((response) => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         }
@@ -260,35 +253,35 @@ function ListaProdutos() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/usuario/informacoes?jwtToken=${localStorage.getItem(
-      'token'
-    )}`,
-    {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }
-    )
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
+    fetch(
+      `http://localhost:8080/usuario/informacoes?jwtToken=${localStorage.getItem(
+        'token'
+      )}`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
       }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
 
-      makeToast('error', 'Erro ao verificar usuario.');
-      return null;
-    })
-    .then((data) => {
-      setCargo(data.grupo);
-    })
-    .catch((err) => {
-      console.error(err);
-      window.location.href = '/listaUsuarios';
-    });
-
-  }, [])
+        makeToast('error', 'Erro ao verificar usuario.');
+        return null;
+      })
+      .then((data) => {
+        setCargo(data.grupo);
+      })
+      .catch((err) => {
+        console.error(err);
+        window.location.href = '/listaUsuarios';
+      });
+  }, []);
 
   let disabled;
 
-  if(cargo === "ESTOQUISTA") {
+  if (cargo === 'ESTOQUISTA') {
     disabled = true;
   } else {
     disabled = false;
@@ -299,13 +292,13 @@ function ListaProdutos() {
       const formData = new FormData();
       formData.append('key', '5d7b99eb4e0e934e0de6dbfce6cd0859');
       formData.append('image', image);
-  
+
       try {
         const response = await fetch('https://api.imgbb.com/1/upload', {
           method: 'POST',
           body: formData,
         });
-  
+
         if (response.ok) {
           const data = await response.json();
           const imageUrl = data.data.url;
@@ -354,16 +347,20 @@ function ListaProdutos() {
               placeholder="Pesquisar produto"
               className="inserir"
             />
-            <button type="button" className="botao-Filtro" onClick={() => filtrar(currentPage)}>
+            <button
+              type="button"
+              className="botao-Filtro"
+              onClick={() => filtrar(currentPage)}
+            >
               <p>Filtrar</p>
             </button>
             <div className="adicionar-Produto" />
             <button
               type="button"
               className="botao-adicionar"
-              disabled={cargo === "ESTOQUISTA"}
+              disabled={cargo === 'ESTOQUISTA'}
               onClick={() => {
-                if (cargo !== "ESTOQUISTA") {
+                if (cargo !== 'ESTOQUISTA') {
                   window.location.href = '/cadastroProduto';
                 }
               }}
@@ -386,20 +383,23 @@ function ListaProdutos() {
             {requests &&
               requests.map((client) => (
                 <tr className="coluns">
-                  <td className="user-data">{client.nome}</td>
+                  <td className="user-data product-name">
+                    <p>{client.nome}</p>
+                  </td>
                   <td className="user-data">{client.preco}</td>
                   <td className="user-data">{client.qtdEstoque}</td>
                   <td className="user-data">
-                  <button
+                    <button
                       disabled={disabled}
                       type="button"
-                      className={`status ${client.status ? 'ativo' : 'inativo'} ${cargo !== 'ESTOQUISTA' ? 'able' : 'disabled'}`}
+                      className={`status ${
+                        client.status ? 'ativo' : 'inativo'
+                      } ${cargo !== 'ESTOQUISTA' ? 'able' : 'disabled'}`}
                       onClick={() => {
-                        if(cargo !== 'ESTOQUISTA'){
+                        if (cargo !== 'ESTOQUISTA') {
                           atualizaAcesso(client.id);
                         }
-                      }
-                    }
+                      }}
                     >
                       {client.status ? 'Ativo' : 'Inativo'}
                     </button>
@@ -412,22 +412,24 @@ function ListaProdutos() {
                     }}
                   >
                     <img
-                        src={LogoutIcon}
-                        alt="GeekOpolis Logout Icon"
-                        id="edit"
-                      />
+                      src={LogoutIcon}
+                      alt="GeekOpolis Logout Icon"
+                      id="edit"
+                    />
                   </td>
                   <td
-                  disabled={disabled}
-                  onClick={() => {
-                    if(cargo !== 'ESTOQUISTA'){
-                      buscaProduto(client.id);
-                      setIsModalOpen2(true);
-                    }
-                  }}
+                    disabled={disabled}
+                    onClick={() => {
+                      if (cargo !== 'ESTOQUISTA') {
+                        buscaProduto(client.id);
+                        setIsModalOpen2(true);
+                      }
+                    }}
                   >
                     <img
-                      className={`vizu ${cargo !== 'ESTOQUISTA' ? 'able' : 'disabled'} `}
+                      className={`vizu ${
+                        cargo !== 'ESTOQUISTA' ? 'able' : 'disabled'
+                      } `}
                       src={VizuIcon}
                       alt="GeekOpolis Logout Icon"
                       id="edit"
@@ -436,7 +438,7 @@ function ListaProdutos() {
                 </tr>
               ))}
           </tbody>
-          
+
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -453,46 +455,43 @@ function ListaProdutos() {
         <div className="input-container">
           {cargo === 'ADMIN' && (
             <>
-            <p>Nome do Produto</p>
-            <input
-              type="text"
-              name="nome"
-              value={body?.nome || ''}
-              className="rounded-input"
-              onChange={handleBody} />
+              <p>Nome do Produto</p>
+              <input
+                type="text"
+                name="nome"
+                value={body?.nome || ''}
+                className="rounded-input"
+                onChange={handleBody}
+              />
             </>
           )}
-        {cargo === 'ESTOQUISTA' && (
-          <p>Nome do Produto: {body?.nome || ''}</p>
-        )}
+          {cargo === 'ESTOQUISTA' && <p>Nome do Produto: {body?.nome || ''}</p>}
         </div>
-        <div className='input-container'>
-        {cargo === 'ADMIN' && (
+        <div className="input-container">
+          {cargo === 'ADMIN' && (
             <>
-        <p>Categoria</p>
-        <select
-              name="categoriaId"
-              className="rounded-select"
-              value={categoriaSelecionada}
-              onChange={handleCategoriaChange}
-            >
-              <option>---</option>
-              {categorias.map((categoria) => (
-                <option key={categoria.id} value={categoria.id}>
-                  {categoria.nome}
-                </option>
-              ))}
-            </select>
+              <p>Categoria</p>
+              <select
+                name="categoriaId"
+                className="rounded-select"
+                value={categoriaSelecionada}
+                onChange={handleCategoriaChange}
+              >
+                <option>---</option>
+                {categorias.map((categoria) => (
+                  <option key={categoria.id} value={categoria.id}>
+                    {categoria.nome}
+                  </option>
+                ))}
+              </select>
             </>
           )}
-           {cargo === 'ESTOQUISTA' && (
-            <p>Categoria: {body?.categoria?.nome}</p>
-          )}
-          </div>
-          <div className="input-container">
-            <p>Avaliação</p>
-          </div>
-          <div style={cargo === 'ESTOQUISTA' ? { pointerEvents: 'none' }: {}}>
+          {cargo === 'ESTOQUISTA' && <p>Categoria: {body?.categoria?.nome}</p>}
+        </div>
+        <div className="input-container">
+          <p>Avaliação</p>
+        </div>
+        <div style={cargo === 'ESTOQUISTA' ? { pointerEvents: 'none' } : {}}>
           <ReactStars
             count={5}
             size={40}
@@ -501,47 +500,43 @@ function ListaProdutos() {
             onChange={handleBody}
             color2="#fdd835"
           />
-          </div>
-          <div className="input-container">
+        </div>
+        <div className="input-container">
           {cargo === 'ADMIN' && (
             <>
               <p>Descrição</p>
               <textarea
-              name="descricao" 
-              disabled={disabled}
-              value={body?.descricao} 
-              onChange={handleBody} 
+                name="descricao"
+                disabled={disabled}
+                value={body?.descricao}
+                onChange={handleBody}
               />
             </>
           )}
-           {cargo === 'ESTOQUISTA' && (
-            <p>Descrição: {body?.descricao}</p>
-          )}
-          </div>
+          {cargo === 'ESTOQUISTA' && <p>Descrição: {body?.descricao}</p>}
+        </div>
         <div className="input-container">
-        {cargo === 'ADMIN' && (
+          {cargo === 'ADMIN' && (
             <>
-          <p>Valor</p>
-          <input
-            disabled={disabled}
-            type="valor"
-            name="preco"
-            value={body?.preco}
-            className="rounded-input"
-            onChange={handleBody}
-          />
-          </>
+              <p>Valor</p>
+              <input
+                disabled={disabled}
+                type="valor"
+                name="preco"
+                value={body?.preco}
+                className="rounded-input"
+                onChange={handleBody}
+              />
+            </>
           )}
-           {cargo === 'ESTOQUISTA' && (
-            <p>Valor: {body?.preco}</p>
-          )}
+          {cargo === 'ESTOQUISTA' && <p>Valor: {body?.preco}</p>}
         </div>
         <div className="input-container">
           <p>Quantidade</p>
           <input
             type="number"
             id="qtdEstoque"
-            name='qtdEstoque'
+            name="qtdEstoque"
             value={body?.qtdEstoque}
             onChange={handleBody}
             className="rounded-input"
@@ -551,14 +546,15 @@ function ListaProdutos() {
           <div className="input-container">
             <p>Imagens:</p>
             <div className="mini-imagens-container">
-              {Array.isArray(body.imagesPath) && body.imagesPath.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Imagem ${index}`}
-                  className="mini-imagem"
-                />
-              ))}
+              {Array.isArray(body.imagesPath) &&
+                body.imagesPath.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Imagem ${index}`}
+                    className="mini-imagem"
+                  />
+                ))}
             </div>
           </div>
         )}
@@ -575,7 +571,10 @@ function ListaProdutos() {
                           <img src={url} alt="img" />
                         </div>
                         <div>
-                          <button type="submit" onClick={() => removeImage(index)}>
+                          <button
+                            type="submit"
+                            onClick={() => removeImage(index)}
+                          >
                             <MdDelete size={25} />
                           </button>
                         </div>
@@ -616,11 +615,22 @@ function ListaProdutos() {
       >
         <div className="modal-content-container">
           <div className="carousel-container">
-            <Slider infinite={true} speed='500' slidesToShow={1} slidesToScroll={1} dots={true} arrows={false}>
+            <Slider
+              infinite={true}
+              speed="500"
+              slidesToShow={1}
+              slidesToScroll={1}
+              dots={true}
+              arrows={false}
+            >
               {Array.isArray(body.imagesPath) ? (
                 body.imagesPath.map((image, index) => (
                   <div key={index} className="carousel-slide">
-                    <img src={image} alt={`Image ${index}`} className="carousel-image" />
+                    <img
+                      src={image}
+                      alt={`Image ${index}`}
+                      className="carousel-image"
+                    />
                   </div>
                 ))
               ) : (
@@ -641,20 +651,24 @@ function ListaProdutos() {
                 color2="#fdd835"
               />
             </div>
-            <div className='preco-produto'>R$: {body.preco}</div>
+            <div className="preco-produto">R$: {body.preco}</div>
             <div className="adicionar-ao">
               <div className="box">
                 <div className="overlap-2">
                   <div className="rectangle" />
                   <div className="adicionar-ao-2">Adicionar ao Carrinho</div>
-                  <img className="carrinho-carrinho" alt="Carrinho carrinho" src={Carrinho} />
+                  <img
+                    className="carrinho-carrinho"
+                    alt="Carrinho carrinho"
+                    src={Carrinho}
+                  />
                   <div className="rectangle-2" />
                 </div>
               </div>
             </div>
             <div className="descricao-produto">
               <p>Descrição do produto:</p>
-              <br/>
+              <br />
               {body.descricao}
             </div>
           </div>

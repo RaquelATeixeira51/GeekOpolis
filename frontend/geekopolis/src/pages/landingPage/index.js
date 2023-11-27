@@ -12,6 +12,7 @@ import Banner from '../../assets/img/banner/Play.png';
 
 function LandingPage() {
   const [categories, setCategories] = React.useState([]);
+
   React.useEffect(() => {
     fetch(`http://localhost:8080/categoria/listaCategorias`, {
       method: 'GET',
@@ -35,7 +36,7 @@ function LandingPage() {
     <>
       <Header />
       <div className="tudo">
-        <img src={Banner} alt="banner" className='landing-page-banner' />
+        <img src={Banner} alt="banner" className="landing-page-banner" />
         {categories &&
           categories.map((category, index) => (
             <div key={category.id}>

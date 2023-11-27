@@ -1,46 +1,46 @@
-
-.carousel-container{
+.carousel-container {
     width: 90%;
-    padding-bottom: 100px;
+    padding-bottom: 80px;
 }
 
-.carousel-slide{
+.carousel-slide {
     margin-left: 40px
 }
 
-.inside{
+.inside {
     background-color: #44B0C1;
     width: 250px;
     border-radius: 10px;
-    height: 350px;
+    height: 400px;
     box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 15px;
 }
 
-.inside:hover{
+.inside:hover {
     cursor: pointer;
     transition: 130ms;
     box-shadow: rgba(255, 255, 255, 0.25) 0px 74px 75px;
 }
 
-.carousel-image{
+.carousel-image {
     padding-top: 10px;
     width: 170px;
     height: 200px;
 }
 
-.descricao{
+.descricao {
     text-align: center;
     padding-top: 30px;
     align-items: center;
     justify-content: center;
 }
-.nome{
-    font-size: 27px;
+
+.nome {
+    font-size: 24px;
     color: white;
     font-weight: bold;
 }
 
-#preco{
+#preco {
     padding-top: 30px;
     font-size: 17px;
     color: #163741;
@@ -48,6 +48,8 @@
 }
 
 a {
-    color: inherit; /* Use a cor padrão do texto */
-    text-decoration: none; /* Remova sublinhado padrão de links */
-  }
+    color: inherit;
+    /* Use a cor padrão do texto */
+    text-decoration: none;
+    /* Remova sublinhado padrão de links */
+}

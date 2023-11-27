@@ -44,6 +44,10 @@
   transition: .2s !important;
 }
 
+.aside-client-links {
+  width: 120px;
+}
+
 .geekopolis-aside-footer button {
   border-radius: 8px;
   border: 1.5px solid var(--blue-color);
@@ -84,6 +88,11 @@
 
 .large {
   width: 30px !important;
+
+}
+
+.medium {
+  width: 25px !important;
 
 }
 

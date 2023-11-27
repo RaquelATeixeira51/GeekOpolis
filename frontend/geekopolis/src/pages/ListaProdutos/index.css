@@ -75,7 +75,7 @@
   font-weight: 700;
   height: 31px;
   left: 40px;
-  padding-top: 4px; 
+  padding-top: 4px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -131,7 +131,7 @@
 
 .botao-adicionar[disabled] {
   cursor: default;
-  opacity: 0.5; 
+  opacity: 0.5;
 }
 
 span {
@@ -194,7 +194,7 @@ span {
 
 .slick-dots li {
   display: inline-block;
-  margin: 0 5px; 
+  margin: 0 5px;
 }
 
 .slick-dots li.slick-active button {
@@ -214,4 +214,9 @@ span {
   color: var(--white-color);
   font-family: "Inter-Bold", Helvetica;
   font-weight: bold;
+}
+
+.product-name p {
+  width: 80%;
+  margin: 0 auto;
 }

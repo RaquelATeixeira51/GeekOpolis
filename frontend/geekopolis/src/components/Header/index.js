@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import * as React from 'react';
 import './index.css';
-import { Link,Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Logo from '../../assets/img/logo/GeekOpolisLogo.png';
 import Casa from '../../assets/img/icons/casinha.png';
 import Bone from '../../assets/img/icons/bone.png';
@@ -13,7 +13,6 @@ import LoginIcon from '../../assets/img/icons/login-icon.png';
 import LogoutIcon from '../../assets/img/icons/logout-icon.png';
 import makeToast from '../../shared/toaster';
 
-
 const handleLogout = () => {
   const shouldLogout = window.confirm('Deseja mesmo deslogar?');
 
@@ -23,23 +22,25 @@ const handleLogout = () => {
   }
 };
 
-
 function Header() {
-  
   const [redirect, setRedirect] = React.useState('');
   const [isLogged, setIsLogged] = React.useState(false);
   const hasToken = localStorage.getItem('token-cliente');
 
   React.useEffect(() => {
-    fetch(`http://localhost:8080/cliente/buscaClienteByToken/token/${localStorage.getItem('token-cliente')}`, {
-      method: 'GET'
-    })
+    fetch(
+      `http://localhost:8080/cliente/buscaClienteByToken/token/${localStorage.getItem(
+        'token-cliente'
+      )}`,
+      {
+        method: 'GET',
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
-        if(response.status === 500){
+        if (response.status === 500) {
           setIsLogged(false);
-        }
-        else{
+        } else {
           setIsLogged(true);
         }
       })
@@ -47,13 +48,13 @@ function Header() {
         console.log(error.message);
         setRedirect('/');
       });
-  },[])
+  }, []);
 
   if (redirect !== '') return <Navigate to={redirect} />;
 
   return (
     <div className="header">
-      <Link to={isLogged?"/Principal":"/"}>
+      <Link to={isLogged ? '/Principal' : '/'}>
         <img className="logo" src={Logo} alt="Logo" />
       </Link>
       <div className="categorias">
@@ -79,22 +80,35 @@ function Header() {
           <img className="Carrinho" src={Carrinho} alt="Carrinho" />
         </Link>
         {hasToken ? (
-          <div className="geekopolis-aside-footer border-0 ">
-          <button type="button" onClick={handleLogout}>
-            <img
-              src={LogoutIcon}
-              alt="GeekOpolis Logout Icon"
-              className="large"
-            />
-          </button>
-        </div>
+          <>
+            <Link to="/cliente">
+              <img
+                src={LoginIcon}
+                alt="Editar Usuário"
+                className="landing-page-user-icon"
+              />
+            </Link>
+            <div className="geekopolis-aside-footer border-0 ">
+              <button
+                type="button"
+                className="logout-button"
+                onClick={handleLogout}
+              >
+                <img
+                  src={LogoutIcon}
+                  alt="GeekOpolis Logout Icon"
+                  className="large landing-page-logout-icon"
+                />
+              </button>
+            </div>
+          </>
         ) : (
           <Link to="/loginCliente">
-          <div className="login-content">
-            <img className="sairImg" src={LoginIcon} alt="Sair" />
-            <p className="Sair">Login</p>
-          </div>
-        </Link>
+            <div className="login-content">
+              <img className="sairImg" src={LoginIcon} alt="Sair" />
+              <p className="Sair">Login</p>
+            </div>
+          </Link>
         )}
       </div>
     </div>

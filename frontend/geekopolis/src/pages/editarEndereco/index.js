@@ -8,11 +8,9 @@ import Header from '../../components/Header';
 import './index.css';
 import makeToast from '../../shared/toaster';
 import lixeiraIcon from '../../assets/img/icons/lixeira-de-reciclagem.png';
-
-
+import Aside from '../../components/aside-client';
 
 export default function EditarEndereco() {
-
   const [enderecos, setEnderecos] = useState([]);
 
   const [novoEndereco, setNovoEndereco] = useState({
@@ -25,7 +23,7 @@ export default function EditarEndereco() {
     enderecoFaturamento: false,
     cep: '',
     principal: false,
-    ativo: true
+    ativo: true,
   });
 
   const handleChange = (e) => {
@@ -37,15 +35,20 @@ export default function EditarEndereco() {
   };
 
   const handleSubmit = (e) => {
-    fetch(`http://localhost:8080/endereco/adicionaEndereco/token/${localStorage.getItem('token-cliente')}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(novoEndereco),
-    })
+    fetch(
+      `http://localhost:8080/endereco/adicionaEndereco/token/${localStorage.getItem(
+        'token-cliente'
+      )}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(novoEndereco),
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
-          makeToast('success', "Endereço cadastrado!");
+          makeToast('success', 'Endereço cadastrado!');
           setNovoEndereco({
             logradouro: '',
             numero: '',
@@ -56,7 +59,7 @@ export default function EditarEndereco() {
             enderecoFaturamento: false,
             cep: '',
             principal: false,
-            ativo: true
+            ativo: true,
           });
           return response.text();
         }
@@ -66,7 +69,7 @@ export default function EditarEndereco() {
       .catch((error) => {
         console.log(error.message);
       });
-  }
+  };
 
   const handleCEP = (e) => {
     const newCEP = e.target.value;
@@ -84,7 +87,7 @@ export default function EditarEndereco() {
             complemento: data.complemento,
             cidade: data.localidade,
             uf: data.uf,
-            cep: newCEP
+            cep: newCEP,
           });
         }
       })
@@ -94,9 +97,14 @@ export default function EditarEndereco() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem('token-cliente')}`, {
-      method: 'GET'
-    })
+    fetch(
+      `http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem(
+        'token-cliente'
+      )}`,
+      {
+        method: 'GET',
+      }
+    )
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -114,13 +122,18 @@ export default function EditarEndereco() {
       .catch((err) => {
         makeToast('error', err);
       });
-  }, [])
+  }, []);
 
   const editaPrincipal = (address) => {
-    fetch(`http://localhost:8080/endereco/atualizaPrincipal/idEndereco/${address.id}/token/${localStorage.getItem('token-cliente')}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-    })
+    fetch(
+      `http://localhost:8080/endereco/atualizaPrincipal/idEndereco/${
+        address.id
+      }/token/${localStorage.getItem('token-cliente')}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
@@ -135,13 +148,18 @@ export default function EditarEndereco() {
         console.log(error.message);
         window.location.reload();
       });
-  }
+  };
 
   const inativaEndereco = (address) => {
-    fetch(`http://localhost:8080/endereco/inativarEndereco/idEndereco/${address.id}/token/${localStorage.getItem('token-cliente')}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-    })
+    fetch(
+      `http://localhost:8080/endereco/inativarEndereco/idEndereco/${
+        address.id
+      }/token/${localStorage.getItem('token-cliente')}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
@@ -156,21 +174,18 @@ export default function EditarEndereco() {
         console.log(error.message);
         window.location.reload();
       });
-  }
+  };
 
   return (
     <>
+      <Aside />
       <Header />
-        <div className='tudo-endereco'>
-        <div className='fundo-endereco'>
-          <div className='tabela-endereco'>
-            <div className='botoes-endereco'>
-            {enderecos.map((address, index) => (
-                <button
-                  type="button"
-                  className="botao-endereco"
-                  key={index}
-                >
+      <div className="tudo-endereco">
+        <div className="fundo-endereco">
+          <div className="tabela-endereco">
+            <div className="botoes-endereco">
+              {enderecos.map((address, index) => (
+                <button type="button" className="botao-endereco" key={index}>
                   <div className="botoes-label">
                     <input
                       type="radio"
@@ -180,25 +195,29 @@ export default function EditarEndereco() {
                       onChange={() => editaPrincipal(address)}
                       checked={address.principal}
                     />
-                    <label htmlFor={`endereco-${index}`}>Endereço Principal</label>
+                    <label htmlFor={`endereco-${index}`}>
+                      Endereço Principal
+                    </label>
                   </div>
                   <p>{address.logradouro}</p>
-                  <div className='onClickImg'>
-                  <img
-                    src={lixeiraIcon}
-                    alt="Excluir"
-                    className="lixeira-icon"
-                    onClick={() => inativaEndereco(address)}
-                  />
+                  <div className="onClickImg">
+                    <img
+                      src={lixeiraIcon}
+                      alt="Excluir"
+                      className="lixeira-icon"
+                      onClick={() => inativaEndereco(address)}
+                    />
                   </div>
                 </button>
               ))}
             </div>
           </div>
-          <div className='dados-endereco'>
-            <h2 className='h2-endereco'>Cadastro de Endereço</h2>
-            <form className='form-endereco'>
-              <label htmlFor="cep" className='label-endereco'>CEP</label>
+          <div className="dados-endereco">
+            <h2 className="h2-endereco">Cadastro de Endereço</h2>
+            <form className="form-endereco">
+              <label htmlFor="cep" className="label-endereco">
+                CEP
+              </label>
               <input
                 type="text"
                 id="cep"
@@ -207,10 +226,12 @@ export default function EditarEndereco() {
                 onChange={handleChange}
                 onBlur={handleCEP}
                 required
-                className='input-endereco'
+                className="input-endereco"
               />
 
-              <label htmlFor="rua" className='label-endereco'>Nome da Rua</label>
+              <label htmlFor="rua" className="label-endereco">
+                Nome da Rua
+              </label>
               <input
                 type="text"
                 id="rua"
@@ -218,11 +239,13 @@ export default function EditarEndereco() {
                 value={novoEndereco.logradouro}
                 onChange={handleChange}
                 required
-                className='input-endereco'
+                className="input-endereco"
               />
-              <div className='numero-endereco'>
-                <div className='inout-group'>
-                  <label htmlFor="numero" className='label2-endereco'>Número</label>
+              <div className="numero-endereco">
+                <div className="inout-group">
+                  <label htmlFor="numero" className="label2-endereco">
+                    Número
+                  </label>
                   <input
                     type="text"
                     id="numero"
@@ -230,23 +253,27 @@ export default function EditarEndereco() {
                     value={novoEndereco.numero}
                     onChange={handleChange}
                     required
-                    className='input2-endereco'
+                    className="input2-endereco"
                   />
                 </div>
-                <div className='inout-group'>
-                  <label htmlFor="complemento" className='label2-endereco'>Complemento</label>
+                <div className="inout-group">
+                  <label htmlFor="complemento" className="label2-endereco">
+                    Complemento
+                  </label>
                   <input
                     type="text"
                     id="complemento"
                     name="complemento"
                     value={novoEndereco.complemento}
                     onChange={handleChange}
-                    className='input2-endereco'
+                    className="input2-endereco"
                   />
                 </div>
               </div>
 
-              <label htmlFor="bairro" className='label-endereco'>Bairro</label>
+              <label htmlFor="bairro" className="label-endereco">
+                Bairro
+              </label>
               <input
                 type="text"
                 id="bairro"
@@ -254,10 +281,12 @@ export default function EditarEndereco() {
                 value={novoEndereco.bairro}
                 onChange={handleChange}
                 required
-                className='input-endereco'
+                className="input-endereco"
               />
 
-              <label htmlFor="cidade" className='label-endereco'>Cidade</label>
+              <label htmlFor="cidade" className="label-endereco">
+                Cidade
+              </label>
               <input
                 type="text"
                 id="cidade"
@@ -265,10 +294,12 @@ export default function EditarEndereco() {
                 value={novoEndereco.cidade}
                 onChange={handleChange}
                 required
-                className='input-endereco'
+                className="input-endereco"
               />
 
-              <label htmlFor="estado" className='label-endereco'>Estado</label>
+              <label htmlFor="estado" className="label-endereco">
+                Estado
+              </label>
               <input
                 type="text"
                 id="estado"
@@ -276,9 +307,16 @@ export default function EditarEndereco() {
                 value={novoEndereco.uf}
                 onChange={handleChange}
                 required
-                className='input-endereco'
+                className="input-endereco"
               />
-              <button type="submit" className="botao-adicionar" id='botao-endereco' onClick={handleSubmit}>Cadastrar</button>
+              <button
+                type="submit"
+                className="botao-adicionar"
+                id="botao-endereco"
+                onClick={handleSubmit}
+              >
+                Cadastrar
+              </button>
             </form>
           </div>
         </div>

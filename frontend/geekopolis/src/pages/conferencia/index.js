@@ -29,6 +29,8 @@ export default function Carrinho() {
   const [carrinho, setCarrinho] = React.useState({});
   const [endereco, setEndereco] = React.useState({});
   const [total, setTotal] = React.useState(0.0);
+  const [enderecoId, setEnderecoId] = React.useState(0);
+  const [frete, setFrete] = React.useState(0.0);
   const [body, setBody] = React.useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
@@ -109,10 +111,6 @@ export default function Carrinho() {
     },
     quantidade: 5,
   };
-  const frete = {
-    tipo: 0,
-    valor: 12.6,
-  };
 
   const handleSelectChange = (e) => {
     setTipoPag(e.target.value); // Atualiza o valor selecionado quando a opção é alterada
@@ -131,7 +129,7 @@ export default function Carrinho() {
       makeToast('error', 'Preencha todos os campos do cartão de crédito.');
       return;
     }
-    cartUtils.adicionarEnderecoId(2);
+    cartUtils.adicionarEnderecoId(enderecoId);
     cartUtils.adicionarMetodoDePagamento(0);
     cartUtils.calcularEAtualizarTotal();
 
@@ -153,7 +151,7 @@ export default function Carrinho() {
           setIsModalOpen2(true);
           setTimeout(() => {
             window.location.href = '/pedidos';
-          }, 4000);
+          }, 2000);
         }
         makeToast('error', error);
         return null;
@@ -189,7 +187,9 @@ export default function Carrinho() {
 
     cartUtils.calcularEAtualizarTotal();
     setCarrinho(cart);
+    setEnderecoId(cart.enderecoId);
     setTotal(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
+    setFrete(cart.frete.valor.toLocaleString('pt-BR', { currency: 'BRL' }));
 
     fetch(
       `http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem(
@@ -372,7 +372,7 @@ export default function Carrinho() {
           </div>
         </div>
         <div className="cart-total-conf">
-          <h2>Frete: R$ {total}</h2>
+          <h2>Frete: R$ {frete}</h2>
           <h2>Total: R$ {total}</h2>
           <button
             className="cart-address-buttom"

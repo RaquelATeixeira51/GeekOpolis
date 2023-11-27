@@ -14,6 +14,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Header from '../../components/Header';
 import './index.css';
 import makeToast from '../../shared/toaster';
+import Aside from '../../components/aside-client';
 
 export default function Cliente() {
   const [nomeCompleto, setNomeCompleto] = React.useState('');
@@ -26,12 +27,17 @@ export default function Cliente() {
   const [redirect, setRedirect] = React.useState('');
 
   React.useEffect(() => {
-    fetch(`http://localhost:8080/cliente/buscaClienteByToken/token/${localStorage.getItem('token-cliente')}`, {
-      method: 'GET'
-    })
+    fetch(
+      `http://localhost:8080/cliente/buscaClienteByToken/token/${localStorage.getItem(
+        'token-cliente'
+      )}`,
+      {
+        method: 'GET',
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
-        if(response.status === 500){
+        if (response.status === 500) {
           makeToast('error', 'Token expirado');
           setRedirect('/loginCliente');
         }
@@ -45,7 +51,7 @@ export default function Cliente() {
         console.log(error.message);
         setRedirect('/cliente');
       });
-  },[])
+  }, []);
 
   const validateNomeCompleto = (nome) => {
     const palavras = nome.split(' ');
@@ -69,22 +75,27 @@ export default function Cliente() {
       return;
     }
 
-    if(senha && senha !== confirmeSenha) {
+    if (senha && senha !== confirmeSenha) {
       makeToast('error', 'Senhas diferentes!');
       return;
     }
 
-    fetch(`http://localhost:8080/cliente/atualiza/token/${localStorage.getItem('token-cliente')}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email,
-        nomeCompleto: nomeCompleto,
-        genero: genero,
-        dataNascimento: dataNascimento,
-        senha: senha || null,
-      }),
-    })
+    fetch(
+      `http://localhost:8080/cliente/atualiza/token/${localStorage.getItem(
+        'token-cliente'
+      )}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          nomeCompleto: nomeCompleto,
+          genero: genero,
+          dataNascimento: dataNascimento,
+          senha: senha || null,
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
@@ -106,12 +117,13 @@ export default function Cliente() {
 
   return (
     <>
+      <Aside />
       <Header />
       <div className="editarCliente-tudo">
         <div className="editarCliente-quadrado-centralizado">
           <h2>Meu perfil</h2>
 
-          <div className='editarCliente-row'>
+          <div className="editarCliente-row">
             <div>
               <p>Email:</p>
               <p>{email}</p>
@@ -171,7 +183,13 @@ export default function Cliente() {
             />
           </div>
           <br />
-          <button type="submit" className="editarCliente-button" onClick={handleSubmit}>Editar</button>
+          <button
+            type="submit"
+            className="editarCliente-button"
+            onClick={handleSubmit}
+          >
+            Editar
+          </button>
         </div>
       </div>
     </>

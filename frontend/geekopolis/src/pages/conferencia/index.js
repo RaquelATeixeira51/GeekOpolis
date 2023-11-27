@@ -34,7 +34,7 @@ export default function Carrinho() {
   const [body, setBody] = React.useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
-  const [tipoPag, setTipoPag] = useState('Cred');
+  const [tipoPag, setTipoPag] = useState(1);
 
   const [creditCard, setCreditCard] = useState({
     nomeCompleto: '',
@@ -125,12 +125,12 @@ export default function Carrinho() {
   };
 
   const checkout = () => {
-    if (tipoPag === 'Cred' && !isFormValid()) {
+    if (tipoPag === 1 && !isFormValid()) {
       makeToast('error', 'Preencha todos os campos do cartão de crédito.');
       return;
     }
     cartUtils.adicionarEnderecoId(enderecoId);
-    cartUtils.adicionarMetodoDePagamento(0);
+    cartUtils.adicionarMetodoDePagamento(tipoPag);
     cartUtils.calcularEAtualizarTotal();
 
     const cart = JSON.parse(localStorage.getItem('carrinho'));
@@ -299,13 +299,13 @@ export default function Carrinho() {
               name="Options"
               id="Pagamento"
               value={tipoPag}
-              onChange={(e) => setTipoPag(e.target.value)}
+              onChange={(e) => setTipoPag(Number(e.target.value))}
             >
-              <option value="Cred">Cartão de Crédito</option>
-              <option value="Bole">Boleto</option>
+              <option value="1">Cartão de Crédito</option>
+              <option value="0">Boleto</option>
             </select>
 
-            {tipoPag === 'Cred' && (
+            {tipoPag === 1 && (
               <div>
                 <div className="cadastrogeral-input">
                   <p>Nome Completo</p>
@@ -364,7 +364,7 @@ export default function Carrinho() {
               </div>
             )}
 
-            {tipoPag === 'Bole' && (
+            {tipoPag === 0 && (
               <p className="Mensagem-conferencia">
                 O boleto será gerado após finalizar
               </p>

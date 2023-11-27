@@ -1,5 +1,5 @@
 .detelhe-container {
-  max-width: 800px;
+  width: 60%;
   margin: 20px auto;
   background-color: var(--dark-blue-color);
   padding: 20px;

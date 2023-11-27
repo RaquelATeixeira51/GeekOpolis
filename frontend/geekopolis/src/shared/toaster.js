@@ -2,9 +2,9 @@ import SweetAlert from 'sweetalert2';
 
 const Toast = SweetAlert.mixin({
   toast: true,
-  position: 'top-end',
+  position: 'bottom-end',
   showConfirmButton: false,
-  timer: 3000,
+  timer: 1000,
   timerProgressBar: true,
   didOpen: (toast) => {
     toast.addEventListener('mouseenter', SweetAlert.stopTimer);

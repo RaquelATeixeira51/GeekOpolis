@@ -1,12 +1,14 @@
 .pedidos-input {
     background: transparent;
-    border: 2px solid white; 
-    color: white; 
-    padding: 10px; 
+    border: 2px solid white;
+    color: white;
+    padding: 10px;
     border-radius: 4px;
     transition: all 0.4s;
     width: 200px;
-    &:focus, &:active {
+
+    &:focus,
+    &:active {
         outline: none;
         border: 2px solid white;
         transform: scale(1.01);
@@ -15,4 +17,10 @@
 
 .fundo option {
     color: black;
-  }
+}
+
+.orders-list-details {
+    border: 1px solid white;
+    padding: 10px 15px;
+    border-radius: 10px;
+}

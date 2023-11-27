@@ -79,8 +79,8 @@ export default function Detalhe() {
           ))}
         </div>
 
-        <p>Valor do Frete: R$ {detalhePedido.valorFrete}</p>
-        <p>Valor Total: R$ {detalhePedido.total}</p>
+        <p>Valor do Frete: R$ {detalhePedido.valorFrete.toFixed(2)}</p>
+        <p>Valor Total: R$ {detalhePedido.total.toFixed(2)}</p>
       </div>
     </>
   );

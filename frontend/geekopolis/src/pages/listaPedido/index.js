@@ -20,6 +20,7 @@ import './index.css';
 import Pagination from '../../components/Pagination';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Link } from 'react-router-dom';
 
 function ListaPedido() {
   const nameRef = React.createRef();
@@ -99,10 +100,11 @@ function ListaPedido() {
           <tbody className="user-list">
             <table className="request-table">
               <thead className="lista">
-                <th>data do pedido</th>
+                <th>Data do pedido</th>
                 <th>ID</th>
-                <th>valor</th>
+                <th>Valor</th>
                 <th>Status</th>
+                <th>Ações</th>
               </thead>
             </table>
             {pedidos &&
@@ -125,6 +127,14 @@ function ListaPedido() {
                       <option value="4">Em Trânsito</option>
                       <option value="5">Entregue</option>
                     </select>
+                  </td>
+                  <td className="user-data">
+                    <Link
+                      className="orders-list-details"
+                      to={`/pedido/${pedido.id}`}
+                    >
+                      Detalhes
+                    </Link>
                   </td>
                 </tr>
               ))}

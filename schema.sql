@@ -52,19 +52,19 @@ VALUES
   ), 
   (
     4.5, 49.99, 98, TRUE, 1, 'CPKIT2PINSSTRANGERTHINGSDUSTINDEMOGORGON', 
-    '2023-11-06', 'O Kit 2 Pins Stranger Things - Dustin e Demogorgon é um produto original e licenciado, exclusivo Piticas. Produção nacional, feito em Zamac e Metal, prezamos pela qualidade e diversidade. Use e Colecione, expresse todo o seu lado fã.', 
+    '2023-11-06', 'O Kit 2 Pins Stranger Things - Dustin e Demogorgon é um produto original e licenciado, exclusivo GeekOpolis. Produção nacional, feito em Zamac e Metal, prezamos pela qualidade e diversidade. Use e Colecione, expresse todo o seu lado fã.', 
     'KIT 2 PINS STRANGER THINGS - DUSTIN DEMOGORGON', 
     'https://i.ibb.co/LP7PdYZ/kitpin1.webp, https://i.ibb.co/Q620NFS/kitpin2.webp, https://i.ibb.co/JzmzPfS/kitpin3.webp'
   ), 
   (
     5.0, 39.9, 65, TRUE, 1, 'CPCHAVEIROSTRANGERTHINGSELEVEN', 
-    '2023-11-06', 'O Chaveiro Stranger Things Eleven é um produto original, licenciado e exclusivo Piticas. Produção nacional, feito em Zamac e Metal, prezamos pela qualidade e diversidade. Use e Colecione, expresse todo o seu lado fã.', 
+    '2023-11-06', 'O Chaveiro Stranger Things Eleven é um produto original, licenciado e exclusivo GeekOpolis. Produção nacional, feito em Zamac e Metal, prezamos pela qualidade e diversidade. Use e Colecione, expresse todo o seu lado fã.', 
     'CHAVEIRO STRANGER THINGS ELEVEN', 
     'https://i.ibb.co/KzG68LB/chaveiro.webp'
   ), 
   (
     3.5, 229.9, 345, TRUE, 1, 'CPBOLSAREDONDAMULHERMARAVILHA', 
-    '2023-11-06', 'A Bolsa Redonda Mulher Maravilha Logo é um produto original, licenciado e exclusivo Piticas. Estampa inspirada na franquia, contendo toda autenticidade e a magia que os fãs dessa saga tanto procuram.', 
+    '2023-11-06', 'A Bolsa Redonda Mulher Maravilha Logo é um produto original, licenciado e exclusivo GeekOpolis. Estampa inspirada na franquia, contendo toda autenticidade e a magia que os fãs dessa saga tanto procuram.', 
     'BOLSA REDONDA MULHER MARAVILHA', 
     'https://i.ibb.co/jWhRZtb/bolsa1.png, https://i.ibb.co/6nj6Rks/bolsa2.png'
   ), 
@@ -76,7 +76,7 @@ VALUES
   ), 
   (
     3.0, 79.99, 110, TRUE, 2, 'CPBONBORDADOMARVELEXCELSIORTAMANHONICO', 
-    '2023-11-27', 'O Boné Bordado Marvel Excelsior aba reta é um produto original, licenciado e exclusivo Piticas. Para colecionar e usar, feita pelos nossos nerdsigners para vestir seu lado fã!', 
+    '2023-11-27', 'O Boné Bordado Marvel Excelsior aba reta é um produto original, licenciado e exclusivo GeekOpolis. Para colecionar e usar, feita pelos nossos nerdsigners para vestir seu lado fã!', 
     'BONÉ BORDADO MARVEL EXCELSIOR - TAMANHO ÚNICO', 
     'https://i.ibb.co/PtZ9BwH/160761-1200-auto.jpg, https://i.ibb.co/xJX4DVk/160762-1200-auto.webp'
   ), 
@@ -100,7 +100,7 @@ VALUES
   ), 
   (
     4.0, 36.99, 231, TRUE, 1, 'CPCHAVEIROCORDOBATMANRIDDLER', 
-    '2023-11-06', 'O Chaveiro Cordão Batman Riddler é um produto original e licenciado, exclusivo Piticas. Confeccionado em 100% poliéster Premium de alta qualidade com tratamento para maior resistência com impressão digital/sublimação de alta definição.', 
+    '2023-11-06', 'O Chaveiro Cordão Batman Riddler é um produto original e licenciado, exclusivo GeekOpolis. Confeccionado em 100% poliéster Premium de alta qualidade com tratamento para maior resistência com impressão digital/sublimação de alta definição.', 
     'CHAVEIRO CORDÃO BATMAN RIDDLER', 
     'https://i.ibb.co/vVyJqYF/chaveirocharada1.webp, https://i.ibb.co/rdfhMgg/chaveirocharada2.webp'
   );

@@ -129,8 +129,8 @@ export default function Carrinho() {
           Number(getDistanceFromLatLonInKm(lat, lng) * freightType)
         );
       })
-      .catch((error) => {
-        makeToast('error', error);
+      .catch(() => {
+        makeToast('error', 'Erro ao calcular frete');
       });
   };
 

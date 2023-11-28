@@ -3,7 +3,7 @@ textarea {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  background-color:  var(--gray-color);
+  background-color: var(--gray-color);
   margin-top: 5px;
   outline: none;
 }
@@ -29,7 +29,7 @@ textarea {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  background-color:  var(--gray-color);
+  background-color: var(--gray-color);
   margin-top: 5px;
   outline: none;
 }
@@ -39,7 +39,7 @@ textarea {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  background-color:  var(--gray-color);
+  background-color: var(--gray-color);
   margin-top: 5px;
   outline: none;
 }
@@ -49,7 +49,7 @@ textarea {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 20px; 
+  margin-top: 20px;
   cursor: pointer;
 }
 
@@ -66,13 +66,13 @@ span {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; 
-  max-width: 400px; 
+  justify-content: flex-start;
+  max-width: 400px;
 }
 
 .images li {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -103,37 +103,46 @@ span {
   transition: .2s !important;
   width: auto;
   min-width: 150px;
-  padding: 10px; 
+  padding: 10px;
   box-sizing: border-box;
   border-radius: 8px;
   border: 1.5px solid var(--blue-color);
   border-left-width: 3px;
   border-right-width: 3px;
-  margin: 0 auto; /* Centralizar horizontalmente */
+  margin: 0 auto;
+  /* Centralizar horizontalmente */
 }
 
 .cadastrar-button button {
-border-radius: 8px;
-border: 1.5px solid var(--blue-color);
-border-left-width: 3px;
-border-right-width: 3px;
-padding: 5px 15px;
-transition: .3s !important;
+  border-radius: 8px;
+  border: 1.5px solid var(--blue-color);
+  border-left-width: 3px;
+  border-right-width: 3px;
+  padding: 5px 15px;
+  transition: .3s !important;
 }
 
 .cadastrar-button button:hover {
-border-radius: 20px;
-border-left-width: 2px;
-border-right-width: 2px;
-transition: .3s !important;
+  border-radius: 20px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  transition: .3s !important;
 }
 
 .cadastrar-button button:hover {
-text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
-transition: .2s;
+  text-shadow: 0px 0px 5px var(--gray-color), 0px 0px 5px var(--white-color);
+  transition: .2s;
 }
 
 .images img {
-  max-width: 100px; 
+  max-width: 100px;
   height: auto;
+}
+
+.register-price-input {
+  padding-top: 10px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  padding-bottom: 10px !important;
+  font-size: 14px !important;
 }

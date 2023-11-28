@@ -7,7 +7,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import ReactStars from 'react-stars';
-import { MdCloudUpload, MdDelete} from 'react-icons/md';
+import { MdCloudUpload, MdDelete } from 'react-icons/md';
 import { Navigate } from 'react-router-dom';
 import Aside from '../../components/aside';
 import Logo from '../../assets/img/logo/GeekOpolisLogo.png';
@@ -62,13 +62,13 @@ export default function CadastroProduto() {
       const formData = new FormData();
       formData.append('key', '5d7b99eb4e0e934e0de6dbfce6cd0859');
       formData.append('image', image);
-  
+
       try {
         const response = await fetch('https://api.imgbb.com/1/upload', {
           method: 'POST',
           body: formData,
         });
-  
+
         if (response.ok) {
           const data = await response.json();
           const imageUrl = data.data.url;
@@ -81,7 +81,7 @@ export default function CadastroProduto() {
       }
     }
   };
-  
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -160,9 +160,7 @@ export default function CadastroProduto() {
               value={categoriaSelecionada}
               onChange={handleCategoriaChange}
             >
-              <option>
-                ---
-              </option>
+              <option>---</option>
               {categorias.map((categoria) => (
                 <option key={categoria.id} value={categoria.id}>
                   {categoria.nome}
@@ -192,7 +190,7 @@ export default function CadastroProduto() {
                   type="number"
                   id="preco"
                   ref={precoRef}
-                  className="preco"
+                  className="preco register-price-input"
                 />
               </div>
               <div>
@@ -211,7 +209,7 @@ export default function CadastroProduto() {
               {imageUrls.map((url, index) => (
                 <li key={index}>
                   <div>
-                   <img src={url} alt="img"/>
+                    <img src={url} alt="img" />
                   </div>
                   <div>
                     <button type="submit" onClick={() => removeImage(index)}>

@@ -167,7 +167,7 @@ export default function Carrinho() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    location.reload();
+    window.location.href = '/carrinho';
   };
 
   const closeModal2 = () => {
@@ -287,7 +287,7 @@ export default function Carrinho() {
                 <div className="cart-address-change">
                   <div>
                     <button className="modal-botoes" onClick={openModal}>
-                      Adicionar novo endereço
+                      Selecionar outro endereço
                     </button>
                   </div>
                 </div>

@@ -139,7 +139,7 @@
 
 .cart-freight {
   height: fit-content;
-  width: 100%;
+  width: 98%;
   border: .3px solid var(--white-color);
   padding: 10px 15px;
   border-radius: 10px;
@@ -156,18 +156,21 @@
 
 .carrinho-cep-input input {
   background: transparent;
-  border: 2px solid white; 
-  color: white; 
-  padding: 10px; 
+  border: 2px solid white;
+  color: white;
+  padding: 10px;
   border-radius: 4px;
   transition: all 0.4s;
   padding: 10px;
   width: 150px;
-  &:focus, &:active {
-      outline: none;
-      border: 2px solid white;
-      transform: scale(1.01);
+
+  &:focus,
+  &:active {
+    outline: none;
+    border: 2px solid white;
+    transform: scale(1.01);
   }
+
   margin-top: 15px;
   margin-bottom: 15px;
 }

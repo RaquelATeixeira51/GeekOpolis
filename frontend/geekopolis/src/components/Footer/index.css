@@ -1,10 +1,8 @@
 .footer-fundo {
-    background-color: #004166;
+    background-color: var(--dark-blue-color);
     width: 100%;
-    height: fit-content;
-    padding: 0 20px;
-    /* height: 8vh; */
-    color: white;
+    height: 120px;
+    color: var(--white-color);
     display: flex;
     justify-content: center;
     margin: 0 auto;
@@ -15,14 +13,13 @@
 .footer-content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .footer-geekopolis-aside-logo {
-    margin-left: 10%;
-    width: 10%;
+    width: 15%;
     height: 50%;
-    padding-top: 3%;
-    padding-bottom: 3%;
     align-items: start;
     display: flex;
     justify-content: flex-start
@@ -35,12 +32,23 @@
     display: inline-block;
     font-size: 12;
     font-style: inherit;
-    margin-left: 5%;
-    padding-top: 3%;
 }
 
-.footer-Instalogo {
-    padding-left: 5%;
-    padding-top: 3%;
-    height: 50%;
+.footer-employee-link {
+    padding: 10px 15px;
+    border: 1px solid var(--white-color);
+    border-radius: 5px;
+    border-right-width: 3px;
+    border-left-width: 3px;
+    transition: .3s;
+}
+
+.footer-employee-link:hover {
+    text-shadow: 0 0 5px var(--white-color);
+    padding: 10px 15px;
+    border-color: var(--gray-color);
+    border-radius: 15px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    transition: .3s;
 }

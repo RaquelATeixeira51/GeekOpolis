@@ -1,121 +1,125 @@
 .cart-container-conf {
-    padding-top: 80px;
-    display: flex;
-    width: 100%;
-  }
-
- .cart-conteiner-meio{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    height: 92%;
+  padding-top: 80px;
+  display: flex;
+  width: 100%;
 }
 
-.cart-cima{
-    width: 90%;
-    height: 50%;
-    background-color: var(--dark-blue-color);
-    margin-left: 30px;
-    padding: 40px 20px;
-    border-radius: 20px;
-    margin-bottom: 10px;
+.cart-conteiner-meio {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  height: 92%;
+}
+
+.cart-cima {
+  width: 90%;
+  height: 50%;
+  background-color: var(--dark-blue-color);
+  margin-left: 30px;
+  padding: 40px 20px;
+  border-radius: 20px;
+  margin-bottom: 10px;
 }
 
 .cart-item {
-    display: flex;
-    width: 97%;
-    height: 180px;
-    margin: 0 auto;
-  }
+  display: flex;
+  width: 97%;
+  height: 180px;
+  margin: 0 auto;
+}
 
-  .cart-item-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cart-item-image img {
-    width: 150px;
-    height: 150px;
-    border-radius: 20px;
-  }
+.cart-item-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .cart-item-info {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px;
-  }
-  
-  .cart-item-name {
-    font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: var(--white-color);
-  }  
-.cart-baixo{
-    width: 90%;
-    height: 50%;
-    background-color: var(--dark-blue-color);
-    margin-left: 30px;
-    padding: 40px 20px;
-    border-radius: 20px;
-    color: var(--white-color);
+.cart-item-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+}
+
+.cart-item-name {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--white-color);
+}
+
+.cart-baixo {
+  width: 90%;
+  height: 50%;
+  background-color: var(--dark-blue-color);
+  margin-left: 30px;
+  padding: 40px 20px;
+  border-radius: 20px;
+  color: var(--white-color);
 
 }
 
-  .cart-produto {
-    width: 20%;
-    height: 80%;
-    background-color: var(--dark-blue-color);
-    margin-left: 30px;
-    padding: 40px 20px;
-    border-radius: 20px;
-    
-  }
-  .cart-items {
-    border: .3px solid var(--gray-color);
-    border-radius: 20px;
-    padding: 10px 0;
-  }
+.cart-produto {
+  width: 20%;
+  height: 80%;
+  background-color: var(--dark-blue-color);
+  margin-left: 30px;
+  padding: 40px 20px;
+  border-radius: 20px;
 
-  .cart-total-conf {
-    width: 20%;
-    height: 80%;
-    background-color: var(--dark-blue-color);
-    margin-left: 30px;
-    padding: 40px 20px;
-    border-radius: 20px;
-    align-content: center;
-    color: var(--white-color);
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-.cart-total-conf h2{
+}
+
+.cart-items {
+  border: .3px solid var(--gray-color);
+  border-radius: 20px;
+  padding: 10px 0;
+}
+
+.cart-total-conf {
+  width: 20%;
+  height: 80%;
+  background-color: var(--dark-blue-color);
+  margin-left: 30px;
+  padding: 40px 20px;
+  border-radius: 20px;
+  align-content: center;
+  color: var(--white-color);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cart-total-conf h2 {
   margin: 10px 0;
 }
-  .cart-address {
-    border: .3px solid var(--gray-color);
-    color: var(--white-color);
-    border-radius: 10px;
-    margin: 10px 0;
-    padding: 20px 10px;
-    height: 80%;
-  }
-  
-  .cart-address-buttom {
-    margin: 10px 0 0 0;
-    border: .3px solid var(--white-color);
-    color: var(--white-color);
-    background-color: var(--blue-color);
-    border-radius: 10px;
-    height: 38px;
-    width: 215px;
-    
-  }
 
-#Pagamento{
+.cart-address {
+  border: .3px solid var(--gray-color);
+  color: var(--white-color);
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 20px 10px;
+  height: 80%;
+}
+
+.cart-address-buttom {
+  margin: 10px 0 0 0;
+  border: .3px solid var(--white-color);
+  color: var(--white-color);
+  background-color: var(--blue-color);
+  border-radius: 10px;
+  height: 38px;
+  width: 215px;
+
+}
+
+#Pagamento {
   background-color: var(--blue-color);
   margin: 10px 0 0 0;
   border: .3px solid var(--white-color);
@@ -124,66 +128,76 @@
   border-radius: 10px;
   height: 38px;
   width: 215px;
-  font-size:large;
+  font-size: large;
   margin-left: 15px;
 }
 
 .cadastro-input {
   background: transparent;
-  border: 2px solid white; 
-  color: white; 
-  padding: 10px; 
+  border: 2px solid white;
+  color: white;
+  padding: 10px;
   border-radius: 4px;
   transition: all 0.4s;
   width: 180px;
-  &:focus, &:active {
-      outline: none;
-      border: 2px solid white;
-      transform: scale(1.01);
+
+  &:focus,
+  &:active {
+    outline: none;
+    border: 2px solid white;
+    transform: scale(1.01);
   }
+
   margin-top: 10px;
   font-size: large;
 }
 
 .cadastrogrande-input {
   background: transparent;
-  border: 2px solid white; 
-  color: white; 
-  padding: 10px; 
+  border: 2px solid white;
+  color: white;
+  padding: 10px;
   border-radius: 4px;
   transition: all 0.4s;
   width: 200px;
-  &:focus, &:active {
-      outline: none;
-      border: 2px solid white;
-      transform: scale(1.01);
+
+  &:focus,
+  &:active {
+    outline: none;
+    border: 2px solid white;
+    transform: scale(1.01);
   }
-  margin-top: 10px;
-  font-size: large;
-}
-.cadastropequeno-input {
-  background: transparent;
-  border: 2px solid white; 
-  color: white; 
-  padding: 10px; 
-  border-radius: 4px;
-  transition: all 0.4s;
-  width: 50px;
-  &:focus, &:active {
-      outline: none;
-      border: 2px solid white;
-      transform: scale(1.01);
-  }
+
   margin-top: 10px;
   font-size: large;
 }
 
-.cadastrogeral-input{
+.cadastropequeno-input {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  transition: all 0.4s;
+  width: 50px;
+
+  &:focus,
+  &:active {
+    outline: none;
+    border: 2px solid white;
+    transform: scale(1.01);
+  }
+
+  margin-top: 10px;
+  font-size: large;
+}
+
+.cadastrogeral-input {
   margin-top: 10px;
   margin-left: 15px;
 }
 
-.cadastrofinal-input{
+.cadastrofinal-input {
   display: flex;
 }
 
@@ -224,15 +238,54 @@
   border: none;
   transition: all 0.4s;
   cursor: pointer;
+
   &:hover {
-      transform: scale(1.1);
-  }  
+    transform: scale(1.1);
+  }
 }
 
-.Mensagem-conferencia{
+.Mensagem-conferencia {
   margin-top: 4%;
 }
 
-.conf-modal{
+.conf-modal {
   color: var(--white-color);
+}
+
+.conf-item-image img {
+  width: 110px !important;
+  height: 110px !important;
+}
+
+.conf-item-name {
+  font-size: 14px !important;
+}
+
+.conf-item-quantity h3 {
+  font-size: 12px !important;
+}
+
+.conf-item {
+  flex-wrap: wrap;
+  border-top: .3px solid var(--gray-color) !important;
+  border-bottom: .3px solid var(--gray-color) !important;
+  height: fit-content;
+}
+
+.conf-item-intern {
+  height: 150px !important;
+}
+
+.conf-items {
+  border: 0;
+}
+
+.conf-item-actions-row {
+  margin-bottom: 10px;
+}
+
+.conf-item-actions-row button {
+  display: flex;
+  align-items: baseline;
+  margin: 0 5px !important;
 }

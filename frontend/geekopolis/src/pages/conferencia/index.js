@@ -123,6 +123,20 @@ export default function Carrinho() {
     });
     window.location.reload();
   };
+  const removeProduct = (product) => {
+    cartUtils.removerProdutoDoCarrinho({
+      produto: product.produto,
+      quantidade: 1,
+    });
+    window.location.reload();
+  };
+  const deleteProduct = (product) => {
+    cartUtils.deletarProdutoDoCarrinho({
+      produto: product.produto,
+      quantidade: 1,
+    });
+    window.location.reload();
+  };
 
   const checkout = () => {
     if (tipoPag === 1 && !isFormValid()) {
@@ -151,7 +165,7 @@ export default function Carrinho() {
           setIsModalOpen2(true);
           setTimeout(() => {
             window.location.href = '/pedidos';
-          }, 2000);
+          }, 1000);
         }
         makeToast('error', error);
         return null;
@@ -189,7 +203,11 @@ export default function Carrinho() {
     setCarrinho(cart);
     setEnderecoId(cart.enderecoId);
     setTotal(cart.total.toLocaleString('pt-BR', { currency: 'BRL' }));
-    setFrete(cart.frete.valor.toLocaleString('pt-BR', { currency: 'BRL' }));
+    setFrete(
+      cart.frete.valor
+        ? cart.frete.valor.toLocaleString('pt-BR', { currency: 'BRL' })
+        : 0
+    );
 
     fetch(
       `http://localhost:8080/endereco/buscaEnderecosPorCliente/token/${localStorage.getItem(
@@ -214,19 +232,22 @@ export default function Carrinho() {
       <Header />
       <div className="cart-container-conf">
         <div className="cart-produto">
-          <div className="cart-items">
+          <div className="cart-items conf-items">
             {carrinho?.produtos?.map((product) => (
-              <div className="cart-item">
+              <div className="cart-item conf-item">
                 <Link
                   to={`/produto/${product.produto.id}`}
-                  className="cart-item"
+                  className="cart-item conf-item-intern"
                 >
-                  <div className="cart-item-image">
+                  <div className="cart-item-image conf-item-image">
                     <img src={product.produto.img} alt={product.produto.nome} />
                   </div>
                   <div className="cart-item-info">
-                    <h2 className="cart-item-name">{product.produto.nome}</h2>
-                    <div className="cart-item-quantity">
+                    <h2 className="cart-item-name conf-item-name">
+                      {product.produto.nome}
+                    </h2>
+                    <div className="cart-item-quantity conf-item-quantity">
+                      <h3>Quantidade: {product.quantidade}</h3>
                       <h3>
                         Preço/Und: R${' '}
                         {Number(product.produto.preco).toLocaleString('pt-BR', {
@@ -244,26 +265,27 @@ export default function Carrinho() {
                   </div>
                 </Link>
                 <div className="cart-item-actions">
-                  <div className="cart-item-actions-row">
-                    <h3>Quantidade:</h3>
+                  <div className="cart-item-actions-row conf-item-actions-row">
                     <button
+                      title="Remover uma unidade do produto"
                       type="button"
                       onClick={() => removeProduct(product)}
                     >
                       -
                     </button>
-                    <h3>{product.quantidade}</h3>
-                    <button type="button" onClick={() => addProduct(product)}>
+                    <button
+                      title="Adicionar uma unidade do produto"
+                      type="button"
+                      onClick={() => addProduct(product)}
+                    >
                       +
                     </button>
-                  </div>
-                  <div className="cart-item-actions-row">
                     <button
+                      title="Remover produto"
                       type="button"
-                      className="cart-item-actions-delete"
                       onClick={() => deleteProduct(product)}
                     >
-                      Remover do carrinho
+                      x
                     </button>
                   </div>
                 </div>
@@ -275,6 +297,7 @@ export default function Carrinho() {
           <div className="cart-cima">
             <div className="cart-address">
               <h2>Endereço de entrega:</h2>
+              <br />
               <div className="cart-address-info">
                 <h3>
                   {endereco?.logradouro}, {endereco?.numero}
@@ -379,7 +402,7 @@ export default function Carrinho() {
             type="button"
             onClick={checkout}
           >
-            Finalizar
+            Finalizar Pedido
           </button>
         </div>
       </div>

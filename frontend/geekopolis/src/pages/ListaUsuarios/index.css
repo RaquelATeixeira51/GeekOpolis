@@ -9,6 +9,7 @@
 .fundo {
   background-color: var(--dark-blue-color);
   width: 80%;
+  overflow-y: auto;
   height: 85vh;
   border-radius: 40px;
   align-items: center;
@@ -16,7 +17,7 @@
 }
 
 .filtro {
-  padding: 80px 0 0 70px;
+  padding: 80px 35px 0 35px;
   display: flex;
   align-items: center;
 }
@@ -119,9 +120,9 @@
 }
 
 
-  .user-data{
-    max-width: 230px;
-  }
+.user-data {
+  max-width: 230px;
+}
 
 .coluns {
   width: 100%;
@@ -130,7 +131,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
+
 }
 
 .status {
@@ -220,6 +221,6 @@
   margin-left: 90px;
 }
 
-#status-pedidos{
+#status-pedidos {
   color: green;
 }

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import makeToast from '../../shared/toaster';
 import './index.css';
 import Aside from '../../components/aside-client';
+import Header from '../../components/Header';
 
 export default function Detalhe() {
   const { id } = useParams();

@@ -198,7 +198,10 @@ span {
 }
 
 .slick-dots li.slick-active button {
-  background-color: var(--blue-color);
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  display: flex;
 }
 
 .carousel-image {
@@ -219,4 +222,12 @@ span {
 .product-name p {
   width: 80%;
   margin: 0 auto;
+}
+
+.products-list {
+  max-height: 60% !important;
+}
+
+.products-list-carousel-container {
+  width: 50% !important;
 }

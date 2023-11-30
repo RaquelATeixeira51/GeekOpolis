@@ -120,12 +120,39 @@ function ListaPedido() {
                         handleStatusUpdate(pedido.id, e.target.value)
                       }
                     >
-                      <option value="0">Aguardando Pagamento</option>
-                      <option value="1">Pagamento Rejeitado</option>
-                      <option value="2">Pagamento com Sucesso</option>
-                      <option value="3">Aguardando Retirada</option>
-                      <option value="4">Em Trânsito</option>
-                      <option value="5">Entregue</option>
+                      <option
+                        value="0"
+                        selected={pedido.status === 'AGUARDANDOPAGAMENTO'}
+                      >
+                        Aguardando Pagamento
+                      </option>
+                      <option
+                        value="1"
+                        selected={pedido.status === 'PAGAMENTOREJEITADO'}
+                      >
+                        Pagamento Rejeitado
+                      </option>
+                      <option
+                        value="2"
+                        selected={pedido.status === 'PAGAMENTOCOMSUCESSO'}
+                      >
+                        Pagamento com Sucesso
+                      </option>
+                      <option
+                        value="3"
+                        selected={pedido.status === 'AGUARDANDORETIRADA'}
+                      >
+                        Aguardando Retirada
+                      </option>
+                      <option
+                        value="4"
+                        selected={pedido.status === 'EMTRANSITO'}
+                      >
+                        Em Trânsito
+                      </option>
+                      <option value="5" selected={pedido.status === 'ENTREGUE'}>
+                        Entregue
+                      </option>
                     </select>
                   </td>
                   <td className="user-data">

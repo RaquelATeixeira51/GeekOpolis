@@ -41,6 +41,11 @@ export default function Produto() {
   };
 
   const adicionarAoCarrinho = () => {
+    const cart = localStorage.getItem('carrinho');
+    if (!cart) {
+      cartUtils.initializeCart();
+    }
+
     cartUtils.adicionaProdutoAoCarrinho(produtoCarrinho);
     setQuantidade(1);
     makeToast('success', `Produto ${product.nome} foi adicionado ao carrinho`);

@@ -20,7 +20,7 @@
 .footer-geekopolis-aside-logo {
     width: 15%;
     height: 50%;
-    align-items: start;
+    align-items: flex-start;
     display: flex;
     justify-content: flex-start
 }

@@ -610,11 +610,11 @@ function ListaProdutos() {
       <Modal
         isOpen={isModalOpen2}
         onRequestClose={closeModal2}
-        className="modal-content"
+        className="modal-content products-list"
         overlayClassName="modal-overlay"
       >
         <div className="modal-content-container">
-          <div className="carousel-container">
+          <div className="carousel-container products-list-carousel-container">
             <Slider
               infinite={true}
               speed="500"
